@@ -1,0 +1,33 @@
+{
+  "slug": "mac-n-cheese",
+  "title": "Mac n Cheese",
+  "description": "Creamy stovetop macaroni in a sharp cheddar sauce — no oven needed.",
+  "cuisine": "American",
+  "effort": "Quick",
+  "tags": ["cheese", "comfort food", "pasta", "vegetarian"],
+  "servings": 4,
+  "prepMin": 5,
+  "cookMin": 20,
+  "ingredients": [
+    { "qty": 250, "unit": "g", "item": "elbow macaroni", "aisle": "Grains & Pasta" },
+    { "qty": 3, "unit": "tbsp", "item": "butter", "aisle": "Dairy & Eggs" },
+    { "qty": 3, "unit": "tbsp", "item": "all-purpose flour", "aisle": "Baking" },
+    { "qty": 2.5, "unit": "cup", "item": "whole milk, warmed", "aisle": "Dairy & Eggs" },
+    { "qty": 200, "unit": "g", "item": "sharp cheddar, grated", "aisle": "Dairy & Eggs" },
+    { "qty": 50, "unit": "g", "item": "parmesan, finely grated", "aisle": "Dairy & Eggs" },
+    { "qty": 0.5, "unit": "tsp", "item": "mustard powder", "aisle": "Spices" },
+    { "qty": 0.25, "unit": "tsp", "item": "garlic powder", "aisle": "Spices" },
+    { "qty": 0.5, "unit": "tsp", "item": "salt, plus more for the pasta water", "aisle": "Spices" },
+    { "qty": 0.25, "unit": "tsp", "item": "black pepper", "aisle": "Spices" },
+    { "qty": 1, "unit": "pinch", "item": "smoked paprika, to finish (optional)", "aisle": "Spices" }
+  ],
+  "steps": [
+    "Boil the macaroni in well-salted water until 1 minute short of the package time. Reserve ½ cup of pasta water, then drain.",
+    "Meanwhile, melt the butter in a large pot over medium heat. Whisk in the flour and cook for 1–2 minutes until it smells nutty, without letting it brown.",
+    "Whisk in the warm milk a splash at a time at first to avoid lumps. Simmer, stirring, for 4–5 minutes until the sauce coats the back of a spoon.",
+    "Take the pot off the heat. Stir in the mustard powder, garlic powder, salt and pepper, then add the cheeses a handful at a time until smooth.",
+    "Fold in the macaroni. Loosen with a splash of pasta water if needed — the sauce thickens as it sits.",
+    "Serve immediately with a pinch of smoked paprika. For a crunchy top, move it to a baking dish, scatter over extra cheese and breadcrumbs, and grill for 2–3 minutes."
+  ],
+  "notes": ""
+}

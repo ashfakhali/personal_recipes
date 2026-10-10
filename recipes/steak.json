@@ -1,0 +1,29 @@
+{
+  "slug": "steak",
+  "title": "Pan-Seared Steak",
+  "description": "Dry-brined, hard-seared steak basted in garlic-thyme butter.",
+  "cuisine": "American",
+  "effort": "Moderate",
+  "tags": ["beef", "high protein", "low carb"],
+  "servings": 2,
+  "prepMin": 45,
+  "cookMin": 15,
+  "ingredients": [
+    { "qty": 2, "unit": "", "item": "ribeye or strip steaks, about 2.5 cm thick (~350 g each)", "aisle": "Meat & Seafood" },
+    { "qty": 1.5, "unit": "tsp", "item": "kosher salt", "aisle": "Spices" },
+    { "qty": 1, "unit": "tsp", "item": "black pepper, coarsely ground", "aisle": "Spices" },
+    { "qty": 1, "unit": "tbsp", "item": "neutral oil (avocado or canola)", "aisle": "Oils & Vinegars" },
+    { "qty": 2, "unit": "tbsp", "item": "butter", "aisle": "Dairy & Eggs" },
+    { "qty": 3, "unit": "", "item": "garlic cloves, smashed", "aisle": "Produce" },
+    { "qty": 3, "unit": "", "item": "sprigs fresh thyme or rosemary", "aisle": "Produce" }
+  ],
+  "steps": [
+    "At least 45 minutes ahead (or up to overnight, uncovered in the fridge), pat the steaks very dry and salt them all over. Let them sit at room temperature for the last 30 minutes.",
+    "Heat a cast-iron or heavy stainless pan over high heat for 3–4 minutes until it just starts to smoke, then add the oil.",
+    "Pat the steaks dry again, season with pepper and lay them in the pan. Sear without moving for 2–3 minutes until a deep brown crust forms, then flip and sear 2 minutes more. Hold each steak on its edge with tongs for 30–60 seconds to render the fat cap.",
+    "Turn the heat to medium and add the butter, garlic and herbs. Tilt the pan and spoon the foaming butter over the steaks continuously for 1–2 minutes.",
+    "Check the thickest part with a thermometer: 52°C (125°F) for medium-rare, 57°C (135°F) for medium. Pull a couple of degrees early — it keeps rising as it rests.",
+    "Rest on a board for 5–8 minutes, slice against the grain and spoon the pan butter over the top."
+  ],
+  "notes": ""
+}
