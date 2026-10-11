@@ -103,5 +103,8 @@
     "Turn the oven off, prop the door open a crack and leave the cheesecake inside for 1 hour. Lift it out of the water, run a thin knife around the edge and cool to room temperature.",
     "Chill uncovered for at least 8 hours or overnight. Unmould and slice with a hot knife, wiping it clean between cuts."
   ],
-  "notes": ""
+  "notes": "",
+  "rating": {
+    "taste": 5
+  }
 }
