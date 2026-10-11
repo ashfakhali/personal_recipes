@@ -1,0 +1,107 @@
+{
+  "slug": "new-york-cheesecake",
+  "title": "New York Cheesecake",
+  "description": "Dense, tangy and ultra-creamy, baked low in a water bath. Chill overnight before slicing.",
+  "cuisine": "American",
+  "effort": "Project",
+  "tags": [
+    "baking",
+    "cheesecake",
+    "dessert",
+    "vegetarian"
+  ],
+  "servings": 12,
+  "prepMin": 30,
+  "cookMin": 90,
+  "macros": {
+    "kcal": 520,
+    "protein": 8,
+    "carbs": 38,
+    "fat": 38
+  },
+  "ingredients": [
+    {
+      "qty": 1.5,
+      "unit": "cup",
+      "item": "graham cracker crumbs (crust)",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "sugar (crust)",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 6,
+      "unit": "tbsp",
+      "item": "unsalted butter, melted (crust)",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 1,
+      "unit": "pinch",
+      "item": "salt (crust)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 900,
+      "unit": "g",
+      "item": "full-fat cream cheese, at room temperature",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 1.25,
+      "unit": "cup",
+      "item": "sugar",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "all-purpose flour",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 0.25,
+      "unit": "tsp",
+      "item": "salt",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "cup",
+      "item": "sour cream, at room temperature",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 2,
+      "unit": "tsp",
+      "item": "vanilla extract",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "finely grated lemon zest",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "large eggs, at room temperature",
+      "aisle": "Dairy & Eggs"
+    }
+  ],
+  "steps": [
+    "Heat the oven to 325°F (165°C) with a rack in the middle. Wrap the outside of a 9-inch (23 cm) springform pan in two layers of heavy foil so the water bath can't seep in, and put a kettle of water on to boil.",
+    "For the crust, stir the crumbs, 2 tbsp sugar, pinch of salt and melted butter until it looks like wet sand. Press it firmly into the base of the pan. Bake 10 minutes, then let it cool while you make the filling.",
+    "Beat the cream cheese on medium-low until completely smooth, about 2 minutes, scraping the bowl. Beat in the 1¼ cups sugar, flour and ¼ tsp salt until smooth.",
+    "Beat in the sour cream, vanilla and lemon zest. Add the eggs one at a time on low speed, mixing only until each disappears. Avoid whipping in air, which causes cracks.",
+    "Pour the filling over the crust and smooth the top. Set the pan in a roasting pan, put it in the oven, and pour boiling water into the roasting pan to come halfway up the sides.",
+    "Bake 75–90 minutes, until the edge is set and slightly puffed but the centre still wobbles like jelly when you nudge the pan.",
+    "Turn the oven off, prop the door open a crack and leave the cheesecake inside for 1 hour. Lift it out of the water, run a thin knife around the edge and cool to room temperature.",
+    "Chill uncovered for at least 8 hours or overnight. Unmould and slice with a hot knife, wiping it clean between cuts."
+  ],
+  "notes": ""
+}

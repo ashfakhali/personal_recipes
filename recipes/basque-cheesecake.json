@@ -1,0 +1,75 @@
+{
+  "slug": "basque-cheesecake",
+  "title": "Basque Cheesecake",
+  "description": "Crustless, deeply caramelised on top and almost custardy inside. Very forgiving.",
+  "cuisine": "Spanish",
+  "effort": "Moderate",
+  "tags": [
+    "baking",
+    "cheesecake",
+    "dessert",
+    "vegetarian"
+  ],
+  "servings": 10,
+  "prepMin": 15,
+  "cookMin": 60,
+  "macros": {
+    "kcal": 595,
+    "protein": 10,
+    "carbs": 28,
+    "fat": 50
+  },
+  "ingredients": [
+    {
+      "qty": 900,
+      "unit": "g",
+      "item": "full-fat cream cheese, at room temperature",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 1,
+      "unit": "cup",
+      "item": "sugar",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 5,
+      "unit": "",
+      "item": "large eggs, at room temperature",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "salt",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "vanilla extract",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 2,
+      "unit": "cup",
+      "item": "heavy cream, at room temperature",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 0.25,
+      "unit": "cup",
+      "item": "all-purpose flour",
+      "aisle": "Baking"
+    }
+  ],
+  "steps": [
+    "Heat the oven to 400°F (200°C) with a rack in the middle. Scrunch two large sheets of parchment, flatten them out, and use them to line a 9-inch (23 cm) springform pan, overlapping, pressed into the corners and standing about 5 cm above the rim.",
+    "Beat the cream cheese and sugar on medium until completely smooth and the sugar has dissolved, about 3 minutes, scraping the bowl a couple of times.",
+    "On low speed, add the eggs one at a time, mixing until each disappears. Mix in the salt and vanilla.",
+    "Pour in the cream in a slow stream, then sift the flour over the top and mix just until smooth. For an extra-silky texture, pour the batter through a sieve.",
+    "Pour into the pan and bake 55–65 minutes, until the top is a deep, almost-burnt brown and the cake has puffed, while the centre still jiggles a lot.",
+    "Let it cool in the pan to room temperature; it will sink, which is normal. Serve at room temperature for a soft, creamy middle, or chill for at least 4 hours for firmer slices."
+  ],
+  "notes": ""
+}
