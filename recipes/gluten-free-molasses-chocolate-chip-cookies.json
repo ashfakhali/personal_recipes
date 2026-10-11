@@ -1,0 +1,108 @@
+{
+  "slug": "gluten-free-molasses-chocolate-chip-cookies",
+  "title": "Gluten-Free Molasses Cookies",
+  "description": "Chewy gluten-free chocolate chip cookies with molasses for a deep, caramel flavour. Chill the dough 30 minutes. Makes about 20.",
+  "cuisine": "American",
+  "effort": "Moderate",
+  "tags": [
+    "baking",
+    "cookies",
+    "dessert",
+    "gluten free",
+    "vegetarian"
+  ],
+  "servings": 20,
+  "prepMin": 15,
+  "cookMin": 25,
+  "macros": {
+    "kcal": 225,
+    "protein": 2,
+    "carbs": 32,
+    "fiber": 1,
+    "fat": 11
+  },
+  "ingredients": [
+    {
+      "qty": 2,
+      "unit": "cup",
+      "item": "gluten-free 1-to-1 flour blend (with xanthan gum)",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "xanthan gum (only if your blend has none)",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "baking soda",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "salt",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.75,
+      "unit": "cup",
+      "item": "unsalted butter, melted and slightly cooled",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 0.75,
+      "unit": "cup",
+      "item": "packed brown sugar",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 0.25,
+      "unit": "cup",
+      "item": "granulated sugar",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "unsulphured molasses",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "large egg",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "large egg yolk",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 2,
+      "unit": "tsp",
+      "item": "vanilla extract",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 1.5,
+      "unit": "cup",
+      "item": "chocolate chips (check they're gluten-free)",
+      "aisle": "Baking"
+    }
+  ],
+  "steps": [
+    "Whisk the gluten-free flour, xanthan gum (if needed), baking soda and salt in a bowl.",
+    "In a large bowl, whisk the melted butter with the brown sugar, granulated sugar and molasses until glossy. Whisk in the egg, yolk and vanilla.",
+    "Stir in the dry ingredients until smooth, then fold in the chocolate chips.",
+    "Cover and chill the dough for at least 30 minutes (up to 2 days). Gluten-free flour needs this time to absorb moisture; skip it and the cookies spread and taste gritty.",
+    "Heat the oven to 350°F (175°C) and line two baking sheets with parchment. Scoop 2-tbsp balls of dough about 6 cm apart.",
+    "Bake one sheet at a time for 10–12 minutes, until the edges are set and the tops crackle but the centres are still soft.",
+    "Cool on the sheet for 10 minutes, since they're fragile while warm, then move to a rack."
+  ],
+  "notes": ""
+}

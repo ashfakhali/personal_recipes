@@ -1,0 +1,89 @@
+{
+  "slug": "flan",
+  "title": "Classic Flan",
+  "description": "Silky baked egg custard under a pool of dark caramel. Chill at least 4 hours before turning it out.",
+  "cuisine": "Spanish",
+  "effort": "Moderate",
+  "tags": [
+    "custard",
+    "dessert",
+    "gluten free",
+    "vegetarian"
+  ],
+  "servings": 8,
+  "prepMin": 20,
+  "cookMin": 60,
+  "macros": {
+    "kcal": 210,
+    "protein": 6,
+    "carbs": 34,
+    "fiber": 0,
+    "fat": 6
+  },
+  "ingredients": [
+    {
+      "qty": 0.75,
+      "unit": "cup",
+      "item": "sugar (caramel)",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "water (caramel)",
+      "aisle": "Other"
+    },
+    {
+      "qty": 2,
+      "unit": "cup",
+      "item": "whole milk",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "strip of lemon peel or a cinnamon stick (optional)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "large eggs",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "large egg yolks",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 0.5,
+      "unit": "cup",
+      "item": "sugar (custard)",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 1,
+      "unit": "pinch",
+      "item": "salt",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "vanilla extract",
+      "aisle": "Baking"
+    }
+  ],
+  "steps": [
+    "Heat the oven to 325°F (160°C). Have an 8-inch (20 cm) round cake pan or flan mould ready, and put a kettle of water on to boil.",
+    "For the caramel, put the ¾ cup sugar and the water in a small heavy saucepan over medium heat. Swirl the pan (don't stir) until the sugar melts and turns a deep amber, 8–10 minutes. Pour it straight into the pan and tilt to coat the bottom. Be careful: it's extremely hot. Let it harden.",
+    "Warm the milk with the lemon peel or cinnamon (if using) until steaming but not boiling. Take it off the heat and remove the peel or cinnamon.",
+    "Whisk the eggs, yolks, ½ cup sugar and salt until well mixed but not foamy. Slowly whisk in the warm milk, then the vanilla. Strain through a fine sieve into the caramel-lined pan.",
+    "Set the pan in a roasting pan, place it in the oven, and pour hot water into the roasting pan to come halfway up the sides. Bake 45–60 minutes, until the edges are set and the centre wobbles slightly like jelly.",
+    "Lift the flan out of the water and cool on a rack for 1 hour, then cover and chill for at least 4 hours, or overnight.",
+    "Run a thin knife around the edge, set a rimmed serving plate on top, and flip it over in one quick motion. Lift off the pan and let the caramel run over the flan."
+  ],
+  "notes": ""
+}

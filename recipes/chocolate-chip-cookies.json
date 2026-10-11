@@ -1,0 +1,88 @@
+{
+  "slug": "chocolate-chip-cookies",
+  "title": "Chocolate Chip Cookies",
+  "description": "The classic: crisp golden edges, soft chewy middles. Makes about 24.",
+  "cuisine": "American",
+  "effort": "Moderate",
+  "tags": [
+    "baking",
+    "cookies",
+    "dessert",
+    "vegetarian"
+  ],
+  "servings": 24,
+  "prepMin": 15,
+  "cookMin": 25,
+  "macros": {
+    "kcal": 235,
+    "protein": 2,
+    "carbs": 31,
+    "fiber": 1,
+    "fat": 12
+  },
+  "ingredients": [
+    {
+      "qty": 2.25,
+      "unit": "cup",
+      "item": "all-purpose flour",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "baking soda",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "salt",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "cup",
+      "item": "unsalted butter, softened",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 0.75,
+      "unit": "cup",
+      "item": "granulated sugar",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 0.75,
+      "unit": "cup",
+      "item": "packed brown sugar",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "large eggs",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 2,
+      "unit": "tsp",
+      "item": "vanilla extract",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 2,
+      "unit": "cup",
+      "item": "semi-sweet chocolate chips",
+      "aisle": "Baking"
+    }
+  ],
+  "steps": [
+    "Heat the oven to 375°F (190°C) and line two baking sheets with parchment.",
+    "Whisk the flour, baking soda and salt in a bowl.",
+    "Beat the butter with both sugars until creamy and a little lighter, 2–3 minutes. Beat in the eggs one at a time, then the vanilla.",
+    "On low speed, mix in the flour just until no dry streaks remain, then stir in the chocolate chips.",
+    "Scoop 2-tbsp balls of dough about 5 cm apart. Bake one sheet at a time for 9–11 minutes, until the edges are golden and the centres still look slightly underdone.",
+    "Cool on the sheet for 5 minutes, then move to a rack. For thicker cookies with a deeper toffee flavour, chill the dough for up to 24 hours before baking."
+  ],
+  "notes": ""
+}
