@@ -1,0 +1,41 @@
+{
+  "slug": "southern-fried-chicken",
+  "title": "Southern Fried Chicken",
+  "description": "Buttermilk-brined chicken in a thick, craggy crust. Start the brine at least 4 hours ahead.",
+  "cuisine": "American",
+  "effort": "Project",
+  "tags": ["brined", "chicken", "fried", "southern"],
+  "servings": 4,
+  "prepMin": 85,
+  "cookMin": 40,
+  "source": "https://www.seriouseats.com/the-food-lab-southern-fried-chicken-recipe",
+  "ingredients": [
+    { "qty": 1800, "unit": "g", "item": "bone-in, skin-on chicken: a whole bird cut into 10 pieces, or breasts, thighs, drumsticks and wings", "aisle": "Meat & Seafood" },
+    { "qty": 2, "unit": "tbsp", "item": "paprika (spice mix)", "aisle": "Spices" },
+    { "qty": 2, "unit": "tbsp", "item": "freshly ground black pepper (spice mix)", "aisle": "Spices" },
+    { "qty": 2, "unit": "tsp", "item": "garlic powder (spice mix)", "aisle": "Spices" },
+    { "qty": 2, "unit": "tsp", "item": "dried oregano (spice mix)", "aisle": "Spices" },
+    { "qty": 0.5, "unit": "tsp", "item": "cayenne pepper (spice mix)", "aisle": "Spices" },
+    { "qty": 1, "unit": "cup", "item": "buttermilk", "aisle": "Dairy & Eggs" },
+    { "qty": 1, "unit": "", "item": "large egg", "aisle": "Dairy & Eggs" },
+    { "qty": 1, "unit": "tbsp", "item": "kosher salt, for the brine", "aisle": "Spices" },
+    { "qty": 1.5, "unit": "cup", "item": "all-purpose flour", "aisle": "Baking" },
+    { "qty": 0.5, "unit": "cup", "item": "cornstarch", "aisle": "Baking" },
+    { "qty": 1, "unit": "tsp", "item": "baking powder", "aisle": "Baking" },
+    { "qty": 2, "unit": "tsp", "item": "kosher salt, for the flour", "aisle": "Spices" },
+    { "qty": 4, "unit": "cup", "item": "vegetable shortening (or oil) for frying", "aisle": "Oils & Vinegars" },
+    { "qty": null, "unit": "", "item": "kosher salt, to finish", "aisle": "Spices" }
+  ],
+  "steps": [
+    "Stir the paprika, black pepper, garlic powder, oregano and cayenne together in a small bowl. This is your spice mix.",
+    "In a large bowl, whisk the buttermilk, egg, 1 tbsp kosher salt and 2 tbsp of the spice mix. Add the chicken and turn it to coat, then tip everything into a gallon zip-top bag. Refrigerate for at least 4 hours or overnight, flipping the bag now and then.",
+    "In another large bowl, whisk the flour, cornstarch, baking powder, 2 tsp kosher salt and the rest of the spice mix. Rub 3 tbsp of the brine from the bag into the flour with your fingertips.",
+    "Lift out one piece of chicken, let the extra buttermilk drip off, and drop it into the flour. Repeat with the rest, then toss and press the flour on firmly so every piece has a thick coat.",
+    "Set an oven rack in the middle and heat the oven to 350°F (175°C). Heat the shortening to 425°F (220°C) in a 12-inch straight-sided cast-iron fryer or a large wok over medium-high heat, and don't let it get hotter.",
+    "Shake each coated piece in a fine-mesh strainer to drop the loose flour, and set it on a wire rack over a rimmed baking sheet. Once all are done, lay them skin side down in the oil. The temperature will drop to about 300°F (150°C); adjust the heat to hold it there for the rest of the frying.",
+    "Fry until deep golden on the first side, about 6 minutes. Don't move or check the chicken for the first 3 minutes, or you may knock the coating off. Flip with tongs and fry about 4 minutes more.",
+    "Move the chicken to a clean rack over a rimmed baking sheet, sprinkle lightly with salt, and bake until breast pieces reach 150°F (65°C) and thighs and drumsticks reach 165°F (74°C), about 5 to 10 minutes. Take pieces out as each reaches its temperature, salt to taste, and serve right away.",
+    "For extra-crunchy chicken, chill the cooked pieces for at least 1 hour or overnight. Reheat the oil to 400°F (200°C) and fry them again, flipping once, until fully crisp, about 5 minutes. Drain on a rack and serve immediately."
+  ],
+  "notes": ""
+}

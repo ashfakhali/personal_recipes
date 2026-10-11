@@ -57,7 +57,7 @@ function fmtQty(g, f = 1) {
   if (g.qty == null || g.qty === '' || isNaN(g.qty)) return '';
   let q = g.qty * f, u = g.unit || '';
   if (VOL[u] && f !== 1) [q, u] = normVol(q * VOL[u]);
-  if (u === 'g') return q >= 1000 ? `${+(q / 1000).toFixed(2)} kg` : `${q < 10 ? Math.round(q * 2) / 2 : q < 100 ? Math.round(q) : Math.round(q / 5) * 5} g`;
+  if (u === 'g') return `${q < 10 ? Math.round(q * 2) / 2 : q < 100 ? Math.round(q) : Math.round(q / 5) * 5} g`;
   return `${frac(q)} ${u === 'cup' && q > 1.01 ? 'cups' : u}`.trim();
 }
 function qtyInput(q, u) {
