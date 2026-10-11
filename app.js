@@ -164,7 +164,9 @@ const hasMacros = r => r.macros && MACROS.some(([k]) => r.macros[k] != null && r
 
 /* ---------- views ---------- */
 const SORTS = { name: ['Name', (a, b) => a.title.localeCompare(b.title)], time: ['Time', (a, b) => total(a) - total(b)],
-  kcal: ['Calories', (a, b) => (a.macros?.kcal ?? 1e9) - (b.macros?.kcal ?? 1e9)], protein: ['Protein', (a, b) => (b.macros?.protein ?? -1) - (a.macros?.protein ?? -1)] };
+  kcal: ['Calories', (a, b) => (a.macros?.kcal ?? 1e9) - (b.macros?.kcal ?? 1e9)], rating: ['My rating', (a, b) => ((b.rating?.taste || 0) - (a.rating?.taste || 0)) || ((b.rating?.ease || 0) - (a.rating?.ease || 0))], protein: ['Protein', (a, b) => (b.macros?.protein ?? -1) - (a.macros?.protein ?? -1)] };
+const RATINGS = [['taste', 'Taste'], ['ease', 'Ease']];
+const stars = (v, cls = '') => `<span class="stars ${cls}" aria-label="${v || 0} of 5">${[1, 2, 3, 4, 5].map(i => `<i class="${i <= (v || 0) ? 'on' : ''}">★</i>`).join('')}</span>`;
 const isMarinade = r => (r.tags || []).includes('marinade');
 function viewHome(mode = 'recipes') {
   const M = mode === 'marinades';
@@ -192,7 +194,7 @@ function viewHome(mode = 'recipes') {
       </details>
       <div class="results">
         <div class="resbar"><span id="count"></span>${[...S.filters].map(k => `<button class="active" data-f="${esc(k)}" aria-label="Remove filter ${esc(k.split(':')[1])}">${esc(k.split(':')[1])} ×</button>`).join('')}</div>
-        <div class="rhead-row" aria-hidden="true"><span>Recipe</span><span>Cuisine</span><span>Time</span><span>kcal</span><span>Protein</span><span>Effort</span></div>
+        <div class="rhead-row" aria-hidden="true"><span>Recipe</span><span>Rating</span><span>Cuisine</span><span>Time</span><span>kcal</span><span>Protein</span><span>Effort</span></div>
         <ul id="list" class="rlist"></ul>
       </div>
     </div></section>`;
@@ -201,6 +203,7 @@ function viewHome(mode = 'recipes') {
     $('#count').textContent = `${list.length} of ${rs.length} ${rs.length === 1 ? 'recipe' : 'recipes'}`;
     $('#list').innerHTML = list.length ? list.map(r => `<li><a class="row" href="#/r/${encodeURIComponent(r.slug)}">
       <span class="c-title"><b>${esc(r.title)}</b></span>
+      <span class="c-rate">${r.rating?.taste || r.rating?.ease ? `<span title="Taste">${stars(r.rating.taste, 'sm')}</span><span title="Ease" class="ease">${stars(r.rating.ease, 'sm')}</span>` : '<span class="unrated">Not rated</span>'}</span>
       <span class="c-cuisine">${esc(r.cuisine)}</span>
       <span class="c-time">${fmtMin(total(r)) || '–'}</span>
       <span class="c-kcal">${r.macros?.kcal ?? '–'}<em> kcal</em></span>
@@ -269,6 +272,7 @@ function viewRecipe(slug) {
       <div class="rcard-head"><h2>${esc(r.title)}</h2>
         <dl class="stats">${[['Prep', fmtMin(r.prepMin)], ['Cook', fmtMin(r.cookMin)], ['Total', fmtMin(total(r))], ['Servings', n], ['Effort', r.effort], ['Cuisine', r.cuisine]]
           .filter(([, v]) => v).map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+        <div class="myrating">${RATINGS.map(([k, l]) => `<div class="rate" data-k="${k}"><span class="rlabel">${l}${k === 'ease' ? ' <small>(5 = effortless)</small>' : ''}</span><span class="stars big">${[1, 2, 3, 4, 5].map(v => `<button class="${v <= (r.rating?.[k] || 0) ? 'on' : ''}" data-v="${v}" aria-label="${l} ${v} of 5">★</button>`).join('')}</span></div>`).join('')}</div>
         ${hasMacros(r) ? `<div class="macros"><span class="mlabel">Per serving <small>(approx.)</small></span>${MACROS.filter(([k]) => r.macros[k] != null && r.macros[k] !== '')
           .map(([k, l, u]) => `<div class="m m-${k}"><b>${esc(r.macros[k])}${u}</b><span>${l}</span></div>`).join('')}</div>` : ''}
       </div>
@@ -290,6 +294,15 @@ function viewRecipe(slug) {
       </section>
     </div></section></article>`;
   const setN = v => { S.servings[slug] = Math.max(1, Math.round(v) || 1); viewRecipe(slug); };
+  $$('.rate', app).forEach(el => el.querySelectorAll('button').forEach(b => b.onclick = async () => {
+    if (!token()) return toast('Add your GitHub token in Settings to rate');
+    const k = el.dataset.k, v = +b.dataset.v, cur = r.rating?.[k] || 0, nv = v === cur ? 0 : v;
+    const rating = { ...(r.rating || {}), [k]: nv };
+    if (!nv) delete rating[k];
+    el.querySelectorAll('button').forEach(x => x.classList.toggle('on', +x.dataset.v <= nv));
+    try { await saveRecipe({ ...r, ...(Object.keys(rating).length ? { rating } : { rating: undefined }) }, false, `Rate: ${r.title}`); toast(nv ? `${k === 'taste' ? 'Taste' : 'Ease'}: ${nv}/5` : 'Rating cleared'); viewRecipe(slug); }
+    catch (err) { toast(err.message); viewRecipe(slug); }
+  }));
   $('#sminus').onclick = () => setN(n - 1);
   $('#splus').onclick = () => setN(n + 1);
   $('#sv').onchange = e => setN(+e.target.value);
