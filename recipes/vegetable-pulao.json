@@ -115,5 +115,8 @@
     "Turn off the heat and leave the lid on for 10 minutes so the rice finishes cooking in its own steam. Don't lift the lid.",
     "Fluff with a fork, fish out the whole spices if you like, and top with the cashews and raisins."
   ],
-  "notes": ""
+  "notes": "",
+  "rating": {
+    "effort": 2
+  }
 }
