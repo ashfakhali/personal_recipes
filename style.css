@@ -106,15 +106,15 @@ main { max-width: var(--wrap); margin: 0 auto; padding: 2rem 16px 3rem; }
 .stars i { font-style: normal; } .stars .on, .stars i.on { color: #f5a623; }
 .stars.sm { font-size: .82rem; }
 .c-rate { display: flex; flex-direction: column; line-height: 1.15; }
-.c-rate .ease .on { color: var(--green); }
+.c-rate .diff .on { color: #e2553b; }
 .unrated { font-size: .78rem; color: var(--muted); }
 .myrating { display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; margin-top: .9rem; }
 .rate { display: flex; align-items: center; gap: .6rem; background: var(--bg); border-radius: 8px; padding: .3rem .8rem; }
 .rlabel { font: 600 .8rem var(--head); color: var(--muted); } .rlabel small { font-weight: 400; }
 .stars.big button { border: 0; background: none; padding: 0 .08rem; font-size: 1.45rem; line-height: 1; color: #d9d6cc; cursor: pointer; transition: transform .1s; }
 .stars.big button.on { color: #f5a623; }
-.rate[data-k="ease"] .stars.big button.on { color: var(--green); }
-.stars.big:hover button { color: #f5a623; } .rate[data-k="ease"] .stars.big:hover button { color: var(--green); }
+.rate[data-k="difficulty"] .stars.big button.on { color: #e2553b; }
+.stars.big:hover button { color: #f5a623; } .rate[data-k="difficulty"] .stars.big:hover button { color: #e2553b; }
 .stars.big button:hover ~ button { color: #d9d6cc !important; }
 .stars.big button:hover { transform: scale(1.15); }
 
