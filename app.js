@@ -186,7 +186,7 @@ function viewHome(mode = 'recipes') {
       <input id="q" class="search" type="search" placeholder="Search recipes or ingredients" aria-label="Search recipes" value="${esc(S.q)}">
       <label class="sortsel">Sort by <select id="sort">${Object.entries(SORTS).map(([k, [l]]) => `<option value="${k}" ${k === S.sort ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
     </div>
-    ${M ? '<p class="mintro">Each makes enough for about 1 kg of chicken. Mix, coat, refrigerate for the time on the card, then cook to 165°F (74°C). See the <a href="#/guide/times">cooking times</a> and <a href="#/guide/temps">safe temperatures</a> guides.</p>' : ''}
+    ${M ? '<p class="mintro">Each is for about 1 kg of chicken.</p>' : ''}
     <div class="layout">
       <details class="side" ${wide ? 'open' : ''}><summary>Filters${S.filters.size ? ` (${S.filters.size})` : ''}</summary>
         ${Object.entries(groups).filter(([, v]) => v.length).map(([g, vs]) => `<fieldset class="fgroup"><legend>${g}</legend>${vs.map(v => facet(g, v)).join('')}</fieldset>`).join('')}
@@ -224,7 +224,7 @@ function viewGuides() {
   document.title = 'Guides';
   app.innerHTML = `<section class="guides"><div class="homebar"><h1>Guides</h1></div>
     <div class="glist">${Object.entries(GUIDES).map(([k, g]) => `<a class="gcard" href="#/guide/${k}"><h2>${esc(g.title)}</h2><p>${esc(g.blurb)}</p></a>`).join('')}
-    <a class="gcard" href="#/marinades"><h2>Chicken marinades</h2><p>Five go-to marinades with how long to marinate each.</p></a></div></section>`;
+    <a class="gcard" href="#/marinades"><h2>Chicken marinades</h2><p>Marinades and marinating times.</p></a></div></section>`;
 }
 function viewGuide(k) {
   const g = GUIDES[k];
