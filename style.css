@@ -80,6 +80,15 @@ main { max-width: var(--wrap); margin: 0 auto; padding: 2rem 16px 3rem; }
 .p-Quick { background: #dff3e6; color: #1f6b40; } .p-Moderate { background: #fff1c9; color: #7a5a00; } .p-Project { background: #fde0d6; color: #a23b17; } .p-veg { background: #e6f4d9; color: #3d6b16; }
 .empty { text-align: center; color: var(--muted); padding: 3rem 0; grid-column: 1 / -1; }
 
+/* macros */
+.macros { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: .8rem; }
+.mlabel { font: 600 .8rem var(--head); color: var(--muted); margin-right: .3rem; }
+.mlabel small { font-weight: 400; }
+.m { display: flex; flex-direction: column; align-items: center; min-width: 74px; padding: .35rem .7rem; border-radius: 8px; background: var(--bg); border-bottom: 3px solid var(--green); }
+.m b { font: 700 1.05rem var(--head); } .m span { font-size: .72rem; color: var(--muted); font-weight: 700; }
+.m-kcal { border-color: var(--orange); } .m-protein { border-color: #3b82c4; } .m-carbs { border-color: var(--yellow); } .m-fat { border-color: #b46fd0; }
+.f.sub { margin-bottom: .4rem; font-size: .82rem; }
+
 /* recipe page */
 .crumbs { margin-bottom: 1rem; font: 600 .9rem var(--head); }
 .crumbs a { text-decoration: none; }
@@ -197,6 +206,7 @@ legend { font: 700 1.05rem var(--head); padding: 0 .4rem; }
   .rcard { border: 0; }
   .rcard-head { padding: 0 0 .6rem; border-bottom: 1px solid #ccc; }
   .rcard-head h2 { display: none; }
+  .macros { margin-top: .4rem; } .m { border: 1px solid #ccc; padding: .1rem .5rem; flex-direction: row; gap: .3rem; align-items: baseline; }
   .stats { margin: 0; } .stats div { padding: 0 1rem 0 0; min-width: 0; }
   .rbody { grid-template-columns: 34% 1fr; gap: 1.2rem; }
   .ingpanel, .method { padding: .8rem 0 0; border: 0; }

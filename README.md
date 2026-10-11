@@ -12,6 +12,7 @@ My personal recipe catalogue: a static site hosted on GitHub Pages.
 - An add/edit form and quick notes. Saving commits straight to this repo.
 - No photos needed: recipes are text cards. Illustrations are used only as site decoration (category tiles and footer).
 - Optional source link on each recipe.
+- Approximate macros per serving (calories, protein, carbs, fat), editable in the form.
 
 ## One-time setup
 1. **Enable Pages:** Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)` → Save.
@@ -27,6 +28,7 @@ Each recipe is `recipes/<slug>.json`, and `recipes/index.json` lists the slugs.
   "slug": "omurice", "title": "Omurice", "description": "…",
   "cuisine": "Japanese", "effort": "Quick", "tags": ["rice", "eggs"],
   "servings": 2, "prepMin": 10, "cookMin": 20,
+  "macros": { "kcal": 645, "protein": 34, "carbs": 67, "fat": 26 },
   "ingredients": [{ "qty": 2, "unit": "cup", "item": "cooked rice", "aisle": "Grains & Pasta" }],
   "steps": ["…"], "notes": "", "source": ""
 }

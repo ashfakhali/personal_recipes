@@ -4,16 +4,52 @@
   "description": "Par-boiled, double-fried fries with a glassy, shatteringly crisp shell.",
   "cuisine": "American",
   "effort": "Moderate",
-  "tags": ["fried", "potatoes", "side", "vegetarian"],
+  "tags": [
+    "fried",
+    "potatoes",
+    "side",
+    "vegetarian"
+  ],
   "servings": 4,
   "prepMin": 15,
   "cookMin": 55,
+  "macros": {
+    "kcal": 380,
+    "protein": 5,
+    "carbs": 45,
+    "fat": 20
+  },
   "ingredients": [
-    { "qty": 1000, "unit": "g", "item": "russet potatoes", "aisle": "Produce" },
-    { "qty": 2, "unit": "tbsp", "item": "white vinegar", "aisle": "Oils & Vinegars" },
-    { "qty": 1, "unit": "tbsp", "item": "salt, for the boiling water", "aisle": "Spices" },
-    { "qty": 8, "unit": "cup", "item": "neutral oil for frying (peanut or canola)", "aisle": "Oils & Vinegars" },
-    { "qty": 1, "unit": "tsp", "item": "fine salt, to finish", "aisle": "Spices" }
+    {
+      "qty": 1000,
+      "unit": "g",
+      "item": "russet potatoes",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "white vinegar",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "salt, for the boiling water",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 8,
+      "unit": "cup",
+      "item": "neutral oil for frying (peanut or canola)",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "fine salt, to finish",
+      "aisle": "Spices"
+    }
   ],
   "steps": [
     "Peel the potatoes (optional) and cut into 1 cm batons. Rinse in cold water until the water runs mostly clear.",

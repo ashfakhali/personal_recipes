@@ -159,6 +159,9 @@ async function deleteRecipe(r) {
 /* ---------- look ---------- */
 const isVeg = r => (r.tags || []).includes('vegetarian');
 
+const MACROS = [['kcal', 'Calories', ''], ['protein', 'Protein', 'g'], ['carbs', 'Carbs', 'g'], ['fat', 'Fat', 'g']];
+const hasMacros = r => r.macros && MACROS.some(([k]) => r.macros[k] != null && r.macros[k] !== '');
+
 /* ---------- views ---------- */
 function viewHome() {
   document.title = 'Recipe Book';
@@ -186,7 +189,7 @@ function viewHome() {
     $('#grid').innerHTML = list.length ? list.map(r => `<a class="card" href="#/r/${encodeURIComponent(r.slug)}">
       <span class="card-cuisine">${esc(r.cuisine)}</span>
       <h3>${esc(r.title)}</h3>
-      <p class="card-key">${[fmtMin(total(r)), `serves ${r.servings}`].filter(Boolean).join(' / ')}</p>
+      <p class="card-key">${[fmtMin(total(r)), `serves ${r.servings}`, r.macros?.kcal ? `${r.macros.kcal} kcal` : ''].filter(Boolean).join(' / ')}</p>
       ${r.description ? `<p class="card-desc">${esc(r.description)}</p>` : ''}
       <div class="card-foot">${r.effort ? `<span class="pill p-${esc(r.effort)}">${esc(r.effort)}</span>` : ''}${isVeg(r) ? '<span class="pill p-veg">Vegetarian</span>' : ''}</div></a>`).join('')
       : `<p class="empty">${rs.length ? 'No recipes match. Try a different word or clear the filters.' : 'No recipes yet. <a href="#/new">Add your first one</a>.'}</p>`;
@@ -233,6 +236,8 @@ function viewRecipe(slug) {
       <div class="rcard-head"><h2>${esc(r.title)}</h2>
         <dl class="stats">${[['Prep', fmtMin(r.prepMin)], ['Cook', fmtMin(r.cookMin)], ['Total', fmtMin(total(r))], ['Servings', n], ['Effort', r.effort], ['Cuisine', r.cuisine]]
           .filter(([, v]) => v).map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+        ${hasMacros(r) ? `<div class="macros"><span class="mlabel">Per serving <small>(approx.)</small></span>${MACROS.filter(([k]) => r.macros[k] != null && r.macros[k] !== '')
+          .map(([k, l, u]) => `<div class="m m-${k}"><b>${esc(r.macros[k])}${u}</b><span>${l}</span></div>`).join('')}</div>` : ''}
       </div>
     <div class="rbody">
       <aside class="ingpanel">
@@ -308,6 +313,8 @@ function viewEdit(slug) {
       <label class="f">Cook (min)<input name="cookMin" type="number" min="0" value="${esc(r.cookMin)}"></label>
       <label class="f">Servings<input name="servings" type="number" min="1" value="${esc(r.servings || 2)}"></label>
     </div>
+    <div class="f">Macros per serving <small>Optional. Rough estimates are fine. They stay the same when you change servings.</small>
+      <div class="fgrid">${MACROS.map(([k, l, u]) => `<label class="f sub">${l}${u ? ` (${u})` : ''}<input name="m_${k}" type="number" min="0" step="1" value="${esc(r.macros?.[k] ?? '')}"></label>`).join('')}</div></div>
     <datalist id="cuisines">${uniq([...CUISINES, ...S.recipes.map(x => x.cuisine)]).map(c => `<option value="${esc(c)}">`).join('')}</datalist>
     <div class="f">Tags <small>comma-separated</small><div class="tagin"><input name="tags" value="${esc((r.tags || []).join(', '))}" aria-label="Tags"><button type="button" class="btn ghost" id="sugg">Suggest</button></div></div>
     <label class="f">Source link <small>Optional. Where the recipe came from.</small><input name="source" type="url" placeholder="https://…" value="${esc(r.source || '')}"></label>
@@ -360,6 +367,8 @@ function viewEdit(slug) {
     };
     rec.effort = v('effort') || autoEffort(rec);
     rec.source = v('source'); delete rec.sticker;
+    const mac = Object.fromEntries(MACROS.map(([k]) => [k, v(`m_${k}`) === '' ? null : Math.round(+v(`m_${k}`))]).filter(([, x]) => x != null));
+    if (Object.keys(mac).length) rec.macros = mac; else delete rec.macros;
     const btn = $('#save'); btn.disabled = true; btn.textContent = 'Saving…';
     try {
       await saveRecipe(rec, isNew); toast('Saved'); location.hash = `#/r/${encodeURIComponent(rec.slug)}`; }

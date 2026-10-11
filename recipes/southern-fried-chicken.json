@@ -4,27 +4,113 @@
   "description": "Buttermilk-brined chicken in a thick, craggy crust. Start the brine at least 4 hours ahead.",
   "cuisine": "American",
   "effort": "Project",
-  "tags": ["brined", "chicken", "fried", "southern"],
+  "tags": [
+    "brined",
+    "chicken",
+    "fried",
+    "southern"
+  ],
   "servings": 4,
   "prepMin": 85,
   "cookMin": 40,
+  "macros": {
+    "kcal": 1040,
+    "protein": 62,
+    "carbs": 34,
+    "fat": 72
+  },
   "source": "https://www.seriouseats.com/the-food-lab-southern-fried-chicken-recipe",
   "ingredients": [
-    { "qty": 1800, "unit": "g", "item": "bone-in, skin-on chicken: a whole bird cut into 10 pieces, or breasts, thighs, drumsticks and wings", "aisle": "Meat & Seafood" },
-    { "qty": 2, "unit": "tbsp", "item": "paprika (spice mix)", "aisle": "Spices" },
-    { "qty": 2, "unit": "tbsp", "item": "freshly ground black pepper (spice mix)", "aisle": "Spices" },
-    { "qty": 2, "unit": "tsp", "item": "garlic powder (spice mix)", "aisle": "Spices" },
-    { "qty": 2, "unit": "tsp", "item": "dried oregano (spice mix)", "aisle": "Spices" },
-    { "qty": 0.5, "unit": "tsp", "item": "cayenne pepper (spice mix)", "aisle": "Spices" },
-    { "qty": 1, "unit": "cup", "item": "buttermilk", "aisle": "Dairy & Eggs" },
-    { "qty": 1, "unit": "", "item": "large egg", "aisle": "Dairy & Eggs" },
-    { "qty": 1, "unit": "tbsp", "item": "kosher salt, for the brine", "aisle": "Spices" },
-    { "qty": 1.5, "unit": "cup", "item": "all-purpose flour", "aisle": "Baking" },
-    { "qty": 0.5, "unit": "cup", "item": "cornstarch", "aisle": "Baking" },
-    { "qty": 1, "unit": "tsp", "item": "baking powder", "aisle": "Baking" },
-    { "qty": 2, "unit": "tsp", "item": "kosher salt, for the flour", "aisle": "Spices" },
-    { "qty": 4, "unit": "cup", "item": "vegetable shortening (or oil) for frying", "aisle": "Oils & Vinegars" },
-    { "qty": null, "unit": "", "item": "kosher salt, to finish", "aisle": "Spices" }
+    {
+      "qty": 1800,
+      "unit": "g",
+      "item": "bone-in, skin-on chicken: a whole bird cut into 10 pieces, or breasts, thighs, drumsticks and wings",
+      "aisle": "Meat & Seafood"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "paprika (spice mix)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "freshly ground black pepper (spice mix)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 2,
+      "unit": "tsp",
+      "item": "garlic powder (spice mix)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 2,
+      "unit": "tsp",
+      "item": "dried oregano (spice mix)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "cayenne pepper (spice mix)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "cup",
+      "item": "buttermilk",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "large egg",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "kosher salt, for the brine",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1.5,
+      "unit": "cup",
+      "item": "all-purpose flour",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 0.5,
+      "unit": "cup",
+      "item": "cornstarch",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "baking powder",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 2,
+      "unit": "tsp",
+      "item": "kosher salt, for the flour",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 4,
+      "unit": "cup",
+      "item": "vegetable shortening (or oil) for frying",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "kosher salt, to finish",
+      "aisle": "Spices"
+    }
   ],
   "steps": [
     "Stir the paprika, black pepper, garlic powder, oregano and cayenne together in a small bowl. This is your spice mix.",

@@ -4,18 +4,63 @@
   "description": "Dry-brined, hard-seared steak basted in garlic-thyme butter.",
   "cuisine": "American",
   "effort": "Moderate",
-  "tags": ["beef", "high protein", "low carb"],
+  "tags": [
+    "beef",
+    "high protein",
+    "low carb"
+  ],
   "servings": 2,
   "prepMin": 45,
   "cookMin": 15,
+  "macros": {
+    "kcal": 920,
+    "protein": 66,
+    "carbs": 1,
+    "fat": 72
+  },
   "ingredients": [
-    { "qty": 2, "unit": "", "item": "ribeye or strip steaks, about 2.5 cm thick (~350 g each)", "aisle": "Meat & Seafood" },
-    { "qty": 1.5, "unit": "tsp", "item": "kosher salt", "aisle": "Spices" },
-    { "qty": 1, "unit": "tsp", "item": "black pepper, coarsely ground", "aisle": "Spices" },
-    { "qty": 1, "unit": "tbsp", "item": "neutral oil (avocado or canola)", "aisle": "Oils & Vinegars" },
-    { "qty": 2, "unit": "tbsp", "item": "butter", "aisle": "Dairy & Eggs" },
-    { "qty": 3, "unit": "", "item": "garlic cloves, smashed", "aisle": "Produce" },
-    { "qty": 3, "unit": "", "item": "sprigs fresh thyme or rosemary", "aisle": "Produce" }
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "ribeye or strip steaks, about 2.5 cm thick (~350 g each)",
+      "aisle": "Meat & Seafood"
+    },
+    {
+      "qty": 1.5,
+      "unit": "tsp",
+      "item": "kosher salt",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "black pepper, coarsely ground",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "neutral oil (avocado or canola)",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "butter",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 3,
+      "unit": "",
+      "item": "garlic cloves, smashed",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 3,
+      "unit": "",
+      "item": "sprigs fresh thyme or rosemary",
+      "aisle": "Produce"
+    }
   ],
   "steps": [
     "At least 45 minutes ahead (or up to overnight, uncovered in the fridge), pat the steaks very dry and salt them all over. Let them sit at room temperature for the last 30 minutes.",

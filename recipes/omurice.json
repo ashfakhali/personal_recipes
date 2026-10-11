@@ -4,22 +4,88 @@
   "description": "Japanese ketchup fried rice wrapped in a soft, buttery omelette.",
   "cuisine": "Japanese",
   "effort": "Quick",
-  "tags": ["chicken", "comfort food", "eggs", "rice"],
+  "tags": [
+    "chicken",
+    "comfort food",
+    "eggs",
+    "rice"
+  ],
   "servings": 2,
   "prepMin": 10,
   "cookMin": 20,
+  "macros": {
+    "kcal": 645,
+    "protein": 34,
+    "carbs": 67,
+    "fat": 26
+  },
   "ingredients": [
-    { "qty": 2, "unit": "cup", "item": "cooked short-grain rice, preferably day-old", "aisle": "Grains & Pasta" },
-    { "qty": 150, "unit": "g", "item": "boneless chicken thigh, diced small", "aisle": "Meat & Seafood" },
-    { "qty": 0.5, "unit": "", "item": "onion, finely chopped", "aisle": "Produce" },
-    { "qty": 0.25, "unit": "cup", "item": "frozen peas (optional)", "aisle": "Frozen" },
-    { "qty": 3, "unit": "tbsp", "item": "ketchup, plus more to serve", "aisle": "Condiments & Sauces" },
-    { "qty": 1, "unit": "tsp", "item": "soy sauce", "aisle": "Condiments & Sauces" },
-    { "qty": 2, "unit": "tbsp", "item": "butter, divided", "aisle": "Dairy & Eggs" },
-    { "qty": 4, "unit": "", "item": "large eggs", "aisle": "Dairy & Eggs" },
-    { "qty": 2, "unit": "tbsp", "item": "milk", "aisle": "Dairy & Eggs" },
-    { "qty": 0.5, "unit": "tsp", "item": "salt, divided", "aisle": "Spices" },
-    { "qty": 0.25, "unit": "tsp", "item": "black pepper", "aisle": "Spices" }
+    {
+      "qty": 2,
+      "unit": "cup",
+      "item": "cooked short-grain rice, preferably day-old",
+      "aisle": "Grains & Pasta"
+    },
+    {
+      "qty": 150,
+      "unit": "g",
+      "item": "boneless chicken thigh, diced small",
+      "aisle": "Meat & Seafood"
+    },
+    {
+      "qty": 0.5,
+      "unit": "",
+      "item": "onion, finely chopped",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 0.25,
+      "unit": "cup",
+      "item": "frozen peas (optional)",
+      "aisle": "Frozen"
+    },
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "ketchup, plus more to serve",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "soy sauce",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "butter, divided",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "large eggs",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "milk",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "salt, divided",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.25,
+      "unit": "tsp",
+      "item": "black pepper",
+      "aisle": "Spices"
+    }
   ],
   "steps": [
     "Melt half the butter in a non-stick pan over medium heat. Cook the onion for 2–3 minutes until soft.",

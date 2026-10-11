@@ -4,22 +4,88 @@
   "description": "Creamy stovetop macaroni in a sharp cheddar sauce — no oven needed.",
   "cuisine": "American",
   "effort": "Quick",
-  "tags": ["cheese", "comfort food", "pasta", "vegetarian"],
+  "tags": [
+    "cheese",
+    "comfort food",
+    "pasta",
+    "vegetarian"
+  ],
   "servings": 4,
   "prepMin": 5,
   "cookMin": 20,
+  "macros": {
+    "kcal": 680,
+    "protein": 31,
+    "carbs": 60,
+    "fat": 35
+  },
   "ingredients": [
-    { "qty": 250, "unit": "g", "item": "elbow macaroni", "aisle": "Grains & Pasta" },
-    { "qty": 3, "unit": "tbsp", "item": "butter", "aisle": "Dairy & Eggs" },
-    { "qty": 3, "unit": "tbsp", "item": "all-purpose flour", "aisle": "Baking" },
-    { "qty": 2.5, "unit": "cup", "item": "whole milk, warmed", "aisle": "Dairy & Eggs" },
-    { "qty": 200, "unit": "g", "item": "sharp cheddar, grated", "aisle": "Dairy & Eggs" },
-    { "qty": 50, "unit": "g", "item": "parmesan, finely grated", "aisle": "Dairy & Eggs" },
-    { "qty": 0.5, "unit": "tsp", "item": "mustard powder", "aisle": "Spices" },
-    { "qty": 0.25, "unit": "tsp", "item": "garlic powder", "aisle": "Spices" },
-    { "qty": 0.5, "unit": "tsp", "item": "salt, plus more for the pasta water", "aisle": "Spices" },
-    { "qty": 0.25, "unit": "tsp", "item": "black pepper", "aisle": "Spices" },
-    { "qty": 1, "unit": "pinch", "item": "smoked paprika, to finish (optional)", "aisle": "Spices" }
+    {
+      "qty": 250,
+      "unit": "g",
+      "item": "elbow macaroni",
+      "aisle": "Grains & Pasta"
+    },
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "butter",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "all-purpose flour",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 2.5,
+      "unit": "cup",
+      "item": "whole milk, warmed",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 200,
+      "unit": "g",
+      "item": "sharp cheddar, grated",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 50,
+      "unit": "g",
+      "item": "parmesan, finely grated",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "mustard powder",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.25,
+      "unit": "tsp",
+      "item": "garlic powder",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "salt, plus more for the pasta water",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.25,
+      "unit": "tsp",
+      "item": "black pepper",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "pinch",
+      "item": "smoked paprika, to finish (optional)",
+      "aisle": "Spices"
+    }
   ],
   "steps": [
     "Boil the macaroni in well-salted water until 1 minute short of the package time. Reserve ½ cup of pasta water, then drain.",
