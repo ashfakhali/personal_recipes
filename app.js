@@ -159,7 +159,7 @@ async function deleteRecipe(r) {
 /* ---------- look ---------- */
 const isVeg = r => (r.tags || []).includes('vegetarian');
 
-const MACROS = [['kcal', 'Calories', ''], ['protein', 'Protein', 'g'], ['carbs', 'Carbs', 'g'], ['fat', 'Fat', 'g']];
+const MACROS = [['kcal', 'Calories', ''], ['protein', 'Protein', 'g'], ['carbs', 'Carbs', 'g'], ['fiber', 'Fiber', 'g'], ['fat', 'Fat', 'g']];
 const hasMacros = r => r.macros && MACROS.some(([k]) => r.macros[k] != null && r.macros[k] !== '');
 
 /* ---------- views ---------- */

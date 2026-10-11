@@ -85,7 +85,7 @@ main { max-width: var(--wrap); margin: 0 auto; padding: 2rem 16px 3rem; }
 .mlabel small { font-weight: 400; }
 .m { display: flex; flex-direction: column; align-items: center; min-width: 74px; padding: .35rem .7rem; border-radius: 8px; background: var(--bg); border-bottom: 3px solid var(--green); }
 .m b { font: 700 1.05rem var(--head); } .m span { font-size: .72rem; color: var(--muted); font-weight: 700; }
-.m-kcal { border-color: var(--orange); } .m-protein { border-color: #3b82c4; } .m-carbs { border-color: var(--yellow); } .m-fat { border-color: #b46fd0; }
+.m-kcal { border-color: var(--orange); } .m-protein { border-color: #3b82c4; } .m-carbs { border-color: var(--yellow); } .m-fat { border-color: #b46fd0; } .m-fiber { border-color: #8bbf3f; }
 .f.sub { margin-bottom: .4rem; font-size: .82rem; }
 
 /* recipe page */
