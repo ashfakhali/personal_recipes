@@ -163,40 +163,52 @@ const MACROS = [['kcal', 'Calories', ''], ['protein', 'Protein', 'g'], ['carbs',
 const hasMacros = r => r.macros && MACROS.some(([k]) => r.macros[k] != null && r.macros[k] !== '');
 
 /* ---------- views ---------- */
+const SORTS = { name: ['Name', (a, b) => a.title.localeCompare(b.title)], time: ['Time', (a, b) => total(a) - total(b)],
+  kcal: ['Calories', (a, b) => (a.macros?.kcal ?? 1e9) - (b.macros?.kcal ?? 1e9)], protein: ['Protein', (a, b) => (b.macros?.protein ?? -1) - (a.macros?.protein ?? -1)] };
 function viewHome() {
   document.title = 'Recipe Book';
   const rs = S.recipes;
+  S.sort ||= store.get('sort') || 'name';
   const groups = { Cuisine: uniq(rs.map(r => r.cuisine)), Effort: EFFORTS.filter(e => rs.some(r => r.effort === e)), Tags: uniq(rs.flatMap(r => r.tags || [])) };
-  const chip = (g, v) => `<button class="chip ${S.filters.has(`${g}:${v}`) ? 'on' : ''}" data-f="${esc(`${g}:${v}`)}">${esc(v)}</button>`;
-  const TAG_ICON = { 'comfort food': 'cheese', 'high protein': 'egg', 'low carb': 'leaf', side: 'carrot', fried: 'fries', brined: 'drumstick', southern: 'drumstick', eggs: 'egg', potatoes: 'fries', beef: 'steak', cheese: 'cheese', pasta: 'cheese' };
-  const tagIcon = t => TAG_ICON[t] || (STICKER_RULES.find(([re]) => re.test(t)) || [0, 'pot'])[1];
+  const has = { Cuisine: (r, v) => r.cuisine === v, Effort: (r, v) => r.effort === v, Tags: (r, v) => (r.tags || []).includes(v) };
+  const facet = (g, v) => { const k = `${g}:${v}`, n = rs.filter(r => has[g](r, v)).length;
+    return `<label class="opt"><input type="checkbox" data-f="${esc(k)}" ${S.filters.has(k) ? 'checked' : ''}><span>${esc(v)}</span><small>${n}</small></label>`; };
+  const wide = matchMedia('(min-width: 761px)').matches;
   app.innerHTML = `<section class="home">
-    <div class="intro">
-      <h1>Find something to cook</h1>
-      <p>${rs.length} ${rs.length === 1 ? 'recipe' : 'recipes'}, sized and scaled the way you like them.</p>
+    <div class="homebar">
+      <h1>Recipes</h1>
       <input id="q" class="search" type="search" placeholder="Search recipes or ingredients" aria-label="Search recipes" value="${esc(S.q)}">
+      <label class="sortsel">Sort by <select id="sort">${Object.entries(SORTS).map(([k, [l]]) => `<option value="${k}" ${k === S.sort ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
     </div>
-    ${groups.Tags.length ? `<section class="cats noprint"><h2>Browse by category</h2><div class="catrow">${groups.Tags.map(t => { const on = S.filters.has(`Tags:${t}`);
-      return `<button class="cat chip-like ${on ? 'on' : ''}" aria-pressed="${on}" data-f="${esc(`Tags:${t}`)}"><span class="cat-ic">${stickerSVG(tagIcon(t))}</span><span class="cat-l">${esc(t)}</span></button>`; }).join('')}</div></section>` : ''}
-    <div class="filters">${['Cuisine', 'Effort'].filter(g => groups[g].length).map(g =>
-      `<div class="frow"><span class="flabel">${g}</span><div class="chips">${groups[g].map(v => chip(g, v)).join('')}</div></div>`).join('')}
-      ${S.filters.size ? '<button class="link" id="clear">Clear filters</button>' : ''}</div>
-    <div class="sechead"><h2>${S.filters.size || S.q ? 'Matching recipes' : 'All recipes'}</h2><span id="count"></span></div>
-    <div id="grid" class="grid"></div></section>`;
-  const grid = () => {
-    const list = rs.filter(matches).sort((a, b) => a.title.localeCompare(b.title));
-    $('#count').textContent = `${list.length} ${list.length === 1 ? 'recipe' : 'recipes'}`;
-    $('#grid').innerHTML = list.length ? list.map(r => `<a class="card" href="#/r/${encodeURIComponent(r.slug)}">
-      <span class="card-cuisine">${esc(r.cuisine)}</span>
-      <h3>${esc(r.title)}</h3>
-      <p class="card-key">${[fmtMin(total(r)), `serves ${r.servings}`, r.macros?.kcal ? `${r.macros.kcal} kcal` : ''].filter(Boolean).join(' / ')}</p>
-      ${r.description ? `<p class="card-desc">${esc(r.description)}</p>` : ''}
-      <div class="card-foot">${r.effort ? `<span class="pill p-${esc(r.effort)}">${esc(r.effort)}</span>` : ''}${isVeg(r) ? '<span class="pill p-veg">Vegetarian</span>' : ''}</div></a>`).join('')
-      : `<p class="empty">${rs.length ? 'No recipes match. Try a different word or clear the filters.' : 'No recipes yet. <a href="#/new">Add your first one</a>.'}</p>`;
+    <div class="layout">
+      <details class="side" ${wide ? 'open' : ''}><summary>Filters${S.filters.size ? ` (${S.filters.size})` : ''}</summary>
+        ${Object.entries(groups).filter(([, v]) => v.length).map(([g, vs]) => `<fieldset class="fgroup"><legend>${g}</legend>${vs.map(v => facet(g, v)).join('')}</fieldset>`).join('')}
+        ${S.filters.size ? '<button class="link" id="clear">Clear all filters</button>' : ''}
+      </details>
+      <div class="results">
+        <div class="resbar"><span id="count"></span>${[...S.filters].map(k => `<button class="active" data-f="${esc(k)}" aria-label="Remove filter ${esc(k.split(':')[1])}">${esc(k.split(':')[1])} ×</button>`).join('')}</div>
+        <div class="rhead-row" aria-hidden="true"><span>Recipe</span><span>Cuisine</span><span>Time</span><span>kcal</span><span>Protein</span><span>Effort</span></div>
+        <ul id="list" class="rlist"></ul>
+      </div>
+    </div></section>`;
+  const draw = () => {
+    const list = rs.filter(matches).sort(SORTS[S.sort][1]);
+    $('#count').textContent = `${list.length} of ${rs.length} ${rs.length === 1 ? 'recipe' : 'recipes'}`;
+    $('#list').innerHTML = list.length ? list.map(r => `<li><a class="row" href="#/r/${encodeURIComponent(r.slug)}">
+      <span class="c-title"><b>${esc(r.title)}</b>${r.description ? `<small>${esc(r.description)}</small>` : ''}</span>
+      <span class="c-cuisine">${esc(r.cuisine)}</span>
+      <span class="c-time">${fmtMin(total(r)) || '–'}</span>
+      <span class="c-kcal">${r.macros?.kcal ?? '–'}<em> kcal</em></span>
+      <span class="c-prot">${r.macros?.protein != null ? `${r.macros.protein} g` : '–'}<em> protein</em></span>
+      <span class="c-eff">${r.effort ? `<span class="pill p-${esc(r.effort)}">${esc(r.effort)}</span>` : ''}${isVeg(r) ? '<span class="pill p-veg">Veg</span>' : ''}</span></a></li>`).join('')
+      : `<li class="empty">${rs.length ? 'No recipes match. Try another word or clear the filters.' : 'No recipes yet. <a href="#/new">Add your first one</a>.'}</li>`;
   };
-  grid();
-  $('#q').addEventListener('input', e => { S.q = e.target.value; grid(); });
-  $$('.chip, .cat', app).forEach(b => b.onclick = () => { const k = b.dataset.f; S.filters.has(k) ? S.filters.delete(k) : S.filters.add(k); viewHome(); });
+  draw();
+  $('#q').addEventListener('input', e => { S.q = e.target.value; draw(); });
+  $('#sort').onchange = e => { S.sort = e.target.value; store.set('sort', S.sort); draw(); };
+  const toggle = k => { S.filters.has(k) ? S.filters.delete(k) : S.filters.add(k); viewHome(); };
+  $$('.opt input', app).forEach(c => c.onchange = () => toggle(c.dataset.f));
+  $$('.active', app).forEach(b => b.onclick = () => toggle(b.dataset.f));
   $('#clear') && ($('#clear').onclick = () => { S.filters.clear(); viewHome(); });
 }
 function matches(r) {
@@ -230,7 +242,7 @@ function viewRecipe(slug) {
       ${r.description ? `<p class="desc">${esc(r.description)}</p>` : ''}
       <div class="tags">${(r.tags || []).map(t => `<a href="#/" class="tag" data-tag="${esc(t)}">${esc(t)}</a>`).join('')}</div>
         ${r.source ? `<p class="source">Source: <a href="${esc(r.source)}" target="_blank" rel="noopener noreferrer">${esc((() => { try { return new URL(r.source).hostname.replace(/^www\./, ''); } catch { return r.source; } })())}</a></p>` : ''}
-      <div class="actions noprint"><button class="btn" id="jump">Jump to recipe</button><button class="btn ghost" id="share">Share</button><button class="btn ghost" id="print">Print recipe</button><a class="btn ghost" href="#/edit/${encodeURIComponent(slug)}">Edit</a></div>
+      <div class="actions noprint"><button class="btn" id="share">Share</button><button class="btn ghost" id="print">Print recipe</button><a class="btn ghost" href="#/edit/${encodeURIComponent(slug)}">Edit</a></div>
     </header>
     <section class="rcard" id="rcard">
       <div class="rcard-head"><h2>${esc(r.title)}</h2>
@@ -265,7 +277,6 @@ function viewRecipe(slug) {
   $$('.ings li', app).forEach(el => el.onclick = () => { const i = +el.dataset.i; ck.has(i) ? ck.delete(i) : ck.add(i); el.classList.toggle('done'); });
   $$('.tag', app).forEach(a => a.onclick = () => { S.filters = new Set([`Tags:${a.dataset.tag}`]); S.q = ''; });
   $('#print').onclick = () => window.print();
-  $('#jump').onclick = () => $('#rcard').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   $('#share').onclick = async () => {
     const url = `${location.origin}${location.pathname}#/r/${encodeURIComponent(slug)}`;
     if (navigator.share) return navigator.share({ title: r.title, url }).catch(() => {});
