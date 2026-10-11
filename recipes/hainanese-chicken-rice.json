@@ -1,0 +1,203 @@
+{
+  "slug": "hainanese-chicken-rice",
+  "title": "Hainanese Chicken Rice",
+  "description": "Silky poached chicken, fragrant rice cooked in the chicken broth, with chili sauce and ginger-scallion oil.",
+  "cuisine": "Singaporean",
+  "effort": "Project",
+  "tags": [
+    "chicken",
+    "high protein",
+    "rice"
+  ],
+  "servings": 4,
+  "prepMin": 30,
+  "cookMin": 60,
+  "macros": {
+    "kcal": 1120,
+    "protein": 57,
+    "carbs": 87,
+    "fiber": 3,
+    "fat": 60
+  },
+  "ingredients": [
+    {
+      "qty": 1600,
+      "unit": "g",
+      "item": "whole chicken",
+      "aisle": "Meat & Seafood"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "kosher salt, for rubbing the chicken",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 50,
+      "unit": "g",
+      "item": "ginger, sliced (poaching)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "scallions, halved (poaching)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "garlic cloves, smashed (poaching)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "sesame oil",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 2,
+      "unit": "cup",
+      "item": "jasmine rice",
+      "aisle": "Grains & Pasta"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "chicken fat (trimmed from the bird) or neutral oil",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "garlic cloves, minced (rice)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "ginger, minced (rice)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "shallots, minced (rice)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 2.5,
+      "unit": "cup",
+      "item": "poaching broth from the chicken (rice)",
+      "aisle": "Other"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "pandan leaf, knotted (optional)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "salt (rice)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 6,
+      "unit": "",
+      "item": "red chilies, roughly chopped (chili sauce)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "garlic cloves (chili sauce)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "ginger, chopped (chili sauce)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "lime juice (chili sauce)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "sugar (chili sauce)",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "salt (chili sauce)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "poaching broth (chili sauce)",
+      "aisle": "Other"
+    },
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "ginger, finely grated (ginger-scallion oil)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "scallions, finely chopped (ginger-scallion oil)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "salt (ginger-scallion oil)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.25,
+      "unit": "cup",
+      "item": "neutral oil (ginger-scallion oil)",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "cucumber, sliced, to serve",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "soy sauce, to serve",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "cilantro, to serve",
+      "aisle": "Produce"
+    }
+  ],
+  "steps": [
+    "Trim any loose fat from the chicken's cavity and keep it for the rice. Rub the chicken all over with the kosher salt, rinse it off, and pat dry. Stuff the cavity with half the sliced ginger, scallions and smashed garlic.",
+    "Bring a large pot of water (about 12 cups, enough to cover the chicken) to a boil with the rest of the poaching aromatics. Lower in the chicken breast-side down. When it returns to a simmer, turn the heat to the lowest setting so the water barely shivers, cover, and poach 35–40 minutes, until the thickest part of the thigh reads 165°F (74°C).",
+    "Lift the chicken into a big bowl of ice water for 10 minutes; this firms the skin and keeps the meat juicy. Drain, brush with the sesame oil and rest. Keep the poaching broth.",
+    "For the rice, rinse it until the water runs clear and drain well. In a pot, gently render the chicken fat (or heat the oil) over medium heat. Add the minced garlic, ginger and shallots and cook 2 minutes until fragrant but not browned. Add the rice and stir for 2 minutes.",
+    "Pour in 2½ cups of hot poaching broth, add the salt and pandan, and bring to a boil. Cover, turn the heat to the lowest setting and cook 15 minutes, then leave covered off the heat for 10 minutes.",
+    "For the chili sauce, blend the chilies, garlic, ginger, lime juice, sugar, salt and 3 tbsp broth until fairly smooth.",
+    "For the ginger-scallion oil, put the grated ginger, scallions and salt in a heatproof bowl. Heat the oil until shimmering and pour it over; it will sizzle. Stir.",
+    "Cut the chicken into pieces and serve with the rice, cucumber and cilantro, drizzled with soy sauce, with both sauces on the side. Season the leftover broth with salt and scallions and serve a small bowl alongside."
+  ],
+  "notes": ""
+}
