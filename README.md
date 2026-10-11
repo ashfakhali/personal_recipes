@@ -10,6 +10,7 @@ My personal recipe catalogue: a static site hosted on GitHub Pages.
 - Ingredients in recipe order or grouped by grocery aisle; tap an item to tick it off
 - A share link for each recipe (`…/#/r/<slug>`) and a print layout (Print / PDF → "Save as PDF")
 - An add/edit form and quick notes. Saving commits straight to this repo.
+- Optional photo per recipe (resized in the browser, stored in `images/`); recipes without one get a sticker you can choose.
 
 ## One-time setup
 1. **Enable Pages:** Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)` → Save.
@@ -26,7 +27,7 @@ Each recipe is `recipes/<slug>.json`, and `recipes/index.json` lists the slugs.
   "cuisine": "Japanese", "effort": "Quick", "tags": ["rice", "eggs"],
   "servings": 2, "prepMin": 10, "cookMin": 20,
   "ingredients": [{ "qty": 2, "unit": "cup", "item": "cooked rice", "aisle": "Grains & Pasta" }],
-  "steps": ["…"], "notes": ""
+  "steps": ["…"], "notes": "", "sticker": "", "image": ""
 }
 ```
 `unit` is one of `g`, `cup`, `tbsp`, `tsp`, `pinch`, or `""` for counted items. `qty` may be `null` for amounts like "to taste".

@@ -27,7 +27,7 @@ const store = {
 };
 const token = () => store.get('gh_token');
 const app = $('#app');
-const S = { recipes: [], filters: new Set(), q: '', servings: {}, checked: {}, aisle: store.get('aisle') === '1' };
+const S = { recipes: [], filters: new Set(), q: '', servings: {}, checked: {}, img: {}, aisle: store.get('aisle') === '1' };
 
 function toast(msg) {
   const t = $('#toast'); t.textContent = msg; t.classList.add('show');
@@ -124,11 +124,11 @@ async function gh(path, opt = {}, allow404 = false) {
 async function getFile(p) {
   const r = await gh(`/contents/${p}?ref=${CFG.branch}`, {}, true);
   if (r.status === 404) return null;
-  const j = await r.json(); return { sha: j.sha, text: b64d(j.content) };
+  const j = await r.json(); return { sha: j.sha, text: j.content ? b64d(j.content) : '' };
 }
-async function putFile(p, text, message) {
+async function putFile(p, text, message, isB64 = false) {
   const cur = await getFile(p);
-  await gh(`/contents/${p}`, { method: 'PUT', body: JSON.stringify({ message, content: b64e(text), branch: CFG.branch, ...(cur && { sha: cur.sha }) }) });
+  await gh(`/contents/${p}`, { method: 'PUT', body: JSON.stringify({ message, content: isB64 ? text : b64e(text), branch: CFG.branch, ...(cur && { sha: cur.sha }) }) });
 }
 async function delFile(p, message) {
   const cur = await getFile(p);
@@ -156,32 +156,47 @@ async function deleteRecipe(r) {
   S.recipes = S.recipes.filter(x => x.slug !== r.slug);
 }
 
+/* ---------- look ---------- */
+const TINTS = ['#FFE58F', '#FFD0BF', '#BDEFD1', '#C8E3FF', '#FFD1E3', '#DCD3FF', '#FFDCA8'];
+const tint = c => TINTS[[...(c || '')].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) >>> 0, 7) % TINTS.length];
+const imgSrc = r => r.image ? (S.img[r.image] || r.image) : '';
+const isVeg = r => (r.tags || []).includes('vegetarian');
+const badges = r => `<span class="badges">${r.effort ? `<span class="badge b-${esc(r.effort)}">${esc(r.effort)}</span>` : ''}${isVeg(r) ? '<span class="badge b-veg">Veg</span>' : ''}</span>`;
+const art = (r, cls) => imgSrc(r) ? `<img src="${esc(imgSrc(r))}" alt="${esc(r.title)}" loading="lazy">` : stickerSVG(stickerKey(r), cls);
+async function resizeImage(file, max = 1400) {
+  const bmp = await createImageBitmap(file), k = Math.min(1, max / Math.max(bmp.width, bmp.height));
+  const c = document.createElement('canvas'); c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
+  c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+  return c.toDataURL('image/jpeg', 0.82);
+}
+
 /* ---------- views ---------- */
-const WORDS = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
-const dots = e => { const k = EFFORTS.indexOf(e) + 1; return k ? `<span class="dots" data-k="${k}" title="${esc(e)}" aria-label="Effort: ${esc(e)}"><i></i><i></i><i></i></span>` : ''; };
 function viewHome() {
   document.title = 'Recipe Book';
-  const rs = S.recipes, cuisines = uniq(rs.map(r => r.cuisine));
-  const groups = { Cuisine: cuisines, Effort: EFFORTS.filter(e => rs.some(r => r.effort === e)), Tags: uniq(rs.flatMap(r => r.tags || [])) };
-  const chip = (g, v) => { const on = S.filters.has(`${g}:${v}`); return `<button class="chip ${on ? 'on' : ''}" aria-pressed="${on}" data-f="${esc(`${g}:${v}`)}">${esc(v)}</button>`; };
+  const rs = S.recipes;
+  const groups = { Cuisine: uniq(rs.map(r => r.cuisine)), Effort: EFFORTS.filter(e => rs.some(r => r.effort === e)), Tags: uniq(rs.flatMap(r => r.tags || [])) };
+  const chip = (g, v) => `<button class="chip ${S.filters.has(`${g}:${v}`) ? 'on' : ''}" data-f="${esc(`${g}:${v}`)}">${esc(v)}</button>`;
   app.innerHTML = `<section class="home">
-    <header class="mast"><h1>Recipe Book</h1>
-      <p class="tally">${WORDS[rs.length] || rs.length} ${rs.length === 1 ? 'recipe' : 'recipes'}${cuisines.length ? `, from ${(WORDS[cuisines.length] || cuisines.length).toLowerCase()} ${cuisines.length === 1 ? 'kitchen' : 'kitchens'}` : ''}</p></header>
-    <input id="q" class="search" type="search" placeholder="Search by name or ingredient" aria-label="Search recipes" value="${esc(S.q)}">
+    <div class="hero">
+      <div class="hero-text"><h1>What are we cooking?</h1>
+        <p>${rs.length} ${rs.length === 1 ? 'recipe' : 'recipes'} in the book. Search by name or ingredient, or tap a tag below.</p>
+        <input id="q" class="search" type="search" placeholder="Try “eggs” or “quick”…" aria-label="Search recipes" value="${esc(S.q)}"></div>
+      <div class="hero-art" aria-hidden="true">${['egg', 'chili', 'fries', 'leaf', 'cheese'].map((k, i) => stickerSVG(k, `s${i + 1}`)).join('')}</div>
+    </div>
     <div class="filters">${Object.entries(groups).filter(([, v]) => v.length).map(([g, vs]) =>
       `<div class="frow"><span class="flabel">${g}</span><div class="chips">${vs.map(v => chip(g, v)).join('')}</div></div>`).join('')}
       ${S.filters.size ? '<button class="link" id="clear">Clear filters</button>' : ''}</div>
-    <div id="toc" class="toc"></div></section>`;
-  const draw = () => {
-    const by = {};
-    rs.filter(matches).forEach(r => (by[r.cuisine || 'Uncategorised'] ||= []).push(r));
-    const ks = Object.keys(by).sort();
-    $('#toc').innerHTML = ks.length ? ks.map(c => `<section class="chapter"><h2>${esc(c)}</h2><ul class="entries">${by[c].sort((a, b) => a.title.localeCompare(b.title)).map(r =>
-      `<li><a class="entry" href="#/r/${encodeURIComponent(r.slug)}"><span class="ename">${esc(r.title)}</span><span class="leader" aria-hidden="true"></span><span class="etime">${fmtMin(total(r))}</span>${dots(r.effort)}${r.description ? `<span class="edesc">${esc(r.description)}</span>` : ''}</a></li>`).join('')}</ul></section>`).join('')
-      : `<p class="empty">${rs.length ? 'Nothing matches. Try fewer filters or another word.' : 'The book is empty. <a href="#/new">Add the first recipe</a>.'}</p>`;
+    <div id="grid" class="grid"></div></section>`;
+  const grid = () => {
+    const list = rs.filter(matches).sort((a, b) => a.title.localeCompare(b.title));
+    $('#grid').innerHTML = list.length ? list.map(r => `<a class="card" href="#/r/${encodeURIComponent(r.slug)}">
+      <div class="card-art" style="--tint:${tint(r.slug || r.title)}">${art(r, 'big')}${badges(r)}</div>
+      <div class="card-body"><div class="card-top"><span>${esc(r.cuisine)}</span><span>${fmtMin(total(r))}</span></div>
+      <h3>${esc(r.title)}</h3><p>${esc(r.description)}</p></div></a>`).join('')
+      : `<p class="empty">${rs.length ? 'No recipes match.' : 'No recipes yet — <a href="#/new">add one</a>.'}</p>`;
   };
-  draw();
-  $('#q').addEventListener('input', e => { S.q = e.target.value; draw(); });
+  grid();
+  $('#q').addEventListener('input', e => { S.q = e.target.value; grid(); });
   $$('.chip', app).forEach(b => b.onclick = () => { const k = b.dataset.f; S.filters.has(k) ? S.filters.delete(k) : S.filters.add(k); viewHome(); });
   $('#clear') && ($('#clear').onclick = () => { S.filters.clear(); viewHome(); });
 }
@@ -206,23 +221,25 @@ function viewRecipe(slug) {
   const li = ([g, i]) => `<li class="${ck.has(i) ? 'done' : ''}" data-i="${i}"><span class="qty">${esc(fmtQty(g, f))}</span><span class="item">${esc(g.item)}</span></li>`;
   const idx = r.ingredients.map((g, i) => [g, i]);
   const ings = S.aisle
-    ? AISLES.map(a => { const xs = idx.filter(([g]) => (AISLES.includes(g.aisle) ? g.aisle : 'Other') === a); return xs.length ? `<h3 class="aisle">${a}</h3><ul class="ings">${xs.map(li).join('')}</ul>` : ''; }).join('')
+    ? AISLES.map(a => { const xs = idx.filter(([g]) => (AISLES.includes(g.aisle) ? g.aisle : 'Other') === a); return xs.length ? `<h4 class="aisle">${a}</h4><ul class="ings">${xs.map(li).join('')}</ul>` : ''; }).join('')
     : `<ul class="ings">${idx.map(li).join('')}</ul>`;
   const notes = (r.notes || '').split('\n').filter(s => s.trim()).map(s => `<p>${esc(s)}</p>`).join('');
   app.innerHTML = `<article class="recipe">
-    <div class="crumbs noprint"><a href="#/">← Contents</a></div>
-    <header class="rhead">
-      <h1>${esc(r.title)}</h1>
-      ${r.description ? `<p class="desc">${esc(r.description)}</p>` : ''}
-      <dl class="facts">${[['Serves', r.servings], ['Prep', fmtMin(r.prepMin)], ['Cook', fmtMin(r.cookMin)], ['Effort', r.effort && `${esc(r.effort)} ${dots(r.effort)}`], ['Cuisine', esc(r.cuisine)]]
-        .filter(([, v]) => v).map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
-      ${(r.tags || []).length ? `<p class="filed">Filed under ${r.tags.map(t => `<a href="#/" class="tag" data-tag="${esc(t)}">${esc(t)}</a>`).join(', ')}</p>` : ''}
-      <div class="actions noprint"><button class="btn" id="share">Share link</button><button class="btn ghost" id="print">Print or save PDF</button><a class="btn ghost" href="#/edit/${encodeURIComponent(slug)}">Edit</a></div>
+    <div class="crumbs noprint"><a href="#/">← All recipes</a></div>
+    <header class="rhead" style="--tint:${tint(r.slug || r.title)}">
+      <div class="rhead-text">
+        <h1>${esc(r.title)}</h1>
+        ${r.description ? `<p class="desc">${esc(r.description)}</p>` : ''}
+        <div class="meta">${[r.cuisine && `<span>${esc(r.cuisine)}</span>`, r.prepMin && `<span>Prep ${fmtMin(r.prepMin)}</span>`, r.cookMin && `<span>Cook ${fmtMin(r.cookMin)}</span>`, `<span>Serves ${r.servings}</span>`].filter(Boolean).join('')}</div>
+        <div class="tags">${(r.tags || []).map(t => `<a href="#/" class="tag" data-tag="${esc(t)}">#${esc(t)}</a>`).join('')}</div>
+        <div class="actions noprint"><button class="btn" id="share">Share</button><button class="btn ghost" id="print">Print / PDF</button><a class="btn ghost" href="#/edit/${encodeURIComponent(slug)}">Edit</a></div>
+      </div>
+      <div class="rhead-art">${art(r, 'xl')}${badges(r)}</div>
     </header>
     <div class="rbody">
       <aside class="ingpanel">
         <div class="inghead"><h2>Ingredients</h2>
-          <div class="serv"><button class="noprint" id="sminus" aria-label="Fewer servings">−</button><input id="sv" type="number" min="1" value="${n}" aria-label="Servings"><button class="noprint" id="splus" aria-label="More servings">+</button><span class="svl">servings</span></div>
+          <div class="serv"><button class="noprint" id="sminus" aria-label="Fewer servings">−</button><input id="sv" type="number" min="1" value="${n}" aria-label="Servings"><span>servings</span><button class="noprint" id="splus" aria-label="More servings">+</button></div>
         </div>
         <div class="seg noprint"><button data-m="0" class="${S.aisle ? '' : 'on'}">Recipe order</button><button data-m="1" class="${S.aisle ? 'on' : ''}">By aisle</button></div>
         ${ings}
@@ -231,7 +248,7 @@ function viewRecipe(slug) {
       <section class="method">
         <h2>Method</h2>
         <ol class="steps">${(r.steps || []).map(s => `<li>${esc(s)}</li>`).join('')}</ol>
-        <div class="notes ${notes ? '' : 'noprint'}"><h2>Notes</h2>${notes || '<p class="muted">Nothing yet. Jot down what you changed and how it turned out.</p>'}
+        <div class="notes ${notes ? '' : 'noprint'}"><h2>Notes</h2>${notes || '<p class="muted">No notes yet.</p>'}
           <form id="noteform" class="noprint"><textarea id="note" rows="2" placeholder="Add a note — tweaks, what worked, what to try next…"></textarea><button class="btn ghost">Add note</button></form>
         </div>
       </section>
@@ -294,6 +311,13 @@ function viewEdit(slug) {
     </div>
     <datalist id="cuisines">${uniq([...CUISINES, ...S.recipes.map(x => x.cuisine)]).map(c => `<option value="${esc(c)}">`).join('')}</datalist>
     <div class="f">Tags <small>comma-separated</small><div class="tagin"><input name="tags" value="${esc((r.tags || []).join(', '))}" aria-label="Tags"><button type="button" class="btn ghost" id="sugg">Suggest</button></div></div>
+    <div class="fgrid2">
+      <div class="f">Photo <small>Optional. Shown on the card and the recipe page.</small>
+        <div class="photo-in"><div class="pv" id="pv" style="--tint:${tint(r.slug || r.title)}">${art(r, 'big')}</div>
+          <div class="pbtns"><label class="btn ghost">Choose photo<input type="file" accept="image/*" id="ph" hidden></label>
+          <button type="button" class="btn ghost" id="rmph" ${r.image ? '' : 'hidden'}>Remove photo</button></div></div></div>
+      <label class="f">Sticker <small>Used when there's no photo.</small><select name="sticker"><option value="">Auto (from title &amp; tags)</option>${Object.entries(STICKERS).map(([k, [n]]) => `<option value="${k}" ${k === r.sticker ? 'selected' : ''}>${n}</option>`).join('')}</select></label>
+    </div>
     <fieldset><legend>Ingredients</legend>
       <div class="ihead"><span>Qty</span><span>Unit</span><span>Ingredient</span><span>Aisle</span><span></span></div>
       <div id="rows">${rows.map(ingRow).join('')}</div>
@@ -308,6 +332,11 @@ function viewEdit(slug) {
     <div class="actions"><button class="btn" id="save">Save</button><a class="btn ghost" href="${back}">Cancel</a>${isNew ? '' : '<button type="button" class="btn danger" id="del">Delete</button>'}</div>
   </form>`;
   const form = $('#ed'), rowsEl = $('#rows');
+  const photo = { data: null, removed: false };
+  const preview = () => { $('#pv').innerHTML = photo.data ? `<img src="${photo.data}" alt="">` : !photo.removed && r.image ? art(r, 'big') : stickerSVG(form.elements.sticker.value || stickerKey({ ...r, title: form.elements.title.value, tags: form.elements.tags.value.split(',') }), 'big'); $('#rmph').hidden = !(photo.data || (!photo.removed && r.image)); };
+  $('#ph').onchange = async e => { const f = e.target.files[0]; if (!f) return; try { photo.data = await resizeImage(f); photo.removed = false; preview(); } catch { toast('Couldn’t read that image — try a JPG or PNG'); } };
+  $('#rmph').onclick = () => { photo.data = null; photo.removed = true; preview(); };
+  form.elements.sticker.onchange = preview;
   const readRows = () => $$('.irow', form).map(row => {
     const q = $('.iq', row).value.trim(), n = q ? num(q) : null;
     return { qty: n == null || isNaN(n) ? null : +n.toFixed(4), unit: $('.iu', row).value, item: $('.ii', row).value.trim(), aisle: $('.ia', row).value };
@@ -342,8 +371,19 @@ function viewEdit(slug) {
       steps: v('steps').split(/\n\s*\n/.test(v('steps')) ? /\n\s*\n/ : '\n').map(s => s.trim().replace(/\s*\n\s*/g, ' ').replace(/^\d+[.)]\s*/, '')).filter(Boolean), notes: v('notes'),
     };
     rec.effort = v('effort') || autoEffort(rec);
+    rec.sticker = v('sticker'); rec.image = r.image || '';
     const btn = $('#save'); btn.disabled = true; btn.textContent = 'Saving…';
-    try { await saveRecipe(rec, isNew); toast('Saved'); location.hash = `#/r/${encodeURIComponent(rec.slug)}`; }
+    try {
+      if (photo.data || (photo.removed && rec.image)) {
+        if (rec.image) { await delFile(rec.image, `Remove photo: ${rec.title}`).catch(() => {}); rec.image = ''; }
+        if (photo.data) {
+          btn.textContent = 'Uploading photo…';
+          rec.image = `images/${rec.slug}-${Date.now().toString(36)}.jpg`;
+          await putFile(rec.image, photo.data.split(',')[1], `Photo: ${rec.title}`, true);
+          S.img[rec.image] = photo.data;
+        }
+      }
+      await saveRecipe(rec, isNew); toast('Saved'); location.hash = `#/r/${encodeURIComponent(rec.slug)}`; }
     catch (err) { toast(err.message); btn.disabled = false; btn.textContent = 'Save'; }
   };
   const del = $('#del');
@@ -402,5 +442,6 @@ async function load() {
   } catch (e) { app.innerHTML = `<p class="empty">Couldn't load recipes: ${esc(e.message)}</p>`; return; }
   route();
 }
+$('#brandmark').innerHTML = stickerSVG('pot', 'mini');
 addEventListener('hashchange', () => { route(); scrollTo(0, 0); });
 load();
