@@ -27,7 +27,7 @@ const store = {
 };
 const token = () => store.get('gh_token');
 const app = $('#app');
-const S = { recipes: [], filters: new Set(), q: '', servings: {}, checked: {}, img: {}, aisle: store.get('aisle') === '1' };
+const S = { recipes: [], filters: new Set(), q: '', servings: {}, checked: {}, aisle: store.get('aisle') === '1' };
 
 function toast(msg) {
   const t = $('#toast'); t.textContent = msg; t.classList.add('show');
@@ -126,9 +126,9 @@ async function getFile(p) {
   if (r.status === 404) return null;
   const j = await r.json(); return { sha: j.sha, text: j.content ? b64d(j.content) : '' };
 }
-async function putFile(p, text, message, isB64 = false) {
+async function putFile(p, text, message) {
   const cur = await getFile(p);
-  await gh(`/contents/${p}`, { method: 'PUT', body: JSON.stringify({ message, content: isB64 ? text : b64e(text), branch: CFG.branch, ...(cur && { sha: cur.sha }) }) });
+  await gh(`/contents/${p}`, { method: 'PUT', body: JSON.stringify({ message, content: b64e(text), branch: CFG.branch, ...(cur && { sha: cur.sha }) }) });
 }
 async function delFile(p, message) {
   const cur = await getFile(p);
@@ -159,16 +159,9 @@ async function deleteRecipe(r) {
 /* ---------- look ---------- */
 const TINTS = ['#FFE58F', '#FFD0BF', '#BDEFD1', '#C8E3FF', '#FFD1E3', '#DCD3FF', '#FFDCA8'];
 const tint = c => TINTS[[...(c || '')].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) >>> 0, 7) % TINTS.length];
-const imgSrc = r => r.image ? (S.img[r.image] || r.image) : '';
 const isVeg = r => (r.tags || []).includes('vegetarian');
 const badges = r => `<span class="badges">${r.effort ? `<span class="badge b-${esc(r.effort)}">${esc(r.effort)}</span>` : ''}${isVeg(r) ? '<span class="badge b-veg">Veg</span>' : ''}</span>`;
-const art = (r, cls) => imgSrc(r) ? `<img src="${esc(imgSrc(r))}" alt="${esc(r.title)}" loading="lazy">` : stickerSVG(stickerKey(r), cls);
-async function resizeImage(file, max = 1400) {
-  const bmp = await createImageBitmap(file), k = Math.min(1, max / Math.max(bmp.width, bmp.height));
-  const c = document.createElement('canvas'); c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
-  c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
-  return c.toDataURL('image/jpeg', 0.82);
-}
+const art = (r, cls) => stickerSVG(stickerKey(r), cls);
 
 /* ---------- views ---------- */
 function viewHome() {
@@ -232,6 +225,7 @@ function viewRecipe(slug) {
         ${r.description ? `<p class="desc">${esc(r.description)}</p>` : ''}
         <div class="meta">${[r.cuisine && `<span>${esc(r.cuisine)}</span>`, r.prepMin && `<span>Prep ${fmtMin(r.prepMin)}</span>`, r.cookMin && `<span>Cook ${fmtMin(r.cookMin)}</span>`, `<span>Serves ${r.servings}</span>`].filter(Boolean).join('')}</div>
         <div class="tags">${(r.tags || []).map(t => `<a href="#/" class="tag" data-tag="${esc(t)}">#${esc(t)}</a>`).join('')}</div>
+        ${r.source ? `<p class="source">Source: <a href="${esc(r.source)}" target="_blank" rel="noopener noreferrer">${esc((() => { try { return new URL(r.source).hostname.replace(/^www\./, ''); } catch { return r.source; } })())}</a></p>` : ''}
         <div class="actions noprint"><button class="btn" id="share">Share</button><button class="btn ghost" id="print">Print / PDF</button><a class="btn ghost" href="#/edit/${encodeURIComponent(slug)}">Edit</a></div>
       </div>
       <div class="rhead-art">${art(r, 'xl')}${badges(r)}</div>
@@ -312,11 +306,8 @@ function viewEdit(slug) {
     <datalist id="cuisines">${uniq([...CUISINES, ...S.recipes.map(x => x.cuisine)]).map(c => `<option value="${esc(c)}">`).join('')}</datalist>
     <div class="f">Tags <small>comma-separated</small><div class="tagin"><input name="tags" value="${esc((r.tags || []).join(', '))}" aria-label="Tags"><button type="button" class="btn ghost" id="sugg">Suggest</button></div></div>
     <div class="fgrid2">
-      <div class="f">Photo <small>Optional. Shown on the card and the recipe page.</small>
-        <div class="photo-in"><div class="pv" id="pv" style="--tint:${tint(r.slug || r.title)}">${art(r, 'big')}</div>
-          <div class="pbtns"><label class="btn ghost">Choose photo<input type="file" accept="image/*" id="ph" hidden></label>
-          <button type="button" class="btn ghost" id="rmph" ${r.image ? '' : 'hidden'}>Remove photo</button></div></div></div>
-      <label class="f">Sticker <small>Used when there's no photo.</small><select name="sticker"><option value="">Auto (from title &amp; tags)</option>${Object.entries(STICKERS).map(([k, [n]]) => `<option value="${k}" ${k === r.sticker ? 'selected' : ''}>${n}</option>`).join('')}</select></label>
+      <label class="f">Sticker <small>Shown on the card. Auto picks one from the title and tags.</small><select name="sticker"><option value="">Auto (from title &amp; tags)</option>${Object.entries(STICKERS).map(([k, [n]]) => `<option value="${k}" ${k === r.sticker ? 'selected' : ''}>${n}</option>`).join('')}</select></label>
+      <label class="f">Source link <small>Optional. Where the recipe came from.</small><input name="source" type="url" placeholder="https://…" value="${esc(r.source || '')}"></label>
     </div>
     <fieldset><legend>Ingredients</legend>
       <div class="ihead"><span>Qty</span><span>Unit</span><span>Ingredient</span><span>Aisle</span><span></span></div>
@@ -332,11 +323,6 @@ function viewEdit(slug) {
     <div class="actions"><button class="btn" id="save">Save</button><a class="btn ghost" href="${back}">Cancel</a>${isNew ? '' : '<button type="button" class="btn danger" id="del">Delete</button>'}</div>
   </form>`;
   const form = $('#ed'), rowsEl = $('#rows');
-  const photo = { data: null, removed: false };
-  const preview = () => { $('#pv').innerHTML = photo.data ? `<img src="${photo.data}" alt="">` : !photo.removed && r.image ? art(r, 'big') : stickerSVG(form.elements.sticker.value || stickerKey({ ...r, title: form.elements.title.value, tags: form.elements.tags.value.split(',') }), 'big'); $('#rmph').hidden = !(photo.data || (!photo.removed && r.image)); };
-  $('#ph').onchange = async e => { const f = e.target.files[0]; if (!f) return; try { photo.data = await resizeImage(f); photo.removed = false; preview(); } catch { toast('Couldn’t read that image — try a JPG or PNG'); } };
-  $('#rmph').onclick = () => { photo.data = null; photo.removed = true; preview(); };
-  form.elements.sticker.onchange = preview;
   const readRows = () => $$('.irow', form).map(row => {
     const q = $('.iq', row).value.trim(), n = q ? num(q) : null;
     return { qty: n == null || isNaN(n) ? null : +n.toFixed(4), unit: $('.iu', row).value, item: $('.ii', row).value.trim(), aisle: $('.ia', row).value };
@@ -371,18 +357,9 @@ function viewEdit(slug) {
       steps: v('steps').split(/\n\s*\n/.test(v('steps')) ? /\n\s*\n/ : '\n').map(s => s.trim().replace(/\s*\n\s*/g, ' ').replace(/^\d+[.)]\s*/, '')).filter(Boolean), notes: v('notes'),
     };
     rec.effort = v('effort') || autoEffort(rec);
-    rec.sticker = v('sticker'); rec.image = r.image || '';
+    rec.sticker = v('sticker'); rec.source = v('source');
     const btn = $('#save'); btn.disabled = true; btn.textContent = 'Saving…';
     try {
-      if (photo.data || (photo.removed && rec.image)) {
-        if (rec.image) { await delFile(rec.image, `Remove photo: ${rec.title}`).catch(() => {}); rec.image = ''; }
-        if (photo.data) {
-          btn.textContent = 'Uploading photo…';
-          rec.image = `images/${rec.slug}-${Date.now().toString(36)}.jpg`;
-          await putFile(rec.image, photo.data.split(',')[1], `Photo: ${rec.title}`, true);
-          S.img[rec.image] = photo.data;
-        }
-      }
       await saveRecipe(rec, isNew); toast('Saved'); location.hash = `#/r/${encodeURIComponent(rec.slug)}`; }
     catch (err) { toast(err.message); btn.disabled = false; btn.textContent = 'Save'; }
   };
@@ -443,5 +420,7 @@ async function load() {
   route();
 }
 $('#brandmark').innerHTML = stickerSVG('pot', 'mini');
+$('#deco').innerHTML = ['carrot', 'drumstick', 'bread', 'cake'].map((k, i) => stickerSVG(k, `d${i + 1}`)).join('');
+$('#foot').innerHTML = `<div class="strip">${['egg', 'chili', 'rice', 'fries', 'steak', 'cheese', 'leaf', 'pot', 'carrot', 'cake', 'bread', 'drumstick'].map(k => stickerSVG(k, 'f')).join('')}</div><p>Cooking notes, kept in one place.</p>`;
 addEventListener('hashchange', () => { route(); scrollTo(0, 0); });
 load();
