@@ -12,6 +12,7 @@ My personal recipe catalogue: a static site hosted on GitHub Pages.
 - An add/edit form and quick notes. Saving commits straight to this repo.
 - No photos needed: recipes are text cards. Illustrations are used only as site decoration (category tiles and footer).
 - Optional source link on each recipe.
+- Marinades section, plus Guides: safe internal temperatures (incl. USDA time-at-temperature tables) and oven cooking times by cut.
 - Approximate macros per serving (calories, protein, carbs, fat), editable in the form.
 
 ## One-time setup
@@ -25,7 +26,7 @@ Each recipe is `recipes/<slug>.json`, and `recipes/index.json` lists the slugs.
 
 ```json
 {
-  "slug": "omurice", "title": "Omurice", "description": "…",
+  "slug": "omurice", "title": "Omurice",
   "cuisine": "Japanese", "effort": "Quick", "tags": ["rice", "eggs"],
   "servings": 2, "prepMin": 10, "cookMin": 20,
   "macros": { "kcal": 645, "protein": 34, "carbs": 67, "fat": 26 },

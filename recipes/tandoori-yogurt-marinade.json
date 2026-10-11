@@ -1,0 +1,83 @@
+{
+  "slug": "tandoori-yogurt-marinade",
+  "title": "Tandoori Yogurt Marinade",
+  "cuisine": "Indian",
+  "effort": "Quick",
+  "tags": [
+    "chicken",
+    "marinade",
+    "yogurt"
+  ],
+  "servings": 4,
+  "prepMin": 5,
+  "cookMin": 0,
+  "ingredients": [
+    {
+      "qty": 1,
+      "unit": "cup",
+      "item": "plain whole-milk yogurt",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "lemon juice",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "ginger-garlic paste",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 2,
+      "unit": "tsp",
+      "item": "Kashmiri chili powder",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "garam masala",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "ground cumin",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "ground coriander",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "ground turmeric",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1.5,
+      "unit": "tsp",
+      "item": "salt",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "neutral oil or mustard oil",
+      "aisle": "Oils & Vinegars"
+    }
+  ],
+  "steps": [
+    "Whisk everything together until smooth. Cut a few shallow slashes into bone-in pieces so the marinade gets in.",
+    "Add the chicken, turn to coat, cover (or seal in a zip-top bag) and refrigerate for at least 4 hours, ideally overnight, up to 24 hours.",
+    "Scrape off the excess and cook hot: 450°F (230°C) oven, grill or broiler, until charred in spots.",
+    "Never reuse marinade that has touched raw chicken. If you want extra for drizzling, set some aside before adding the chicken."
+  ],
+  "notes": ""
+}

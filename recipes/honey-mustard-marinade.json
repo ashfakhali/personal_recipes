@@ -1,0 +1,76 @@
+{
+  "slug": "honey-mustard-marinade",
+  "title": "Honey Mustard Marinade",
+  "cuisine": "American",
+  "effort": "Quick",
+  "tags": [
+    "chicken",
+    "marinade"
+  ],
+  "servings": 4,
+  "prepMin": 5,
+  "cookMin": 0,
+  "ingredients": [
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "Dijon mustard",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "whole-grain mustard",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "honey",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "olive oil",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "apple cider vinegar",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "garlic cloves, finely grated",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "smoked paprika",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "kosher salt",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "black pepper",
+      "aisle": "Spices"
+    }
+  ],
+  "steps": [
+    "Whisk everything together.",
+    "Add the chicken, turn to coat, cover (or seal in a zip-top bag) and refrigerate for 1 to 8 hours.",
+    "Roast at 425°F (220°C) or grill over medium heat; the honey browns quickly.",
+    "Never reuse marinade that has touched raw chicken. If you want extra for drizzling, set some aside before adding the chicken."
+  ],
+  "notes": ""
+}

@@ -1,0 +1,70 @@
+{
+  "slug": "soy-ginger-garlic-marinade",
+  "title": "Soy Ginger Garlic Marinade",
+  "cuisine": "Chinese",
+  "effort": "Quick",
+  "tags": [
+    "chicken",
+    "marinade"
+  ],
+  "servings": 4,
+  "prepMin": 5,
+  "cookMin": 0,
+  "ingredients": [
+    {
+      "qty": 0.25,
+      "unit": "cup",
+      "item": "soy sauce",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "honey or brown sugar",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "rice vinegar",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "toasted sesame oil",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "ginger, finely grated",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 3,
+      "unit": "",
+      "item": "garlic cloves, finely grated",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "scallions, finely chopped",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "black pepper",
+      "aisle": "Spices"
+    }
+  ],
+  "steps": [
+    "Whisk everything together until the honey dissolves.",
+    "Add the chicken, turn to coat, cover (or seal in a zip-top bag) and refrigerate for 1 to 8 hours. It's salty, so much longer and the texture gets firm and ham-like.",
+    "The sugar burns easily: cook over medium heat or move to a cooler part of the grill once browned.",
+    "Never reuse marinade that has touched raw chicken. If you want extra for drizzling, set some aside before adding the chicken."
+  ],
+  "notes": ""
+}

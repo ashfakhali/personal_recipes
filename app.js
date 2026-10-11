@@ -165,21 +165,26 @@ const hasMacros = r => r.macros && MACROS.some(([k]) => r.macros[k] != null && r
 /* ---------- views ---------- */
 const SORTS = { name: ['Name', (a, b) => a.title.localeCompare(b.title)], time: ['Time', (a, b) => total(a) - total(b)],
   kcal: ['Calories', (a, b) => (a.macros?.kcal ?? 1e9) - (b.macros?.kcal ?? 1e9)], protein: ['Protein', (a, b) => (b.macros?.protein ?? -1) - (a.macros?.protein ?? -1)] };
-function viewHome() {
-  document.title = 'Recipe Book';
-  const rs = S.recipes;
+const isMarinade = r => (r.tags || []).includes('marinade');
+function viewHome(mode = 'recipes') {
+  const M = mode === 'marinades';
+  document.title = M ? 'Marinades' : 'Recipe Book';
+  S.f ||= { recipes: new Set(), marinades: new Set() };
+  S.filters = S.f[mode];
+  const rs = S.recipes.filter(r => isMarinade(r) === M);
   S.sort ||= store.get('sort') || 'name';
-  const groups = { Cuisine: uniq(rs.map(r => r.cuisine)), Effort: EFFORTS.filter(e => rs.some(r => r.effort === e)), Tags: uniq(rs.flatMap(r => r.tags || [])) };
+  const groups = { Cuisine: uniq(rs.map(r => r.cuisine)), Effort: EFFORTS.filter(e => rs.some(r => r.effort === e)), Tags: uniq(rs.flatMap(r => r.tags || [])).filter(t => t !== 'marinade') };
   const has = { Cuisine: (r, v) => r.cuisine === v, Effort: (r, v) => r.effort === v, Tags: (r, v) => (r.tags || []).includes(v) };
   const facet = (g, v) => { const k = `${g}:${v}`, n = rs.filter(r => has[g](r, v)).length;
     return `<label class="opt"><input type="checkbox" data-f="${esc(k)}" ${S.filters.has(k) ? 'checked' : ''}><span>${esc(v)}</span><small>${n}</small></label>`; };
   const wide = matchMedia('(min-width: 761px)').matches;
   app.innerHTML = `<section class="home">
     <div class="homebar">
-      <h1>Recipes</h1>
+      <h1>${M ? 'Chicken marinades' : 'Recipes'}</h1>
       <input id="q" class="search" type="search" placeholder="Search recipes or ingredients" aria-label="Search recipes" value="${esc(S.q)}">
       <label class="sortsel">Sort by <select id="sort">${Object.entries(SORTS).map(([k, [l]]) => `<option value="${k}" ${k === S.sort ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
     </div>
+    ${M ? '<p class="mintro">Each makes enough for about 1 kg of chicken. Mix, coat, refrigerate for the time on the card, then cook to 165°F (74°C). See the <a href="#/guide/times">cooking times</a> and <a href="#/guide/temps">safe temperatures</a> guides.</p>' : ''}
     <div class="layout">
       <details class="side" ${wide ? 'open' : ''}><summary>Filters${S.filters.size ? ` (${S.filters.size})` : ''}</summary>
         ${Object.entries(groups).filter(([, v]) => v.length).map(([g, vs]) => `<fieldset class="fgroup"><legend>${g}</legend>${vs.map(v => facet(g, v)).join('')}</fieldset>`).join('')}
@@ -195,7 +200,7 @@ function viewHome() {
     const list = rs.filter(matches).sort(SORTS[S.sort][1]);
     $('#count').textContent = `${list.length} of ${rs.length} ${rs.length === 1 ? 'recipe' : 'recipes'}`;
     $('#list').innerHTML = list.length ? list.map(r => `<li><a class="row" href="#/r/${encodeURIComponent(r.slug)}">
-      <span class="c-title"><b>${esc(r.title)}</b>${r.description ? `<small>${esc(r.description)}</small>` : ''}</span>
+      <span class="c-title"><b>${esc(r.title)}</b></span>
       <span class="c-cuisine">${esc(r.cuisine)}</span>
       <span class="c-time">${fmtMin(total(r)) || '–'}</span>
       <span class="c-kcal">${r.macros?.kcal ?? '–'}<em> kcal</em></span>
@@ -206,10 +211,25 @@ function viewHome() {
   draw();
   $('#q').addEventListener('input', e => { S.q = e.target.value; draw(); });
   $('#sort').onchange = e => { S.sort = e.target.value; store.set('sort', S.sort); draw(); };
-  const toggle = k => { S.filters.has(k) ? S.filters.delete(k) : S.filters.add(k); viewHome(); };
+  const toggle = k => { S.filters.has(k) ? S.filters.delete(k) : S.filters.add(k); viewHome(mode); };
   $$('.opt input', app).forEach(c => c.onchange = () => toggle(c.dataset.f));
   $$('.active', app).forEach(b => b.onclick = () => toggle(b.dataset.f));
-  $('#clear') && ($('#clear').onclick = () => { S.filters.clear(); viewHome(); });
+  $('#clear') && ($('#clear').onclick = () => { S.filters.clear(); viewHome(mode); });
+}
+
+function viewGuides() {
+  document.title = 'Guides';
+  app.innerHTML = `<section class="guides"><div class="homebar"><h1>Guides</h1></div>
+    <div class="glist">${Object.entries(GUIDES).map(([k, g]) => `<a class="gcard" href="#/guide/${k}"><h2>${esc(g.title)}</h2><p>${esc(g.blurb)}</p></a>`).join('')}
+    <a class="gcard" href="#/marinades"><h2>Chicken marinades</h2><p>Five go-to marinades with how long to marinate each.</p></a></div></section>`;
+}
+function viewGuide(k) {
+  const g = GUIDES[k];
+  if (!g) return notFound();
+  document.title = g.title;
+  app.innerHTML = `<article class="guide"><div class="crumbs noprint"><a href="#/guides">← Guides</a></div>
+    <header class="ghead"><h1>${esc(g.title)}</h1><button class="btn ghost noprint" id="print">Print</button></header>${g.html}</article>`;
+  $('#print').onclick = () => window.print();
 }
 function matches(r) {
   const by = {};
@@ -235,12 +255,12 @@ function viewRecipe(slug) {
   const ings = S.aisle
     ? AISLES.map(a => { const xs = idx.filter(([g]) => (AISLES.includes(g.aisle) ? g.aisle : 'Other') === a); return xs.length ? `<h4 class="aisle">${a}</h4><ul class="ings">${xs.map(li).join('')}</ul>` : ''; }).join('')
     : `<ul class="ings">${idx.map(li).join('')}</ul>`;
-  const notes = (r.notes || '').split('\n').filter(s => s.trim()).map(s => `<p>${esc(s)}</p>`).join('');
+  const noteLines = (r.notes || '').split('\n').filter(s => s.trim());
+  const notes = noteLines.map((s, i) => `<p class="note"><span>${esc(s)}</span><button class="ndel noprint" data-n="${i}" title="Delete note" aria-label="Delete note">×</button></p>`).join('');
   app.innerHTML = `<article class="recipe">
-    <div class="crumbs noprint"><a href="#/">← All recipes</a></div>
+    <div class="crumbs noprint"><a href="${isMarinade(r) ? '#/marinades' : '#/'}">← ${isMarinade(r) ? 'All marinades' : 'All recipes'}</a></div>
     <header class="rhead">
       <h1>${esc(r.title)}</h1>
-      ${r.description ? `<p class="desc">${esc(r.description)}</p>` : ''}
       <div class="tags">${(r.tags || []).map(t => `<a href="#/" class="tag" data-tag="${esc(t)}">${esc(t)}</a>`).join('')}</div>
         ${r.source ? `<p class="source">Source: <a href="${esc(r.source)}" target="_blank" rel="noopener noreferrer">${esc((() => { try { return new URL(r.source).hostname.replace(/^www\./, ''); } catch { return r.source; } })())}</a></p>` : ''}
       <div class="actions noprint"><button class="btn" id="share">Share</button><button class="btn ghost" id="print">Print recipe</button><a class="btn ghost" href="#/edit/${encodeURIComponent(slug)}">Edit</a></div>
@@ -278,13 +298,22 @@ function viewRecipe(slug) {
   $$('.steps li', app).forEach(el => { const t = () => { const i = +el.dataset.s; sd.has(i) ? sd.delete(i) : sd.add(i); el.classList.toggle('done'); el.setAttribute('aria-checked', sd.has(i)); };
     el.onclick = t; el.onkeydown = e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); t(); } }; });
   $$('.ings li', app).forEach(el => el.onclick = () => { const i = +el.dataset.i; ck.has(i) ? ck.delete(i) : ck.add(i); el.classList.toggle('done'); });
-  $$('.tag', app).forEach(a => a.onclick = () => { S.filters = new Set([`Tags:${a.dataset.tag}`]); S.q = ''; });
+  $$('.tag', app).forEach(a => { const m = isMarinade(r); a.href = m ? '#/marinades' : '#/'; a.onclick = () => { (S.f ||= { recipes: new Set(), marinades: new Set() })[m ? 'marinades' : 'recipes'] = a.dataset.tag === 'marinade' ? new Set() : new Set([`Tags:${a.dataset.tag}`]); S.q = ''; }; });
   $('#print').onclick = () => window.print();
   $('#share').onclick = async () => {
     const url = `${location.origin}${location.pathname}#/r/${encodeURIComponent(slug)}`;
     if (navigator.share) return navigator.share({ title: r.title, url }).catch(() => {});
     try { await navigator.clipboard.writeText(url); toast('Link copied'); } catch { prompt('Copy this link:', url); }
   };
+  $$('.ndel', app).forEach(b => b.onclick = async () => {
+    if (!token()) return toast('Add your GitHub token in Settings to delete notes');
+    if (!b.dataset.armed) { $$('.ndel', app).forEach(x => { delete x.dataset.armed; x.textContent = '×'; }); b.dataset.armed = 1; b.textContent = 'Delete?'; return; }
+    b.disabled = true; b.textContent = 'Deleting…';
+    try {
+      await saveRecipe({ ...r, notes: noteLines.filter((_, i) => i !== +b.dataset.n).join('\n') }, false, `Delete note: ${r.title}`);
+      toast('Note deleted'); viewRecipe(slug);
+    } catch (err) { toast(err.message); b.disabled = false; b.textContent = '×'; }
+  });
   $('#noteform').onsubmit = async e => {
     e.preventDefault();
     const text = $('#note').value.trim();
@@ -319,7 +348,6 @@ function viewEdit(slug) {
     <h1>${isNew ? 'New recipe' : 'Edit recipe'}</h1>
     ${token() ? '' : '<p class="warn">This device is read-only. <a href="#/settings">Add your GitHub token</a> to save.</p>'}
     <label class="f">Title<input name="title" required value="${esc(r.title)}"></label>
-    <label class="f">Short description<input name="description" value="${esc(r.description)}"></label>
     <div class="fgrid">
       <label class="f">Cuisine<input name="cuisine" list="cuisines" value="${esc(r.cuisine)}"></label>
       <label class="f">Effort<select name="effort"><option value="">Auto (from time)</option>${EFFORTS.map(e => `<option ${e === r.effort ? 'selected' : ''}>${e}</option>`).join('')}</select></label>
@@ -374,7 +402,7 @@ function viewEdit(slug) {
     if (!token()) return toast('Add your GitHub token in Settings to save');
     const v = k => String(form.elements[k].value || '').trim();
     const rec = {
-      slug: isNew ? uniqueSlug(v('title')) : r.slug, title: v('title'), description: v('description'), cuisine: v('cuisine'), effort: '',
+      slug: isNew ? uniqueSlug(v('title')) : r.slug, title: v('title'), cuisine: v('cuisine'), effort: '',
       tags: uniq(v('tags').split(',').map(t => t.trim().toLowerCase())), servings: Math.max(1, +v('servings') || 1),
       prepMin: +v('prepMin') || 0, cookMin: +v('cookMin') || 0, ingredients: readRows(),
       steps: v('steps').split(/\n\s*\n/.test(v('steps')) ? /\n\s*\n/ : '\n').map(s => s.trim().replace(/\s*\n\s*/g, ' ').replace(/^\d+[.)]\s*/, '')).filter(Boolean), notes: v('notes'),
@@ -434,6 +462,9 @@ function route() {
   else if (a === 'edit') viewEdit(s);
   else if (a === 'new') viewEdit(null);
   else if (a === 'settings') viewSettings();
+  else if (a === 'marinades') viewHome('marinades');
+  else if (a === 'guides') viewGuides();
+  else if (a === 'guide') viewGuide(s);
   else viewHome();
 }
 async function load() {

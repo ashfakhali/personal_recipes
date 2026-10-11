@@ -1,9 +1,8 @@
 {
   "slug": "vegetable-pulao",
   "title": "Bone Broth Vegetable Pulao",
-  "description": "One-pot spiced basmati cooked in bone broth for extra protein. Ratio: 1 cup rinsed rice to 1½ cups broth.",
   "cuisine": "Indian",
-  "effort": "Moderate",
+  "effort": "Quick",
   "tags": [
     "high protein",
     "one pot",
@@ -29,7 +28,7 @@
     {
       "qty": 3,
       "unit": "cup",
-      "item": "bone broth (chicken or beef)",
+      "item": "bone broth, chicken or beef (1½ cups per cup of rice)",
       "aisle": "Condiments & Sauces"
     },
     {

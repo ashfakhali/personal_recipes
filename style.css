@@ -79,6 +79,28 @@ main { max-width: var(--wrap); margin: 0 auto; padding: 2rem 16px 3rem; }
 .p-Quick { background: #dff3e6; color: #1f6b40; } .p-Moderate { background: #fff1c9; color: #7a5a00; } .p-Project { background: #fde0d6; color: #a23b17; } .p-veg { background: #e6f4d9; color: #3d6b16; }
 .empty { text-align: center; color: var(--muted); padding: 3rem 0; }
 
+/* guides */
+.mintro { margin: -.4rem 0 1.4rem; color: var(--muted); max-width: 70ch; }
+.glist { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+.gcard { display: block; padding: 1.3rem 1.4rem; border: 1px solid var(--line); border-top: 5px solid var(--green); border-radius: var(--r); color: var(--ink); text-decoration: none; }
+.gcard:hover { box-shadow: 0 10px 24px rgb(0 0 0 / .08); } .gcard:hover h2 { color: var(--green); }
+.gcard h2 { font-size: 1.2rem; } .gcard p { margin: .4rem 0 0; color: var(--muted); font-size: .95rem; }
+.guide { max-width: 860px; }
+.ghead { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; border-bottom: 3px solid var(--green); padding-bottom: .8rem; margin-bottom: 1.2rem; }
+.ghead h1 { font-size: clamp(1.8rem, 4.5vw, 2.5rem); }
+.guide h2 { font-size: 1.35rem; margin: 2.2rem 0 .7rem; }
+.guide h2 .sub { font: 600 .9rem var(--body); color: var(--muted); margin-left: .4rem; }
+.guide h3 { font-size: 1.05rem; margin: 1.6rem 0 .6rem; }
+.guide .lead { font-size: 1.08rem; background: var(--mint); padding: 1rem 1.2rem; border-radius: 10px; }
+.guide ul { padding-left: 1.2rem; } .guide li { margin: .35rem 0; }
+.guide .small { font-size: .88rem; color: var(--muted); }
+.guide .sources { font-size: .85rem; color: var(--muted); margin-top: 2.5rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+.tbl table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.tbl th { text-align: left; font: 600 .8rem var(--head); color: var(--muted); background: var(--wash); padding: .6rem .8rem; }
+.tbl td { padding: .55rem .8rem; border-top: 1px solid var(--line); vertical-align: top; }
+.tbl tbody tr:hover { background: var(--mint); }
+
 /* macros */
 .macros { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: .8rem; }
 .mlabel { font: 600 .8rem var(--head); color: var(--muted); margin-right: .3rem; }
@@ -141,6 +163,9 @@ main { max-width: var(--wrap); margin: 0 auto; padding: 2rem 16px 3rem; }
 .notes h2 { font-size: 1.1rem; margin-bottom: .4rem; }
 .notes p { margin: .3rem 0; }
 .notes .muted { color: #6c706e; }
+.note { display: flex; align-items: flex-start; gap: .5rem; } .note span { flex: 1; }
+.ndel { border: 0; background: none; color: #9a6b00; font: 700 .9rem var(--head); cursor: pointer; padding: 0 .3rem; border-radius: 4px; opacity: .55; white-space: nowrap; }
+.ndel:hover, .ndel[data-armed] { opacity: 1; color: #c0392b; }
 #noteform { display: flex; gap: .5rem; margin-top: .8rem; align-items: flex-start; }
 #noteform textarea { flex: 1; background: #fff; color: #2d2f2e; }
 #noteform .btn.ghost { color: #2d2f2e; background: #fff; }
@@ -185,7 +210,7 @@ legend { font: 700 1.05rem var(--head); padding: 0 .4rem; }
 
 @media (max-width: 760px) {
   .top nav { gap: .9rem; font-size: .88rem; }
-  .top nav a:first-child { display: none; }
+  .top { flex-wrap: wrap; row-gap: .5rem; } .top nav { flex-wrap: wrap; gap: .4rem 1rem; }
   .rbody { grid-template-columns: 1fr; }
   .ingpanel { border-right: 0; border-bottom: 2px solid var(--line); }
   .rcard-head, .ingpanel, .method { padding: 1.2rem 1.1rem; }
@@ -232,4 +257,5 @@ legend { font: 700 1.05rem var(--head); padding: 0 .4rem; }
   .steps li::before, .steps li.done::before { content: counter(s); background: #fff; color: #111; border: 1px solid #999; }
   .steps li.done { color: inherit; }
   .notes { background: none; border: 1px solid #ccc; }
+  .guide .lead { background: none; padding: 0; } .tbl { border: 0; } .tbl th { background: none; } .tbl td { padding: .3rem .5rem; } .guide h2 { break-after: avoid; } tr { break-inside: avoid; }
 }

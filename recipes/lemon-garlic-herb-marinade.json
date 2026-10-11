@@ -1,0 +1,70 @@
+{
+  "slug": "lemon-garlic-herb-marinade",
+  "title": "Lemon Garlic Herb Marinade",
+  "cuisine": "Mediterranean",
+  "effort": "Quick",
+  "tags": [
+    "chicken",
+    "marinade"
+  ],
+  "servings": 4,
+  "prepMin": 5,
+  "cookMin": 0,
+  "ingredients": [
+    {
+      "qty": 0.25,
+      "unit": "cup",
+      "item": "olive oil",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "lemon juice",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "lemon zest",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "garlic cloves, finely grated",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 2,
+      "unit": "tsp",
+      "item": "dried oregano",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "chopped fresh rosemary or parsley (optional)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "kosher salt",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "black pepper",
+      "aisle": "Spices"
+    }
+  ],
+  "steps": [
+    "Whisk everything together in a bowl.",
+    "Add the chicken, turn to coat, cover (or seal in a zip-top bag) and refrigerate for 30 minutes to 4 hours. Longer than that and the lemon juice starts to make the surface mushy.",
+    "Wipe off excess marinade so the chicken browns, then grill, pan-sear or roast.",
+    "Never reuse marinade that has touched raw chicken. If you want extra for drizzling, set some aside before adding the chicken."
+  ],
+  "notes": ""
+}

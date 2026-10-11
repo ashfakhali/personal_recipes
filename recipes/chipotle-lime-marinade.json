@@ -1,0 +1,89 @@
+{
+  "slug": "chipotle-lime-marinade",
+  "title": "Chipotle Lime Marinade",
+  "cuisine": "Mexican",
+  "effort": "Quick",
+  "tags": [
+    "chicken",
+    "marinade",
+    "spicy"
+  ],
+  "servings": 4,
+  "prepMin": 5,
+  "cookMin": 0,
+  "ingredients": [
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "chipotle peppers in adobo, minced",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "adobo sauce from the can",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 0.25,
+      "unit": "cup",
+      "item": "lime juice",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "lime zest",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "olive oil",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 3,
+      "unit": "",
+      "item": "garlic cloves, finely grated",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "honey",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "ground cumin",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "dried oregano",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "kosher salt",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.25,
+      "unit": "cup",
+      "item": "cilantro, chopped",
+      "aisle": "Produce"
+    }
+  ],
+  "steps": [
+    "Whisk everything together.",
+    "Add the chicken, turn to coat, cover (or seal in a zip-top bag) and refrigerate for 30 minutes to 4 hours; the lime juice softens the surface if left longer.",
+    "Grill or sear over high heat, then rest and slice.",
+    "Never reuse marinade that has touched raw chicken. If you want extra for drizzling, set some aside before adding the chicken."
+  ],
+  "notes": ""
+}
