@@ -157,27 +157,31 @@ async function deleteRecipe(r) {
 }
 
 /* ---------- views ---------- */
+const WORDS = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
+const dots = e => { const k = EFFORTS.indexOf(e) + 1; return k ? `<span class="dots" data-k="${k}" title="${esc(e)}" aria-label="Effort: ${esc(e)}"><i></i><i></i><i></i></span>` : ''; };
 function viewHome() {
   document.title = 'Recipe Book';
-  const rs = S.recipes;
-  const groups = { Cuisine: uniq(rs.map(r => r.cuisine)), Effort: EFFORTS.filter(e => rs.some(r => r.effort === e)), Tags: uniq(rs.flatMap(r => r.tags || [])) };
-  const chip = (g, v) => `<button class="chip ${S.filters.has(`${g}:${v}`) ? 'on' : ''}" data-f="${esc(`${g}:${v}`)}">${esc(v)}</button>`;
+  const rs = S.recipes, cuisines = uniq(rs.map(r => r.cuisine));
+  const groups = { Cuisine: cuisines, Effort: EFFORTS.filter(e => rs.some(r => r.effort === e)), Tags: uniq(rs.flatMap(r => r.tags || [])) };
+  const chip = (g, v) => { const on = S.filters.has(`${g}:${v}`); return `<button class="chip ${on ? 'on' : ''}" aria-pressed="${on}" data-f="${esc(`${g}:${v}`)}">${esc(v)}</button>`; };
   app.innerHTML = `<section class="home">
-    <input id="q" class="search" type="search" placeholder="Search recipes or ingredients…" value="${esc(S.q)}">
+    <header class="mast"><h1>Recipe Book</h1>
+      <p class="tally">${WORDS[rs.length] || rs.length} ${rs.length === 1 ? 'recipe' : 'recipes'}${cuisines.length ? `, from ${(WORDS[cuisines.length] || cuisines.length).toLowerCase()} ${cuisines.length === 1 ? 'kitchen' : 'kitchens'}` : ''}</p></header>
+    <input id="q" class="search" type="search" placeholder="Search by name or ingredient" aria-label="Search recipes" value="${esc(S.q)}">
     <div class="filters">${Object.entries(groups).filter(([, v]) => v.length).map(([g, vs]) =>
       `<div class="frow"><span class="flabel">${g}</span><div class="chips">${vs.map(v => chip(g, v)).join('')}</div></div>`).join('')}
       ${S.filters.size ? '<button class="link" id="clear">Clear filters</button>' : ''}</div>
-    <div id="grid" class="grid"></div></section>`;
-  const grid = () => {
-    const list = rs.filter(matches).sort((a, b) => a.title.localeCompare(b.title));
-    $('#grid').innerHTML = list.length ? list.map(r => `<a class="card" href="#/r/${encodeURIComponent(r.slug)}">
-      <div class="card-top"><span class="cuisine">${esc(r.cuisine)}</span><span class="effort e-${esc(r.effort)}">${esc(r.effort)}</span></div>
-      <h3>${esc(r.title)}</h3><p>${esc(r.description)}</p>
-      <div class="card-meta">${[fmtMin(total(r)), `serves ${r.servings}`].filter(Boolean).join(' · ')}</div></a>`).join('')
-      : `<p class="empty">${rs.length ? 'No recipes match.' : 'No recipes yet — <a href="#/new">add one</a>.'}</p>`;
+    <div id="toc" class="toc"></div></section>`;
+  const draw = () => {
+    const by = {};
+    rs.filter(matches).forEach(r => (by[r.cuisine || 'Uncategorised'] ||= []).push(r));
+    const ks = Object.keys(by).sort();
+    $('#toc').innerHTML = ks.length ? ks.map(c => `<section class="chapter"><h2>${esc(c)}</h2><ul class="entries">${by[c].sort((a, b) => a.title.localeCompare(b.title)).map(r =>
+      `<li><a class="entry" href="#/r/${encodeURIComponent(r.slug)}"><span class="ename">${esc(r.title)}</span><span class="leader" aria-hidden="true"></span><span class="etime">${fmtMin(total(r))}</span>${dots(r.effort)}${r.description ? `<span class="edesc">${esc(r.description)}</span>` : ''}</a></li>`).join('')}</ul></section>`).join('')
+      : `<p class="empty">${rs.length ? 'Nothing matches. Try fewer filters or another word.' : 'The book is empty. <a href="#/new">Add the first recipe</a>.'}</p>`;
   };
-  grid();
-  $('#q').addEventListener('input', e => { S.q = e.target.value; grid(); });
+  draw();
+  $('#q').addEventListener('input', e => { S.q = e.target.value; draw(); });
   $$('.chip', app).forEach(b => b.onclick = () => { const k = b.dataset.f; S.filters.has(k) ? S.filters.delete(k) : S.filters.add(k); viewHome(); });
   $('#clear') && ($('#clear').onclick = () => { S.filters.clear(); viewHome(); });
 }
@@ -202,23 +206,23 @@ function viewRecipe(slug) {
   const li = ([g, i]) => `<li class="${ck.has(i) ? 'done' : ''}" data-i="${i}"><span class="qty">${esc(fmtQty(g, f))}</span><span class="item">${esc(g.item)}</span></li>`;
   const idx = r.ingredients.map((g, i) => [g, i]);
   const ings = S.aisle
-    ? AISLES.map(a => { const xs = idx.filter(([g]) => (AISLES.includes(g.aisle) ? g.aisle : 'Other') === a); return xs.length ? `<h4 class="aisle">${a}</h4><ul class="ings">${xs.map(li).join('')}</ul>` : ''; }).join('')
+    ? AISLES.map(a => { const xs = idx.filter(([g]) => (AISLES.includes(g.aisle) ? g.aisle : 'Other') === a); return xs.length ? `<h3 class="aisle">${a}</h3><ul class="ings">${xs.map(li).join('')}</ul>` : ''; }).join('')
     : `<ul class="ings">${idx.map(li).join('')}</ul>`;
   const notes = (r.notes || '').split('\n').filter(s => s.trim()).map(s => `<p>${esc(s)}</p>`).join('');
   app.innerHTML = `<article class="recipe">
-    <div class="crumbs noprint"><a href="#/">← All recipes</a></div>
+    <div class="crumbs noprint"><a href="#/">← Contents</a></div>
     <header class="rhead">
       <h1>${esc(r.title)}</h1>
       ${r.description ? `<p class="desc">${esc(r.description)}</p>` : ''}
-      <div class="meta">${[r.cuisine && `<span>${esc(r.cuisine)}</span>`, r.effort && `<span class="effort e-${esc(r.effort)}">${esc(r.effort)}</span>`,
-        r.prepMin && `<span>Prep ${fmtMin(r.prepMin)}</span>`, r.cookMin && `<span>Cook ${fmtMin(r.cookMin)}</span>`].filter(Boolean).join('')}</div>
-      <div class="tags">${(r.tags || []).map(t => `<a href="#/" class="tag" data-tag="${esc(t)}">#${esc(t)}</a>`).join('')}</div>
-      <div class="actions noprint"><button class="btn" id="share">Share</button><button class="btn ghost" id="print">Print / PDF</button><a class="btn ghost" href="#/edit/${encodeURIComponent(slug)}">Edit</a></div>
+      <dl class="facts">${[['Serves', r.servings], ['Prep', fmtMin(r.prepMin)], ['Cook', fmtMin(r.cookMin)], ['Effort', r.effort && `${esc(r.effort)} ${dots(r.effort)}`], ['Cuisine', esc(r.cuisine)]]
+        .filter(([, v]) => v).map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+      ${(r.tags || []).length ? `<p class="filed">Filed under ${r.tags.map(t => `<a href="#/" class="tag" data-tag="${esc(t)}">${esc(t)}</a>`).join(', ')}</p>` : ''}
+      <div class="actions noprint"><button class="btn" id="share">Share link</button><button class="btn ghost" id="print">Print or save PDF</button><a class="btn ghost" href="#/edit/${encodeURIComponent(slug)}">Edit</a></div>
     </header>
     <div class="rbody">
       <aside class="ingpanel">
         <div class="inghead"><h2>Ingredients</h2>
-          <div class="serv"><button class="noprint" id="sminus" aria-label="Fewer servings">−</button><input id="sv" type="number" min="1" value="${n}" aria-label="Servings"><span>servings</span><button class="noprint" id="splus" aria-label="More servings">+</button></div>
+          <div class="serv"><button class="noprint" id="sminus" aria-label="Fewer servings">−</button><input id="sv" type="number" min="1" value="${n}" aria-label="Servings"><button class="noprint" id="splus" aria-label="More servings">+</button><span class="svl">servings</span></div>
         </div>
         <div class="seg noprint"><button data-m="0" class="${S.aisle ? '' : 'on'}">Recipe order</button><button data-m="1" class="${S.aisle ? 'on' : ''}">By aisle</button></div>
         ${ings}
@@ -227,7 +231,7 @@ function viewRecipe(slug) {
       <section class="method">
         <h2>Method</h2>
         <ol class="steps">${(r.steps || []).map(s => `<li>${esc(s)}</li>`).join('')}</ol>
-        <div class="notes ${notes ? '' : 'noprint'}"><h2>Notes</h2>${notes || '<p class="muted">No notes yet.</p>'}
+        <div class="notes ${notes ? '' : 'noprint'}"><h2>Notes</h2>${notes || '<p class="muted">Nothing yet. Jot down what you changed and how it turned out.</p>'}
           <form id="noteform" class="noprint"><textarea id="note" rows="2" placeholder="Add a note — tweaks, what worked, what to try next…"></textarea><button class="btn ghost">Add note</button></form>
         </div>
       </section>
