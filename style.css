@@ -113,8 +113,8 @@ main { max-width: var(--wrap); margin: 0 auto; padding: 2rem 16px 3rem; }
 .rlabel { font: 600 .8rem var(--head); color: var(--muted); } .rlabel small { font-weight: 400; }
 .stars.big button { border: 0; background: none; padding: 0 .08rem; font-size: 1.45rem; line-height: 1; color: #d9d6cc; cursor: pointer; transition: transform .1s; }
 .stars.big button.on { color: #f5a623; }
-.rate[data-k="difficulty"] .stars.big button.on { color: #e2553b; }
-.stars.big:hover button { color: #f5a623; } .rate[data-k="difficulty"] .stars.big:hover button { color: #e2553b; }
+.rate[data-k="effort"] .stars.big button.on { color: #e2553b; }
+.stars.big:hover button { color: #f5a623; } .rate[data-k="effort"] .stars.big:hover button { color: #e2553b; }
 .stars.big button:hover ~ button { color: #d9d6cc !important; }
 .stars.big button:hover { transform: scale(1.15); }
 

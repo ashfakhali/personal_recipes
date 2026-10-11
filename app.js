@@ -164,8 +164,8 @@ const hasMacros = r => r.macros && MACROS.some(([k]) => r.macros[k] != null && r
 
 /* ---------- views ---------- */
 const SORTS = { name: ['Name', (a, b) => a.title.localeCompare(b.title)], time: ['Time', (a, b) => total(a) - total(b)],
-  kcal: ['Calories', (a, b) => (a.macros?.kcal ?? 1e9) - (b.macros?.kcal ?? 1e9)], rating: ['My rating', (a, b) => ((b.rating?.taste || 0) - (a.rating?.taste || 0)) || ((a.rating?.difficulty || 0) - (b.rating?.difficulty || 0))], protein: ['Protein', (a, b) => (b.macros?.protein ?? -1) - (a.macros?.protein ?? -1)] };
-const RATINGS = [['taste', 'Taste'], ['difficulty', 'Difficulty']];
+  kcal: ['Calories', (a, b) => (a.macros?.kcal ?? 1e9) - (b.macros?.kcal ?? 1e9)], rating: ['My rating', (a, b) => ((b.rating?.taste || 0) - (a.rating?.taste || 0)) || ((a.rating?.effort || 0) - (b.rating?.effort || 0))], protein: ['Protein', (a, b) => (b.macros?.protein ?? -1) - (a.macros?.protein ?? -1)] };
+const RATINGS = [['taste', 'Taste'], ['effort', 'Effort']];
 const stars = (v, cls = '') => `<span class="stars ${cls}" aria-label="${v || 0} of 5">${[1, 2, 3, 4, 5].map(i => `<i class="${i <= (v || 0) ? 'on' : ''}">★</i>`).join('')}</span>`;
 const isMarinade = r => (r.tags || []).includes('marinade');
 function viewHome(mode = 'recipes') {
@@ -203,7 +203,7 @@ function viewHome(mode = 'recipes') {
     $('#count').textContent = `${list.length} of ${rs.length} ${rs.length === 1 ? 'recipe' : 'recipes'}`;
     $('#list').innerHTML = list.length ? list.map(r => `<li><a class="row" href="#/r/${encodeURIComponent(r.slug)}">
       <span class="c-title"><b>${esc(r.title)}</b></span>
-      <span class="c-rate">${r.rating?.taste || r.rating?.difficulty ? `<span title="Taste">${stars(r.rating.taste, 'sm')}</span><span title="Difficulty" class="diff">${stars(r.rating.difficulty, 'sm')}</span>` : '<span class="unrated">Not rated</span>'}</span>
+      <span class="c-rate">${r.rating?.taste || r.rating?.effort ? `<span title="Taste">${stars(r.rating.taste, 'sm')}</span><span title="Effort" class="diff">${stars(r.rating.effort, 'sm')}</span>` : '<span class="unrated">Not rated</span>'}</span>
       <span class="c-cuisine">${esc(r.cuisine)}</span>
       <span class="c-time">${fmtMin(total(r)) || '–'}</span>
       <span class="c-kcal">${r.macros?.kcal ?? '–'}<em> kcal</em></span>
@@ -272,7 +272,7 @@ function viewRecipe(slug) {
       <div class="rcard-head"><h2>${esc(r.title)}</h2>
         <dl class="stats">${[['Prep', fmtMin(r.prepMin)], ['Cook', fmtMin(r.cookMin)], ['Total', fmtMin(total(r))], ['Servings', n], ['Effort', r.effort], ['Cuisine', r.cuisine]]
           .filter(([, v]) => v).map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
-        <div class="myrating">${RATINGS.map(([k, l]) => `<div class="rate" data-k="${k}"><span class="rlabel">${l}${k === 'difficulty' ? ' <small>(5 = really difficult)</small>' : ''}</span><span class="stars big">${[1, 2, 3, 4, 5].map(v => `<button class="${v <= (r.rating?.[k] || 0) ? 'on' : ''}" data-v="${v}" aria-label="${l} ${v} of 5">★</button>`).join('')}</span></div>`).join('')}</div>
+        <div class="myrating">${RATINGS.map(([k, l]) => `<div class="rate" data-k="${k}"><span class="rlabel">${l}${k === 'effort' ? ' <small>(5 = a lot of effort)</small>' : ''}</span><span class="stars big">${[1, 2, 3, 4, 5].map(v => `<button class="${v <= (r.rating?.[k] || 0) ? 'on' : ''}" data-v="${v}" aria-label="${l} ${v} of 5">★</button>`).join('')}</span></div>`).join('')}</div>
         ${hasMacros(r) ? `<div class="macros"><span class="mlabel">Per serving <small>(approx.)</small></span>${MACROS.filter(([k]) => r.macros[k] != null && r.macros[k] !== '')
           .map(([k, l, u]) => `<div class="m m-${k}"><b>${esc(r.macros[k])}${u}</b><span>${l}</span></div>`).join('')}</div>` : ''}
       </div>
@@ -300,7 +300,7 @@ function viewRecipe(slug) {
     const rating = { ...(r.rating || {}), [k]: nv };
     if (!nv) delete rating[k];
     el.querySelectorAll('button').forEach(x => x.classList.toggle('on', +x.dataset.v <= nv));
-    try { await saveRecipe({ ...r, ...(Object.keys(rating).length ? { rating } : { rating: undefined }) }, false, `Rate: ${r.title}`); toast(nv ? `${k === 'taste' ? 'Taste' : 'Difficulty'}: ${nv}/5` : 'Rating cleared'); viewRecipe(slug); }
+    try { await saveRecipe({ ...r, ...(Object.keys(rating).length ? { rating } : { rating: undefined }) }, false, `Rate: ${r.title}`); toast(nv ? `${k === 'taste' ? 'Taste' : 'Effort'}: ${nv}/5` : 'Rating cleared'); viewRecipe(slug); }
     catch (err) { toast(err.message); viewRecipe(slug); }
   }));
   $('#sminus').onclick = () => setN(n - 1);
