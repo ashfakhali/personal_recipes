@@ -493,6 +493,6 @@ async function load() {
   } catch (e) { app.innerHTML = `<p class="empty">Couldn't load recipes: ${esc(e.message)}</p>`; return; }
   route();
 }
-$('#foot').innerHTML = `<div class="strip">${['egg', 'chili', 'rice', 'fries', 'steak', 'cheese', 'leaf', 'pot', 'carrot', 'cake', 'bread', 'drumstick'].map(k => stickerSVG(k, 'f')).join('')}</div><p>Cooking notes, kept in one place.</p>`;
+$('#foot').innerHTML = `<div class="strip">${['egg', 'chili', 'rice', 'fries', 'steak', 'cheese', 'leaf', 'pot', 'carrot', 'cake', 'bread', 'drumstick'].map(k => stickerSVG(k, 'f')).join('')}</div>`;
 addEventListener('hashchange', () => { route(); scrollTo(0, 0); });
 load();
