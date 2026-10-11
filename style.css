@@ -131,7 +131,10 @@ main { max-width: var(--wrap); margin: 0 auto; padding: 2rem 16px 3rem; }
 .scaled { font-size: .85rem; color: var(--muted); margin: .8rem 0 0; }
 .method h2 { margin-bottom: 1rem; }
 .steps { list-style: none; counter-reset: s; margin: 0; padding: 0; }
-.steps li { counter-increment: s; position: relative; padding: 0 0 1.2rem 2.9rem; }
+.steps li { counter-increment: s; position: relative; padding: 0 0 1.2rem 2.9rem; cursor: pointer; border-radius: 6px; }
+.steps li:hover::before { box-shadow: 0 0 0 3px var(--mint); }
+.steps li.done { color: var(--muted); }
+.steps li.done::before { content: '✓'; background: var(--bg); color: var(--green); border: 2px solid var(--green); }
 .steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 2rem; height: 2rem; border-radius: 50%;
   background: var(--green); color: #fff; font: 700 .95rem var(--head); display: grid; place-items: center; }
 .notes { margin-top: .8rem; padding: 1.1rem 1.2rem; border-radius: 10px; background: #fff8e1; border-left: 5px solid var(--yellow); color: #2d2f2e; }
@@ -226,6 +229,7 @@ legend { font: 700 1.05rem var(--head); padding: 0 .4rem; }
   .ings li::before { display: none; }
   .ings li.done { color: inherit; } .ings li.done .item { text-decoration: none; }
   .steps li { break-inside: avoid; padding-bottom: .8rem; }
-  .steps li::before { background: #fff; color: #111; border: 1px solid #999; }
+  .steps li::before, .steps li.done::before { content: counter(s); background: #fff; color: #111; border: 1px solid #999; }
+  .steps li.done { color: inherit; }
   .notes { background: none; border: 1px solid #ccc; }
 }

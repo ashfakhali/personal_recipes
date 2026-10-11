@@ -229,6 +229,7 @@ function viewRecipe(slug) {
   document.title = r.title;
   const n = S.servings[slug] ?? r.servings, f = n / r.servings;
   const ck = (S.checked[slug] ||= new Set());
+  const sd = ((S.stepsDone ||= {})[slug] ||= new Set());
   const li = ([g, i]) => `<li class="${ck.has(i) ? 'done' : ''}" data-i="${i}"><span class="qty">${esc(fmtQty(g, f))}</span><span class="item">${esc(g.item)}</span></li>`;
   const idx = r.ingredients.map((g, i) => [g, i]);
   const ings = S.aisle
@@ -262,7 +263,7 @@ function viewRecipe(slug) {
       </aside>
       <section class="method">
         <h2>Method</h2>
-        <ol class="steps">${(r.steps || []).map(s => `<li>${esc(s)}</li>`).join('')}</ol>
+        <ol class="steps">${(r.steps || []).map((s, i) => `<li class="${sd.has(i) ? 'done' : ''}" data-s="${i}" role="checkbox" aria-checked="${sd.has(i)}" tabindex="0">${esc(s)}</li>`).join('')}</ol>
         <div class="notes ${notes ? '' : 'noprint'}"><h2>Notes</h2>${notes || '<p class="muted">No notes yet.</p>'}
           <form id="noteform" class="noprint"><textarea id="note" rows="2" placeholder="Add a note — tweaks, what worked, what to try next…"></textarea><button class="btn ghost">Add note</button></form>
         </div>
@@ -274,6 +275,8 @@ function viewRecipe(slug) {
   $('#sv').onchange = e => setN(+e.target.value);
   $('#reset') && ($('#reset').onclick = () => setN(r.servings));
   $$('.seg button', app).forEach(b => b.onclick = () => { S.aisle = b.dataset.m === '1'; store.set('aisle', S.aisle ? '1' : '0'); viewRecipe(slug); });
+  $$('.steps li', app).forEach(el => { const t = () => { const i = +el.dataset.s; sd.has(i) ? sd.delete(i) : sd.add(i); el.classList.toggle('done'); el.setAttribute('aria-checked', sd.has(i)); };
+    el.onclick = t; el.onkeydown = e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); t(); } }; });
   $$('.ings li', app).forEach(el => el.onclick = () => { const i = +el.dataset.i; ck.has(i) ? ck.delete(i) : ck.add(i); el.classList.toggle('done'); });
   $$('.tag', app).forEach(a => a.onclick = () => { S.filters = new Set([`Tags:${a.dataset.tag}`]); S.q = ''; });
   $('#print').onclick = () => window.print();
