@@ -157,11 +157,7 @@ async function deleteRecipe(r) {
 }
 
 /* ---------- look ---------- */
-const TINTS = ['#FFE58F', '#FFD0BF', '#BDEFD1', '#C8E3FF', '#FFD1E3', '#DCD3FF', '#FFDCA8'];
-const tint = c => TINTS[[...(c || '')].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) >>> 0, 7) % TINTS.length];
 const isVeg = r => (r.tags || []).includes('vegetarian');
-const badges = r => `<span class="badges">${r.effort ? `<span class="badge b-${esc(r.effort)}">${esc(r.effort)}</span>` : ''}${isVeg(r) ? '<span class="badge b-veg">Veg</span>' : ''}</span>`;
-const art = (r, cls) => stickerSVG(stickerKey(r), cls);
 
 /* ---------- views ---------- */
 function viewHome() {
@@ -169,28 +165,35 @@ function viewHome() {
   const rs = S.recipes;
   const groups = { Cuisine: uniq(rs.map(r => r.cuisine)), Effort: EFFORTS.filter(e => rs.some(r => r.effort === e)), Tags: uniq(rs.flatMap(r => r.tags || [])) };
   const chip = (g, v) => `<button class="chip ${S.filters.has(`${g}:${v}`) ? 'on' : ''}" data-f="${esc(`${g}:${v}`)}">${esc(v)}</button>`;
+  const TAG_ICON = { 'comfort food': 'cheese', 'high protein': 'egg', 'low carb': 'leaf', side: 'carrot', fried: 'fries', brined: 'drumstick', southern: 'drumstick', eggs: 'egg', potatoes: 'fries', beef: 'steak', cheese: 'cheese', pasta: 'cheese' };
+  const tagIcon = t => TAG_ICON[t] || (STICKER_RULES.find(([re]) => re.test(t)) || [0, 'pot'])[1];
   app.innerHTML = `<section class="home">
-    <div class="hero">
-      <div class="hero-text"><h1>What are we cooking?</h1>
-        <p>${rs.length} ${rs.length === 1 ? 'recipe' : 'recipes'} in the book. Search by name or ingredient, or tap a tag below.</p>
-        <input id="q" class="search" type="search" placeholder="Try “eggs” or “quick”…" aria-label="Search recipes" value="${esc(S.q)}"></div>
-      <div class="hero-art" aria-hidden="true">${['egg', 'chili', 'fries', 'leaf', 'cheese'].map((k, i) => stickerSVG(k, `s${i + 1}`)).join('')}</div>
+    <div class="intro">
+      <h1>Find something to cook</h1>
+      <p>${rs.length} ${rs.length === 1 ? 'recipe' : 'recipes'}, sized and scaled the way you like them.</p>
+      <input id="q" class="search" type="search" placeholder="Search recipes or ingredients" aria-label="Search recipes" value="${esc(S.q)}">
     </div>
-    <div class="filters">${Object.entries(groups).filter(([, v]) => v.length).map(([g, vs]) =>
-      `<div class="frow"><span class="flabel">${g}</span><div class="chips">${vs.map(v => chip(g, v)).join('')}</div></div>`).join('')}
+    ${groups.Tags.length ? `<section class="cats noprint"><h2>Browse by category</h2><div class="catrow">${groups.Tags.map(t => { const on = S.filters.has(`Tags:${t}`);
+      return `<button class="cat chip-like ${on ? 'on' : ''}" aria-pressed="${on}" data-f="${esc(`Tags:${t}`)}"><span class="cat-ic">${stickerSVG(tagIcon(t))}</span><span class="cat-l">${esc(t)}</span></button>`; }).join('')}</div></section>` : ''}
+    <div class="filters">${['Cuisine', 'Effort'].filter(g => groups[g].length).map(g =>
+      `<div class="frow"><span class="flabel">${g}</span><div class="chips">${groups[g].map(v => chip(g, v)).join('')}</div></div>`).join('')}
       ${S.filters.size ? '<button class="link" id="clear">Clear filters</button>' : ''}</div>
+    <div class="sechead"><h2>${S.filters.size || S.q ? 'Matching recipes' : 'All recipes'}</h2><span id="count"></span></div>
     <div id="grid" class="grid"></div></section>`;
   const grid = () => {
     const list = rs.filter(matches).sort((a, b) => a.title.localeCompare(b.title));
+    $('#count').textContent = `${list.length} ${list.length === 1 ? 'recipe' : 'recipes'}`;
     $('#grid').innerHTML = list.length ? list.map(r => `<a class="card" href="#/r/${encodeURIComponent(r.slug)}">
-      <div class="card-art" style="--tint:${tint(r.slug || r.title)}">${art(r, 'big')}${badges(r)}</div>
-      <div class="card-body"><div class="card-top"><span>${esc(r.cuisine)}</span><span>${fmtMin(total(r))}</span></div>
-      <h3>${esc(r.title)}</h3><p>${esc(r.description)}</p></div></a>`).join('')
-      : `<p class="empty">${rs.length ? 'No recipes match.' : 'No recipes yet — <a href="#/new">add one</a>.'}</p>`;
+      <span class="card-cuisine">${esc(r.cuisine)}</span>
+      <h3>${esc(r.title)}</h3>
+      <p class="card-key">${[fmtMin(total(r)), `serves ${r.servings}`].filter(Boolean).join(' / ')}</p>
+      ${r.description ? `<p class="card-desc">${esc(r.description)}</p>` : ''}
+      <div class="card-foot">${r.effort ? `<span class="pill p-${esc(r.effort)}">${esc(r.effort)}</span>` : ''}${isVeg(r) ? '<span class="pill p-veg">Vegetarian</span>' : ''}</div></a>`).join('')
+      : `<p class="empty">${rs.length ? 'No recipes match. Try a different word or clear the filters.' : 'No recipes yet. <a href="#/new">Add your first one</a>.'}</p>`;
   };
   grid();
   $('#q').addEventListener('input', e => { S.q = e.target.value; grid(); });
-  $$('.chip', app).forEach(b => b.onclick = () => { const k = b.dataset.f; S.filters.has(k) ? S.filters.delete(k) : S.filters.add(k); viewHome(); });
+  $$('.chip, .cat', app).forEach(b => b.onclick = () => { const k = b.dataset.f; S.filters.has(k) ? S.filters.delete(k) : S.filters.add(k); viewHome(); });
   $('#clear') && ($('#clear').onclick = () => { S.filters.clear(); viewHome(); });
 }
 function matches(r) {
@@ -219,17 +222,18 @@ function viewRecipe(slug) {
   const notes = (r.notes || '').split('\n').filter(s => s.trim()).map(s => `<p>${esc(s)}</p>`).join('');
   app.innerHTML = `<article class="recipe">
     <div class="crumbs noprint"><a href="#/">← All recipes</a></div>
-    <header class="rhead" style="--tint:${tint(r.slug || r.title)}">
-      <div class="rhead-text">
-        <h1>${esc(r.title)}</h1>
-        ${r.description ? `<p class="desc">${esc(r.description)}</p>` : ''}
-        <div class="meta">${[r.cuisine && `<span>${esc(r.cuisine)}</span>`, r.prepMin && `<span>Prep ${fmtMin(r.prepMin)}</span>`, r.cookMin && `<span>Cook ${fmtMin(r.cookMin)}</span>`, `<span>Serves ${r.servings}</span>`].filter(Boolean).join('')}</div>
-        <div class="tags">${(r.tags || []).map(t => `<a href="#/" class="tag" data-tag="${esc(t)}">#${esc(t)}</a>`).join('')}</div>
+    <header class="rhead">
+      <h1>${esc(r.title)}</h1>
+      ${r.description ? `<p class="desc">${esc(r.description)}</p>` : ''}
+      <div class="tags">${(r.tags || []).map(t => `<a href="#/" class="tag" data-tag="${esc(t)}">${esc(t)}</a>`).join('')}</div>
         ${r.source ? `<p class="source">Source: <a href="${esc(r.source)}" target="_blank" rel="noopener noreferrer">${esc((() => { try { return new URL(r.source).hostname.replace(/^www\./, ''); } catch { return r.source; } })())}</a></p>` : ''}
-        <div class="actions noprint"><button class="btn" id="share">Share</button><button class="btn ghost" id="print">Print / PDF</button><a class="btn ghost" href="#/edit/${encodeURIComponent(slug)}">Edit</a></div>
-      </div>
-      <div class="rhead-art">${art(r, 'xl')}${badges(r)}</div>
+      <div class="actions noprint"><button class="btn" id="jump">Jump to recipe</button><button class="btn ghost" id="share">Share</button><button class="btn ghost" id="print">Print recipe</button><a class="btn ghost" href="#/edit/${encodeURIComponent(slug)}">Edit</a></div>
     </header>
+    <section class="rcard" id="rcard">
+      <div class="rcard-head"><h2>${esc(r.title)}</h2>
+        <dl class="stats">${[['Prep', fmtMin(r.prepMin)], ['Cook', fmtMin(r.cookMin)], ['Total', fmtMin(total(r))], ['Servings', n], ['Effort', r.effort], ['Cuisine', r.cuisine]]
+          .filter(([, v]) => v).map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+      </div>
     <div class="rbody">
       <aside class="ingpanel">
         <div class="inghead"><h2>Ingredients</h2>
@@ -246,7 +250,7 @@ function viewRecipe(slug) {
           <form id="noteform" class="noprint"><textarea id="note" rows="2" placeholder="Add a note — tweaks, what worked, what to try next…"></textarea><button class="btn ghost">Add note</button></form>
         </div>
       </section>
-    </div></article>`;
+    </div></section></article>`;
   const setN = v => { S.servings[slug] = Math.max(1, Math.round(v) || 1); viewRecipe(slug); };
   $('#sminus').onclick = () => setN(n - 1);
   $('#splus').onclick = () => setN(n + 1);
@@ -256,6 +260,7 @@ function viewRecipe(slug) {
   $$('.ings li', app).forEach(el => el.onclick = () => { const i = +el.dataset.i; ck.has(i) ? ck.delete(i) : ck.add(i); el.classList.toggle('done'); });
   $$('.tag', app).forEach(a => a.onclick = () => { S.filters = new Set([`Tags:${a.dataset.tag}`]); S.q = ''; });
   $('#print').onclick = () => window.print();
+  $('#jump').onclick = () => $('#rcard').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   $('#share').onclick = async () => {
     const url = `${location.origin}${location.pathname}#/r/${encodeURIComponent(slug)}`;
     if (navigator.share) return navigator.share({ title: r.title, url }).catch(() => {});
@@ -305,10 +310,7 @@ function viewEdit(slug) {
     </div>
     <datalist id="cuisines">${uniq([...CUISINES, ...S.recipes.map(x => x.cuisine)]).map(c => `<option value="${esc(c)}">`).join('')}</datalist>
     <div class="f">Tags <small>comma-separated</small><div class="tagin"><input name="tags" value="${esc((r.tags || []).join(', '))}" aria-label="Tags"><button type="button" class="btn ghost" id="sugg">Suggest</button></div></div>
-    <div class="fgrid2">
-      <label class="f">Sticker <small>Shown on the card. Auto picks one from the title and tags.</small><select name="sticker"><option value="">Auto (from title &amp; tags)</option>${Object.entries(STICKERS).map(([k, [n]]) => `<option value="${k}" ${k === r.sticker ? 'selected' : ''}>${n}</option>`).join('')}</select></label>
-      <label class="f">Source link <small>Optional. Where the recipe came from.</small><input name="source" type="url" placeholder="https://…" value="${esc(r.source || '')}"></label>
-    </div>
+    <label class="f">Source link <small>Optional. Where the recipe came from.</small><input name="source" type="url" placeholder="https://…" value="${esc(r.source || '')}"></label>
     <fieldset><legend>Ingredients</legend>
       <div class="ihead"><span>Qty</span><span>Unit</span><span>Ingredient</span><span>Aisle</span><span></span></div>
       <div id="rows">${rows.map(ingRow).join('')}</div>
@@ -357,7 +359,7 @@ function viewEdit(slug) {
       steps: v('steps').split(/\n\s*\n/.test(v('steps')) ? /\n\s*\n/ : '\n').map(s => s.trim().replace(/\s*\n\s*/g, ' ').replace(/^\d+[.)]\s*/, '')).filter(Boolean), notes: v('notes'),
     };
     rec.effort = v('effort') || autoEffort(rec);
-    rec.sticker = v('sticker'); rec.source = v('source');
+    rec.source = v('source'); delete rec.sticker;
     const btn = $('#save'); btn.disabled = true; btn.textContent = 'Saving…';
     try {
       await saveRecipe(rec, isNew); toast('Saved'); location.hash = `#/r/${encodeURIComponent(rec.slug)}`; }
@@ -419,8 +421,6 @@ async function load() {
   } catch (e) { app.innerHTML = `<p class="empty">Couldn't load recipes: ${esc(e.message)}</p>`; return; }
   route();
 }
-$('#brandmark').innerHTML = stickerSVG('pot', 'mini');
-$('#deco').innerHTML = ['carrot', 'drumstick', 'bread', 'cake'].map((k, i) => stickerSVG(k, `d${i + 1}`)).join('');
 $('#foot').innerHTML = `<div class="strip">${['egg', 'chili', 'rice', 'fries', 'steak', 'cheese', 'leaf', 'pot', 'carrot', 'cake', 'bread', 'drumstick'].map(k => stickerSVG(k, 'f')).join('')}</div><p>Cooking notes, kept in one place.</p>`;
 addEventListener('hashchange', () => { route(); scrollTo(0, 0); });
 load();
