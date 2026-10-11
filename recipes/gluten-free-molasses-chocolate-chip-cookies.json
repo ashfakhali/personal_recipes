@@ -1,6 +1,6 @@
 {
   "slug": "gluten-free-molasses-chocolate-chip-cookies",
-  "title": "Gluten-Free Molasses Cookies",
+  "title": "Gluten-Free Cookies",
   "description": "Chewy gluten-free chocolate chip cookies with molasses for a deep, caramel flavour. Chill the dough 30 minutes. Makes about 20.",
   "cuisine": "American",
   "effort": "Moderate",
@@ -14,13 +14,6 @@
   "servings": 20,
   "prepMin": 15,
   "cookMin": 25,
-  "macros": {
-    "kcal": 225,
-    "protein": 2,
-    "carbs": 32,
-    "fiber": 1,
-    "fat": 11
-  },
   "ingredients": [
     {
       "qty": 2,
@@ -104,5 +97,13 @@
     "Bake one sheet at a time for 10–12 minutes, until the edges are set and the tops crackle but the centres are still soft.",
     "Cool on the sheet for 10 minutes, since they're fragile while warm, then move to a rack."
   ],
-  "notes": ""
+  "notes": "",
+  "source": "",
+  "macros": {
+    "kcal": 225,
+    "protein": 2,
+    "carbs": 32,
+    "fiber": 1,
+    "fat": 11
+  }
 }
