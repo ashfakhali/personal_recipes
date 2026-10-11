@@ -1,0 +1,82 @@
+{
+  "slug": "prosciutto-mozzarella-sandwich",
+  "title": "Prosciutto, Mozzarella & Kale Sandwich",
+  "cuisine": "Italian",
+  "effort": "Quick",
+  "tags": [
+    "sandwich",
+    "lunch",
+    "no-cook"
+  ],
+  "servings": 1,
+  "prepMin": 5,
+  "cookMin": 5,
+  "macros": {
+    "kcal": 560,
+    "protein": 30,
+    "carbs": 52,
+    "fiber": 3,
+    "fat": 26
+  },
+  "ingredients": [
+    {
+      "qty": 120,
+      "unit": "g",
+      "item": "Italian bread or baguette (about a 20 cm piece)",
+      "aisle": "Bakery"
+    },
+    {
+      "qty": 40,
+      "unit": "g",
+      "item": "prosciutto (about 3 slices)",
+      "aisle": "Meat & Seafood"
+    },
+    {
+      "qty": 60,
+      "unit": "g",
+      "item": "fresh mozzarella, sliced",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 1,
+      "unit": "cup",
+      "item": "baby kale, loosely packed",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "balsamic glaze",
+      "aisle": "Condiments & Sauces"
+    }
+  ],
+  "steps": [
+    "Slice the bread in half lengthways and toast cut side up until golden and crisp.",
+    "Layer the mozzarella on the bottom half and the prosciutto over it.",
+    "Top with the baby kale and drizzle with the balsamic glaze.",
+    "Close the sandwich, press down gently and slice in half."
+  ],
+  "subs": [
+    {
+      "item": "Italian bread / baguette",
+      "swap": "ciabatta, focaccia, sourdough or a hoagie roll"
+    },
+    {
+      "item": "Prosciutto",
+      "swap": "serrano ham, speck, bresaola or crisp bacon"
+    },
+    {
+      "item": "Fresh mozzarella",
+      "swap": "burrata, provolone, fontina, or low-moisture mozzarella"
+    },
+    {
+      "item": "Baby kale",
+      "swap": "arugula, baby spinach or romaine"
+    },
+    {
+      "item": "Balsamic glaze",
+      "swap": "1 tbsp balsamic vinegar simmered until syrupy, or a drizzle of honey with a splash of balsamic"
+    }
+  ],
+  "notes": ""
+}

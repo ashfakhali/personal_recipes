@@ -14,6 +14,7 @@ My personal recipe catalogue: a static site hosted on GitHub Pages.
 - Optional source link on each recipe.
 - Marinades section, plus Guides: safe internal temperatures (incl. USDA time-at-temperature tables) and oven cooking times by cut.
 - Approximate macros per serving (calories, protein, carbs, fat), editable in the form.
+- Optional per-recipe substitutions (`subs`: list of `{item, swap}`), shown under the method.
 
 ## One-time setup
 1. **Enable Pages:** Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)` → Save.
