@@ -183,6 +183,8 @@ main { max-width: var(--wrap); margin: 0 auto; padding: 2rem 16px 3rem; }
 .subs li:first-child { border-top: 0; }
 .subs b { flex: 0 0 8.5rem; }
 @media (max-width: 560px) { .subs li { flex-direction: column; gap: 0; } .subs b { flex: none; } }
+.vars { background: #fff3e8; border-left-color: var(--orange, #f08a24); }
+.vars li { border-top-color: #f3dcc6; }
 .notes { margin-top: .8rem; padding: 1.1rem 1.2rem; border-radius: 10px; background: #fff8e1; border-left: 5px solid var(--yellow); color: #2d2f2e; }
 .notes h2 { font-size: 1.1rem; margin-bottom: .4rem; }
 .notes p { margin: .3rem 0; }

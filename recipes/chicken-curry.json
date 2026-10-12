@@ -1,0 +1,222 @@
+{
+  "slug": "chicken-curry",
+  "title": "Chicken Curry (Master Recipe)",
+  "cuisine": "Indian",
+  "effort": "Moderate",
+  "tags": [
+    "chicken",
+    "curry",
+    "one-pot",
+    "meal prep",
+    "high protein"
+  ],
+  "servings": 4,
+  "prepMin": 15,
+  "cookMin": 50,
+  "macros": {
+    "kcal": 400,
+    "protein": 40,
+    "carbs": 13,
+    "fiber": 4,
+    "fat": 20
+  },
+  "ingredients": [
+    {
+      "qty": 800,
+      "unit": "g",
+      "item": "chicken thighs, bone-in or boneless, cut into pieces",
+      "aisle": "Meat & Seafood"
+    },
+    {
+      "qty": 0.5,
+      "unit": "cup",
+      "item": "plain yogurt (marinade)",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "turmeric (marinade)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "salt (marinade)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "coconut oil or ghee",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "ginger, minced",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "garlic, minced",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "green cardamom pods (optional)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "cloves (optional)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "red onions, thinly sliced",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 15,
+      "unit": "",
+      "item": "curry leaves (optional)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 400,
+      "unit": "g",
+      "item": "canned tomatoes (or 3 fresh tomatoes, chopped)",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "green chillies, sliced lengthways",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "ginger-garlic paste",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 1.5,
+      "unit": "tsp",
+      "item": "chilli powder (Kashmiri for colour)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "coriander powder",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1.5,
+      "unit": "tsp",
+      "item": "garam masala (or any meat masala)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "turmeric",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "black pepper (optional)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "cup",
+      "item": "water",
+      "aisle": "Other"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "chicken bouillon",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 1,
+      "unit": "cup",
+      "item": "coconut milk (optional)",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 1,
+      "unit": "cup",
+      "item": "fresh coriander, stems and leaves separated",
+      "aisle": "Produce"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "salt, to taste",
+      "aisle": "Spices"
+    }
+  ],
+  "steps": [
+    "Marinate the chicken with the yogurt, turmeric and salt. 20 minutes is enough; overnight in the fridge is better.",
+    "Heat the coconut oil or ghee over medium heat. Toast the minced ginger and garlic until fragrant, about 1 minute, then add the cardamom and cloves for 30 seconds.",
+    "Add the sliced onions and a pinch of salt (and the curry leaves, if adding them early). Sweat over medium-low heat until soft and golden, 10–15 minutes.",
+    "Add the tomatoes, green chillies and ginger-garlic paste. Cook until the tomatoes break down.",
+    "Add the chilli powder, coriander powder, garam masala, turmeric and pepper. Cook, stirring, until the oil separates from the masala, 5–8 minutes. Add a splash of water if it sticks.",
+    "Add the chicken with its marinade and stir to coat for 2–3 minutes. Add the water and bouillon, bring to a boil, then cover and simmer: 20–25 minutes for boneless, 30–35 for bone-in.",
+    "Optional: stir in the coconut milk and simmer uncovered for 5 minutes.",
+    "About 5 minutes before the end, add the thinly sliced coriander stems.",
+    "Turn off the heat. Soak the coriander leaves in cold water for a few minutes to perk them up, drain, and finely slice.",
+    "Let the curry cool for a couple of minutes, then stir in the coriander leaves (too hot and the flavour is gone) and the curry leaves if you didn't add them earlier. Taste and adjust the salt."
+  ],
+  "variations": [
+    {
+      "item": "Bare minimum",
+      "swap": "Ginger and garlic (any form), onion, an acid (tomato, lime/lemon juice or yogurt), heat (chilli powder or green chilli), coriander powder, and garam masala or any meat masala. Every other ingredient and step is optional."
+    },
+    {
+      "item": "Lazy pressure cooker",
+      "swap": "Put onion, chilli, tomato, ginger-garlic paste, the spices, chicken, a little water (about ¼ cup) and a little oil in the pressure cooker. Mix and cook for 2 whistles (about 8 minutes at high pressure), then let the pressure release naturally. Add coriander at the end."
+    },
+    {
+      "item": "Creamy",
+      "swap": "Add coconut milk before the coriander and simmer for a few minutes."
+    }
+  ],
+  "subs": [
+    {
+      "item": "Coconut oil / ghee",
+      "swap": "any neutral oil"
+    },
+    {
+      "item": "Canned tomatoes",
+      "swap": "fresh tomatoes; or use lime/lemon juice or extra yogurt as the acid"
+    },
+    {
+      "item": "Chilli powder",
+      "swap": "more green chillies (or use both)"
+    },
+    {
+      "item": "Garam masala",
+      "swap": "chicken masala or any meat masala"
+    },
+    {
+      "item": "Water + bouillon",
+      "swap": "chicken stock or bone broth"
+    },
+    {
+      "item": "Chicken thighs",
+      "swap": "drumsticks, or breast (simmer only 12–15 min)"
+    }
+  ],
+  "notes": ""
+}

@@ -288,6 +288,7 @@ function viewRecipe(slug) {
       <section class="method">
         <h2>Method</h2>
         <ol class="steps">${(r.steps || []).map((s, i) => `<li class="${sd.has(i) ? 'done' : ''}" data-s="${i}" role="checkbox" aria-checked="${sd.has(i)}" tabindex="0">${esc(s)}</li>`).join('')}</ol>
+        ${(r.variations || []).length ? `<div class="subs vars"><h2>Variations</h2><ul>${r.variations.map(x => `<li><b>${esc(x.item)}</b><span>${esc(x.swap)}</span></li>`).join('')}</ul></div>` : ''}
         ${(r.subs || []).length ? `<div class="subs"><h2>Substitutions</h2><ul>${r.subs.map(x => `<li><b>${esc(x.item)}</b><span>${esc(x.swap)}</span></li>`).join('')}</ul></div>` : ''}
         <div class="notes ${notes ? '' : 'noprint'}"><h2>Notes</h2>${notes || '<p class="muted">No notes yet.</p>'}
           <form id="noteform" class="noprint"><textarea id="note" rows="2" placeholder="Add a note — tweaks, what worked, what to try next…"></textarea><button class="btn ghost">Add note</button></form>
@@ -384,6 +385,7 @@ function viewEdit(slug) {
       </details>
     </fieldset>
     <label class="f">Method <small>leave a blank line between steps</small><textarea name="steps" rows="9">${esc((r.steps || []).join('\n\n'))}</textarea></label>
+    <label class="f">Variations <small>one per line: name: what changes</small><textarea name="variations" rows="3">${esc((r.variations || []).map(x => `${x.item}: ${x.swap}`).join('\n'))}</textarea></label>
     <label class="f">Substitutions <small>one per line: ingredient: swap</small><textarea name="subs" rows="4">${esc((r.subs || []).map(x => `${x.item}: ${x.swap}`).join('\n'))}</textarea></label>
     <label class="f">Notes<textarea name="notes" rows="4">${esc(r.notes || '')}</textarea></label>
     <div class="actions"><button class="btn" id="save">Save</button><a class="btn ghost" href="${back}">Cancel</a>${isNew ? '' : '<button type="button" class="btn danger" id="del">Delete</button>'}</div>
@@ -424,8 +426,10 @@ function viewEdit(slug) {
     };
     rec.effort = v('effort') || autoEffort(rec);
     rec.source = v('source'); delete rec.sticker;
-    const subs = v('subs').split('\n').map(l => l.trim()).filter(Boolean).map(l => { const i = l.indexOf(':'); return i < 0 ? { item: l, swap: '' } : { item: l.slice(0, i).trim(), swap: l.slice(i + 1).trim() }; });
+    const pairs = k => v(k).split('\n').map(l => l.trim()).filter(Boolean).map(l => { const i = l.indexOf(':'); return i < 0 ? { item: l, swap: '' } : { item: l.slice(0, i).trim(), swap: l.slice(i + 1).trim() }; });
+    const subs = pairs('subs'), vars = pairs('variations');
     if (subs.length) rec.subs = subs;
+    if (vars.length) rec.variations = vars;
     if (r.rating) rec.rating = r.rating;
     const mac = Object.fromEntries(MACROS.map(([k]) => [k, v(`m_${k}`) === '' ? null : Math.round(+v(`m_${k}`))]).filter(([, x]) => x != null));
     if (Object.keys(mac).length) rec.macros = mac; else delete rec.macros;
