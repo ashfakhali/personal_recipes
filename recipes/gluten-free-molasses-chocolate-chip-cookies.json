@@ -106,6 +106,7 @@
     "fat": 11
   },
   "rating": {
-    "effort": 4
+    "effort": 4,
+    "taste": 2
   }
 }
