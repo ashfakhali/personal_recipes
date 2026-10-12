@@ -1,0 +1,137 @@
+{
+  "slug": "kerala-chicken-roast",
+  "title": "Kerala Chicken Roast",
+  "cuisine": "Kerala",
+  "tags": [
+    "chicken",
+    "dry curry",
+    "high protein"
+  ],
+  "servings": 4,
+  "prepMin": 10,
+  "cookMin": 80,
+  "macros": {
+    "kcal": 300,
+    "protein": 27,
+    "carbs": 14,
+    "fiber": 3,
+    "fat": 15
+  },
+  "source": "https://archanaskitchen.com/kerala-style-chicken-tomato-roast-recipe",
+  "ingredients": [
+    {
+      "qty": 500,
+      "unit": "g",
+      "item": "chicken pieces",
+      "aisle": "Meat & Seafood"
+    },
+    {
+      "qty": 0.25,
+      "unit": "tsp",
+      "item": "turmeric (marinade)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "Kashmiri chilli powder (marinade)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "lemon juice (marinade)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "salt, to taste",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 3,
+      "unit": "",
+      "item": "onions, thinly sliced",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "ginger, finely chopped",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "garlic, finely chopped",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 2.5,
+      "unit": "tsp",
+      "item": "coriander powder",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1.5,
+      "unit": "tsp",
+      "item": "Kashmiri chilli powder",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "garam masala",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "fennel powder",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 3,
+      "unit": "",
+      "item": "tomatoes, thinly sliced",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "sprigs curry leaves",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "coconut oil",
+      "aisle": "Oils & Vinegars"
+    }
+  ],
+  "steps": [
+    "Marinate the chicken with the turmeric, Kashmiri chilli powder, lemon juice and salt. Refrigerate for 30 minutes.",
+    "Shallow fry the chicken in a heavy pan over medium heat until golden on both sides and nearly cooked through. Set aside.",
+    "In the same pan, heat the coconut oil over medium heat. Cook the onions with a pinch of salt until golden brown. Add the ginger and garlic for a few seconds until fragrant.",
+    "Add the coriander powder, chilli powder, garam masala and fennel powder and sauté for a few seconds.",
+    "Add the tomatoes, curry leaves and salt. When the tomatoes soften, add a spoonful or two of water to make a paste.",
+    "Return the chicken and stir until coated. Stir-fry in the masala for 4–5 minutes, then adjust the salt and spices.",
+    "Serve with parotta or rice."
+  ],
+  "subs": [
+    {
+      "item": "Coconut oil",
+      "swap": "any neutral oil"
+    },
+    {
+      "item": "Kashmiri chilli powder",
+      "swap": "regular chilli powder, a little less"
+    },
+    {
+      "item": "Fennel powder",
+      "swap": "skip, or a pinch of ground fennel seed"
+    }
+  ],
+  "notes": ""
+}

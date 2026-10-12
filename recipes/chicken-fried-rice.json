@@ -1,0 +1,160 @@
+{
+  "slug": "chicken-fried-rice",
+  "title": "Chicken Fried Rice",
+  "cuisine": "Chinese",
+  "tags": [
+    "chicken",
+    "rice",
+    "eggs",
+    "stir-fry"
+  ],
+  "servings": 6,
+  "prepMin": 25,
+  "cookMin": 10,
+  "macros": {
+    "kcal": 330,
+    "protein": 18,
+    "carbs": 42,
+    "fiber": 1,
+    "fat": 10
+  },
+  "source": "https://thewoksoflife.com/wprm_print/chicken-fried-rice",
+  "ingredients": [
+    {
+      "qty": 225,
+      "unit": "g",
+      "item": "chicken breast, diced into 1 cm cubes",
+      "aisle": "Meat & Seafood"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "light soy sauce (marinade)",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "cornstarch (marinade)",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "sesame oil (marinade)",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "oil (marinade)",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "hot water",
+      "aisle": "Other"
+    },
+    {
+      "qty": 0.25,
+      "unit": "tsp",
+      "item": "sugar",
+      "aisle": "Baking"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "light soy sauce",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "dark soy sauce",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "salt",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "pinch",
+      "item": "white pepper",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 5,
+      "unit": "cup",
+      "item": "cooked rice, cold",
+      "aisle": "Grains & Pasta"
+    },
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "canola oil, divided",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "eggs, beaten",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "medium onion, diced",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "cup",
+      "item": "mung bean sprouts",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "scallion, chopped",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "Shaoxing wine",
+      "aisle": "Condiments & Sauces"
+    }
+  ],
+  "steps": [
+    "Mix the chicken with its marinade ingredients. In a small bowl, mix the hot water, sugar, soy sauces, salt and white pepper for the sauce.",
+    "Fluff the rice, breaking up any clumps.",
+    "Heat a wok over medium-high heat with 1 tbsp oil. Scramble the eggs until just set and remove.",
+    "Heat the wok until just smoking, add 1 tbsp oil and sear the chicken in one layer for about 20 seconds, then stir-fry until about 80% cooked. Remove.",
+    "Add the last tbsp oil and sauté the onion until translucent. Add the rice, flatten it and break up clumps; stir-fry until hot (about 5 minutes if cold). Keep it from getting wet.",
+    "Add the sauce and toss to coat. Return the chicken and its juices and stir-fry 1 minute.",
+    "Add the eggs, bean sprouts and scallion and stir-fry 30 seconds. Push the rice to the centre, wait 20 seconds, drizzle the Shaoxing wine around the edge, stir-fry 20 seconds and serve."
+  ],
+  "subs": [
+    {
+      "item": "Shaoxing wine",
+      "swap": "dry sherry"
+    },
+    {
+      "item": "Chicken breast",
+      "swap": "thigh, shrimp or tofu"
+    },
+    {
+      "item": "Bean sprouts",
+      "swap": "peas, carrots or any veg"
+    },
+    {
+      "item": "Cold cooked rice",
+      "swap": "freshly cooked rice spread out to dry for 20 minutes"
+    }
+  ],
+  "notes": ""
+}

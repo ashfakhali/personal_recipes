@@ -1,0 +1,109 @@
+{
+  "slug": "easy-butter-chicken",
+  "title": "Easy Butter Chicken",
+  "cuisine": "Indian",
+  "tags": [
+    "chicken",
+    "curry",
+    "high protein",
+    "comfort food"
+  ],
+  "servings": 4,
+  "prepMin": 20,
+  "cookMin": 30,
+  "macros": {
+    "kcal": 530,
+    "protein": 36,
+    "carbs": 16,
+    "fiber": 3,
+    "fat": 36
+  },
+  "source": "https://cookthestory.com/easiest-butter-chicken/print/48308",
+  "ingredients": [
+    {
+      "qty": 0.75,
+      "unit": "cup",
+      "item": "Greek-style yogurt",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "curry powder",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "garam masala",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1.5,
+      "unit": "tsp",
+      "item": "salt",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "garlic powder",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 680,
+      "unit": "g",
+      "item": "boneless skinless chicken thighs, cut into 2.5 cm pieces",
+      "aisle": "Meat & Seafood"
+    },
+    {
+      "qty": 4,
+      "unit": "tbsp",
+      "item": "unsalted butter or ghee",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "onion, sliced",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 425,
+      "unit": "g",
+      "item": "crushed or strained tomatoes (1 can)",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 0.75,
+      "unit": "cup",
+      "item": "heavy cream or half and half",
+      "aisle": "Dairy & Eggs"
+    }
+  ],
+  "steps": [
+    "Mix the yogurt, curry powder, garam masala, salt and garlic powder in a large bowl. Add the chicken. It can marinate overnight in the fridge.",
+    "Melt the butter in a large skillet over medium-low heat. Cook the onion, stirring occasionally, until soft, about 10 minutes.",
+    "Raise the heat to medium, add the chicken and its marinade and cook about 5 minutes, stirring occasionally.",
+    "Add the tomatoes and cream, bring to a boil, then simmer 8–10 minutes until the chicken is cooked through."
+  ],
+  "subs": [
+    {
+      "item": "Heavy cream",
+      "swap": "half and half, or coconut milk"
+    },
+    {
+      "item": "Butter",
+      "swap": "ghee"
+    },
+    {
+      "item": "Greek yogurt",
+      "swap": "plain yogurt"
+    },
+    {
+      "item": "Curry powder + garam masala",
+      "swap": "any meat masala"
+    }
+  ],
+  "notes": ""
+}
