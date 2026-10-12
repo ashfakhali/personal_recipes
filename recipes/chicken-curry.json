@@ -201,7 +201,11 @@
   ],
   "variations": [
     {
-      "item": "Bare minimum",
+      "item": "The recipe is not fixed, you can modify almost half of the steps depending on availability and time.",
+      "swap": ""
+    },
+    {
+      "item": "Bare minimum for a good curry",
       "swap": "Ginger and garlic (any form), onion, an acid (tomato, lime/lemon juice or yogurt), heat (chilli powder or green chilli), coriander powder, and garam masala or any meat masala. Every other ingredient and step is optional."
     },
     {
