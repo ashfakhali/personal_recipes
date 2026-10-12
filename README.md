@@ -5,7 +5,7 @@ My personal recipe catalogue: a static site hosted on GitHub Pages.
 **Live site:** https://ashfakhali.github.io/personal_recipes/
 
 ## Features
-- Search, plus filters by cuisine, effort (Quick ≤30 min / Moderate ≤75 / Project) and tags
+- Search, plus filters by cuisine, effort and tags. Effort follows your effort stars (1–2 Quick, 3 Moderate, 4–5 Project); unrated recipes use total time (≤30 min Quick, ≤75 Moderate).
 - A servings control that rescales every quantity (grams and cups/tbsp/tsp, never oz)
 - Ingredients in recipe order or grouped by grocery aisle; tap an item to tick it off
 - A share link for each recipe (`…/#/r/<slug>`) and a print layout (Print / PDF → "Save as PDF")

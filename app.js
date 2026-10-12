@@ -94,6 +94,7 @@ function parseLine(line) {
 }
 const fmtMin = m => !m ? '' : m < 60 ? `${m} min` : `${Math.floor(m / 60)} h${m % 60 ? ` ${m % 60} min` : ''}`;
 const total = r => (+r.prepMin || 0) + (+r.cookMin || 0);
+const starEffort = n => n ? (n <= 2 ? 'Quick' : n === 3 ? 'Moderate' : 'Project') : '';
 const autoEffort = r => { const t = total(r); return t <= 30 ? 'Quick' : t <= 75 ? 'Moderate' : 'Project'; };
 function suggestTags(ings) {
   const txt = ings.map(g => g.item.toLowerCase()).join(' ');
@@ -305,7 +306,7 @@ function viewRecipe(slug) {
     const rating = { ...(r.rating || {}), [k]: nv };
     if (!nv) delete rating[k];
     el.querySelectorAll('button').forEach(x => x.classList.toggle('on', +x.dataset.v <= nv));
-    try { await saveRecipe({ ...r, ...(Object.keys(rating).length ? { rating } : { rating: undefined }) }, false, `Rate: ${r.title}`); toast(nv ? `${k === 'taste' ? 'Taste' : 'Effort'}: ${nv}/5` : 'Rating cleared'); viewRecipe(slug); }
+    try { await saveRecipe({ ...r, ...(rating.effort ? { effort: starEffort(rating.effort) } : {}), ...(Object.keys(rating).length ? { rating } : { rating: undefined }) }, false, `Rate: ${r.title}`); toast(nv ? `${k === 'taste' ? 'Taste' : 'Effort'}: ${nv}/5` : 'Rating cleared'); viewRecipe(slug); }
     catch (err) { toast(err.message); viewRecipe(slug); }
   }));
   $('#sminus').onclick = () => setN(n - 1);
@@ -368,7 +369,7 @@ function viewEdit(slug) {
     <label class="f">Title<input name="title" required value="${esc(r.title)}"></label>
     <div class="fgrid">
       <label class="f">Cuisine<input name="cuisine" list="cuisines" value="${esc(r.cuisine)}"></label>
-      <label class="f">Effort<select name="effort"><option value="">Auto (from time)</option>${EFFORTS.map(e => `<option ${e === r.effort ? 'selected' : ''}>${e}</option>`).join('')}</select></label>
+      <label class="f">Effort<select name="effort"><option value="">Auto (from your effort stars, else time)</option>${EFFORTS.map(e => `<option ${e === r.effort ? 'selected' : ''}>${e}</option>`).join('')}</select></label>
       <label class="f">Prep (min)<input name="prepMin" type="number" min="0" value="${esc(r.prepMin)}"></label>
       <label class="f">Cook (min)<input name="cookMin" type="number" min="0" value="${esc(r.cookMin)}"></label>
       <label class="f">Servings<input name="servings" type="number" min="1" value="${esc(r.servings || 2)}"></label>
@@ -427,7 +428,7 @@ function viewEdit(slug) {
       prepMin: +v('prepMin') || 0, cookMin: +v('cookMin') || 0, ingredients: readRows(),
       steps: v('steps').split(/\n\s*\n/.test(v('steps')) ? /\n\s*\n/ : '\n').map(s => s.trim().replace(/\s*\n\s*/g, ' ').replace(/^\d+[.)]\s*/, '')).filter(Boolean), notes: v('notes'),
     };
-    rec.effort = v('effort') || autoEffort(rec);
+    rec.effort = (r.rating?.effort && starEffort(r.rating.effort)) || v('effort') || autoEffort(rec);
     rec.source = v('source'); delete rec.sticker;
     const pairs = k => v(k).split('\n').map(l => l.trim()).filter(Boolean).map(l => { const i = l.indexOf(':'); return i < 0 ? { item: l, swap: '' } : { item: l.slice(0, i).trim(), swap: l.slice(i + 1).trim() }; });
     const subs = pairs('subs'), vars = pairs('variations');
@@ -497,6 +498,7 @@ async function load() {
   try {
     const idx = (await readJSON('recipes/index.json')) || [];
     S.recipes = (await Promise.all(idx.map(s => readJSON(`recipes/${s}.json`).catch(() => null)))).filter(Boolean);
+    S.recipes.forEach(r => { if (r.rating?.effort) r.effort = starEffort(r.rating.effort); });
   } catch (e) { app.innerHTML = `<p class="empty">Couldn't load recipes: ${esc(e.message)}</p>`; return; }
   route();
 }
