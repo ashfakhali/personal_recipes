@@ -78,5 +78,8 @@
       "swap": "1 tbsp balsamic vinegar simmered until syrupy, or a drizzle of honey with a splash of balsamic"
     }
   ],
-  "notes": ""
+  "notes": "",
+  "rating": {
+    "effort": 2
+  }
 }
