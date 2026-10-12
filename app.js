@@ -269,7 +269,7 @@ function viewRecipe(slug) {
     <header class="rhead">
       <h1>${esc(r.title)}</h1>
       <div class="tags">${(r.tags || []).map(t => `<a href="#/" class="tag" data-tag="${esc(t)}">${esc(tl(t))}</a>`).join('')}</div>
-        ${linksOf(r).length ? `<p class="source">${linksOf(r).map(u => `<a class="lnk" href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(linkLabel(u))}</a>`).join('')}</p>` : ''}
+        ${linksOf(r).length ? `<p class="source"><b>Source:</b> ${linksOf(r).map(u => `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(linkLabel(u))}</a>`).join(', ')}</p>` : ''}
       <div class="actions noprint"><button class="btn" id="share">Share</button><button class="btn ghost" id="print">Print recipe</button><a class="btn ghost" href="#/edit/${encodeURIComponent(slug)}">Edit</a></div>
     </header>
     <section class="rcard" id="rcard">
@@ -377,7 +377,7 @@ function viewEdit(slug) {
       <div class="fgrid">${MACROS.map(([k, l, u]) => `<label class="f sub">${l}${u ? ` (${u})` : ''}<input name="m_${k}" type="number" min="0" step="1" value="${esc(r.macros?.[k] ?? '')}"></label>`).join('')}</div></div>
     <datalist id="cuisines">${uniq([...CUISINES, ...S.recipes.map(x => x.cuisine)]).map(c => `<option value="${esc(c)}">`).join('')}</datalist>
     <div class="f">Tags <small>comma-separated</small><div class="tagin"><input name="tags" value="${esc((r.tags || []).join(', '))}" aria-label="Tags"><button type="button" class="btn ghost" id="sugg">Suggest</button></div></div>
-    <label class="f">Links <small>Optional. Webpages or YouTube videos, one per line.</small><textarea name="links" rows="2" placeholder="https://…">${esc(linksOf(r).join('\n'))}</textarea></label>
+    <label class="f">Source <small>Optional. A webpage or YouTube link; add several on separate lines. Shown on the recipe only if filled in.</small><textarea name="links" rows="2" placeholder="https://…">${esc(linksOf(r).join('\n'))}</textarea></label>
     <fieldset><legend>Ingredients</legend>
       <div class="ihead"><span>Qty</span><span>Unit</span><span>Ingredient</span><span>Aisle</span><span></span></div>
       <div id="rows">${rows.map(ingRow).join('')}</div>

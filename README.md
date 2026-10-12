@@ -11,7 +11,7 @@ My personal recipe catalogue: a static site hosted on GitHub Pages.
 - A share link for each recipe (`…/#/r/<slug>`) and a print layout (Print / PDF → "Save as PDF")
 - An add/edit form and quick notes. Saving commits straight to this repo.
 - No photos needed: recipes are text cards. Illustrations are used only as site decoration (category tiles and footer).
-- Optional links on each recipe (webpages or YouTube videos), shown as buttons under the title.
+- Optional links on each recipe (webpages or YouTube videos), shown as a "Source:" line under the title when present.
 - Marinades section, plus Guides: safe internal temperatures (incl. USDA time-at-temperature tables) and oven cooking times by cut.
 - Approximate macros per serving (calories, protein, carbs, fat), editable in the form.
 - Optional per-recipe variations (`variations`) and substitutions (`subs`), each a list of `{item, swap}`, shown under the method.
