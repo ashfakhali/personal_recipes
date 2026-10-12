@@ -201,8 +201,8 @@
   ],
   "variations": [
     {
-      "item": "The recipe is not fixed, you can modify almost half of the steps depending on availability and time.",
-      "swap": ""
+      "item": "",
+      "swap": "The recipe is not fixed, you can modify almost half of the steps depending on availability and time.:"
     },
     {
       "item": "Bare minimum for a good curry",
