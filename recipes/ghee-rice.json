@@ -1,0 +1,131 @@
+{
+  "slug": "ghee-rice",
+  "title": "Ghee Rice",
+  "cuisine": "Indian",
+  "effort": "Quick",
+  "tags": [
+    "rice",
+    "side",
+    "one-pot",
+    "vegetarian"
+  ],
+  "servings": 4,
+  "prepMin": 5,
+  "cookMin": 30,
+  "macros": {
+    "kcal": 470,
+    "protein": 8,
+    "carbs": 75,
+    "fiber": 2,
+    "fat": 14
+  },
+  "ingredients": [
+    {
+      "qty": 3,
+      "unit": "tbsp",
+      "item": "ghee",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "green cardamom pods",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "cloves",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "cinnamon stick, small",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "star anise",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "bay leaf",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.5,
+      "unit": "",
+      "item": "onion, thinly sliced",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "cashews",
+      "aisle": "Other"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "raisins",
+      "aisle": "Other"
+    },
+    {
+      "qty": 2,
+      "unit": "cup",
+      "item": "water (1 cup per cup of rice)",
+      "aisle": "Other"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "squeeze of lime or lemon",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "salt, or to taste",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 2,
+      "unit": "cup",
+      "item": "jeera rice (or jasmine rice), washed",
+      "aisle": "Grains & Pasta"
+    }
+  ],
+  "steps": [
+    "Heat the ghee. Sauté the cardamom, cloves, cinnamon, star anise and bay leaf until fragrant.",
+    "Add the onion and sauté. Add the cashews and sauté until golden, then the raisins briefly (not too many; they burn).",
+    "Let the onion sweat until soft.",
+    "Add the water (1 cup per cup of rice), a squeeze of lime or lemon and the salt. Bring to a boil.",
+    "Add the washed rice. The water temperature will drop, so bring it back to a boil while stirring.",
+    "Once boiling, reduce the heat to low or medium-low and cover with a well-sealing lid, so steam doesn't escape easily.",
+    "When most of the water is absorbed, mix gently so the rice doesn't clump or stick to the bottom. Cover again.",
+    "When all the water is absorbed, turn off the heat and let the rice steam, covered, for about 10 minutes before opening. Serve."
+  ],
+  "subs": [
+    {
+      "item": "Jeera rice",
+      "swap": "jasmine rice (same 1:1 water); basmati needs about 1½ cups water per cup"
+    },
+    {
+      "item": "Ghee",
+      "swap": "butter with a little oil"
+    },
+    {
+      "item": "Lime / lemon",
+      "swap": "skip, or a pinch of citric acid"
+    },
+    {
+      "item": "Cashews / raisins",
+      "swap": "almonds or fried onions; or leave out"
+    }
+  ],
+  "notes": ""
+}
