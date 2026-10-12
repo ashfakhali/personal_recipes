@@ -70,5 +70,8 @@
     "Check the thickest part with a thermometer: 52°C (125°F) for medium-rare, 57°C (135°F) for medium. Pull a couple of degrees early — it keeps rising as it rests.",
     "Rest on a board for 5–8 minutes, slice against the grain and spoon the pan butter over the top."
   ],
-  "notes": ""
+  "notes": "",
+  "rating": {
+    "effort": 3
+  }
 }
