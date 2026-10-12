@@ -170,7 +170,7 @@ const stars = (v, cls = '') => `<span class="stars ${cls}" aria-label="${v || 0}
 const isMarinade = r => (r.tags || []).includes('marinade');
 function viewHome(mode = 'recipes') {
   const M = mode === 'marinades';
-  document.title = M ? 'Marinades' : 'Recipe Book';
+  document.title = M ? 'Marinades' : "Ashfakh's Recipe Book";
   S.f ||= { recipes: new Set(), marinades: new Set() };
   S.filters = S.f[mode];
   const rs = S.recipes.filter(r => isMarinade(r) === M);
