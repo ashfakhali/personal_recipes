@@ -104,5 +104,8 @@
     "carbs": 32,
     "fiber": 1,
     "fat": 11
+  },
+  "rating": {
+    "effort": 4
   }
 }
