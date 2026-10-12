@@ -168,7 +168,7 @@
     "Add the chicken with its marinade and stir to coat for 2–3 minutes. Add the water and bouillon, bring to a boil, then cover and simmer: 20–25 minutes for boneless, 30–35 for bone-in.",
     "Optional: stir in the coconut milk and simmer uncovered for 5 minutes.",
     "About 5 minutes before the end, add the thinly sliced coriander stems.",
-    "Turn off the heat. Soak the coriander leaves in cold water for a few minutes to perk them up, drain, and finely slice.",
+    "Turn off the heat. Soak the coriander leaves in cold water for a few minutes to perk them up (if its wilted), drain, and finely slice.",
     "Let the curry cool for a couple of minutes, then stir in the coriander leaves (too hot and the flavour is gone) and the curry leaves if you didn't add them earlier. Taste and adjust the salt."
   ],
   "notes": "",
@@ -213,15 +213,15 @@
       "swap": "Add coconut milk before the coriander and simmer for a few minutes."
     }
   ],
+  "rating": {
+    "effort": 3,
+    "taste": 4
+  },
   "macros": {
     "kcal": 400,
     "protein": 40,
     "carbs": 13,
     "fiber": 4,
     "fat": 20
-  },
-  "rating": {
-    "effort": 3,
-    "taste": 4
   }
 }
