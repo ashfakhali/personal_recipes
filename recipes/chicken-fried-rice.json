@@ -18,7 +18,6 @@
     "fiber": 1,
     "fat": 10
   },
-  "source": "https://thewoksoflife.com/wprm_print/chicken-fried-rice",
   "ingredients": [
     {
       "qty": 225,
@@ -156,5 +155,8 @@
       "swap": "freshly cooked rice spread out to dry for 20 minutes"
     }
   ],
-  "notes": ""
+  "notes": "",
+  "links": [
+    "https://thewoksoflife.com/wprm_print/chicken-fried-rice"
+  ]
 }

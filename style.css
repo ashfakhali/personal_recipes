@@ -294,3 +294,7 @@ legend { font: 700 1.05rem var(--head); padding: 0 .4rem; }
   .notes { background: none; border: 1px solid #ccc; }
   .guide .lead { background: none; padding: 0; } .tbl { border: 0; } .tbl th { background: none; } .tbl td { padding: .3rem .5rem; } .guide h2 { break-after: avoid; } tr { break-inside: avoid; }
 }
+
+.source { display: flex; flex-wrap: wrap; gap: .5rem; margin: .6rem 0 0; }
+.lnk { font: 600 .85rem var(--head); color: var(--green); background: var(--mint); text-decoration: none; padding: .3rem .8rem; border-radius: 999px; }
+.lnk:hover { text-decoration: underline; }

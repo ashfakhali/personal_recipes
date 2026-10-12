@@ -1,0 +1,203 @@
+{
+  "slug": "smash-burger",
+  "title": "Smash Burger",
+  "cuisine": "American",
+  "tags": [
+    "beef",
+    "burger",
+    "comfort food"
+  ],
+  "servings": 2,
+  "prepMin": 25,
+  "cookMin": 5,
+  "macros": {
+    "kcal": 1700,
+    "protein": 100,
+    "carbs": 40,
+    "fiber": 2,
+    "fat": 120
+  },
+  "links": [
+    "https://nickskitchen.com/smashburger-recipe/"
+  ],
+  "ingredients": [
+    {
+      "qty": 900,
+      "unit": "g",
+      "item": "80/20 or 85/15 ground beef",
+      "aisle": "Meat & Seafood",
+      "group": "Burger"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "kosher salt, to taste",
+      "aisle": "Spices",
+      "group": "Burger"
+    },
+    {
+      "qty": 2,
+      "unit": "tsp",
+      "item": "neutral oil",
+      "aisle": "Oils & Vinegars",
+      "group": "Burger"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "medium yellow onions, thinly sliced (optional)",
+      "aisle": "Produce",
+      "group": "Burger"
+    },
+    {
+      "qty": 0.5,
+      "unit": "cup",
+      "item": "mayonnaise",
+      "aisle": "Condiments & Sauces",
+      "group": "Special sauce"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "ketchup",
+      "aisle": "Condiments & Sauces",
+      "group": "Special sauce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "Dijon mustard",
+      "aisle": "Condiments & Sauces",
+      "group": "Special sauce"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "pickles, finely chopped",
+      "aisle": "Condiments & Sauces",
+      "group": "Special sauce"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "honey",
+      "aisle": "Baking",
+      "group": "Special sauce"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "pickle juice or vinegar",
+      "aisle": "Condiments & Sauces",
+      "group": "Special sauce"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "garlic powder",
+      "aisle": "Spices",
+      "group": "Special sauce"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "onion powder",
+      "aisle": "Spices",
+      "group": "Special sauce"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "smoked paprika",
+      "aisle": "Spices",
+      "group": "Special sauce"
+    },
+    {
+      "qty": 0.25,
+      "unit": "tsp",
+      "item": "sugar",
+      "aisle": "Baking",
+      "group": "Special sauce"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "salt and black pepper, to taste",
+      "aisle": "Spices",
+      "group": "Special sauce"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "neutral oil",
+      "aisle": "Oils & Vinegars",
+      "group": "Assembly"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "potato buns",
+      "aisle": "Bakery",
+      "group": "Assembly"
+    },
+    {
+      "qty": 3,
+      "unit": "",
+      "item": "thin slices American cheese",
+      "aisle": "Dairy & Eggs",
+      "group": "Assembly"
+    },
+    {
+      "qty": 3,
+      "unit": "",
+      "item": "thin slices sharp white cheddar",
+      "aisle": "Dairy & Eggs",
+      "group": "Assembly"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "pickle chips",
+      "aisle": "Condiments & Sauces",
+      "group": "Assembly"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "ketchup and mustard, to serve",
+      "aisle": "Condiments & Sauces",
+      "group": "Assembly"
+    }
+  ],
+  "steps": [
+    "## Prep",
+    "Divide the beef into 6 equal portions and roll each into a ball. Compress each ball by passing it between your hands, then chill uncovered in the fridge.",
+    "Whisk all the special sauce ingredients in a small bowl until smooth. Refrigerate until serving.",
+    "## Cook",
+    "Heat a large cast iron griddle or skillet over medium-high heat. Add the oil, and when it shimmers toast the buns cut side down until deep golden. Set aside.",
+    "Season the tops of 3 beef balls with salt and put them on the hot griddle. If using onions, pile them on top of each ball. Press each firmly with a heavy burger press to about 6 mm thick.",
+    "Cook about 1 minute, until deeply golden and lacy at the edges. Season the other side, flip, and cook about 30 seconds, adding oil as needed. Repeat with the remaining 3 balls.",
+    "Turn off the heat. Put American cheese on 3 patties and cheddar on the other 3. Cover to melt, then stack the patties, alternating the cheese.",
+    "## Assemble",
+    "Put a patty stack on each toasted bun and top with pickle chips, ketchup, mustard and special sauce. Serve immediately."
+  ],
+  "subs": [
+    {
+      "item": "Potato buns",
+      "swap": "brioche or any soft burger bun"
+    },
+    {
+      "item": "American / sharp cheddar",
+      "swap": "any good melting cheese, one slice per patty"
+    },
+    {
+      "item": "Special sauce",
+      "swap": "mayo + ketchup + mustard + chopped pickle"
+    },
+    {
+      "item": "80/20 beef",
+      "swap": "85/15 (the original allows it); leaner than that won't crust well"
+    }
+  ],
+  "notes": ""
+}

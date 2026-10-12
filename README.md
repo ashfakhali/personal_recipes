@@ -11,7 +11,7 @@ My personal recipe catalogue: a static site hosted on GitHub Pages.
 - A share link for each recipe (`…/#/r/<slug>`) and a print layout (Print / PDF → "Save as PDF")
 - An add/edit form and quick notes. Saving commits straight to this repo.
 - No photos needed: recipes are text cards. Illustrations are used only as site decoration (category tiles and footer).
-- Optional source link on each recipe.
+- Optional links on each recipe (webpages or YouTube videos), shown as buttons under the title.
 - Marinades section, plus Guides: safe internal temperatures (incl. USDA time-at-temperature tables) and oven cooking times by cut.
 - Approximate macros per serving (calories, protein, carbs, fat), editable in the form.
 - Optional per-recipe variations (`variations`) and substitutions (`subs`), each a list of `{item, swap}`, shown under the method.
@@ -32,7 +32,7 @@ Each recipe is `recipes/<slug>.json`, and `recipes/index.json` lists the slugs.
   "servings": 2, "prepMin": 10, "cookMin": 20,
   "macros": { "kcal": 645, "protein": 34, "carbs": 67, "fat": 26 },
   "ingredients": [{ "qty": 2, "unit": "cup", "item": "cooked rice", "aisle": "Grains & Pasta" }],
-  "steps": ["…"], "notes": "", "source": ""
+  "steps": ["…"], "notes": "", "links": []
 }
 ```
 `unit` is one of `g`, `cup`, `tbsp`, `tsp`, `pinch`, or `""` for counted items. `qty` may be `null` for amounts like "to taste".

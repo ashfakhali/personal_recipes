@@ -18,7 +18,6 @@
     "fiber": 3,
     "fat": 36
   },
-  "source": "https://cookthestory.com/easiest-butter-chicken/print/48308",
   "ingredients": [
     {
       "qty": 0.75,
@@ -105,5 +104,8 @@
       "swap": "any meat masala"
     }
   ],
-  "notes": ""
+  "notes": "",
+  "links": [
+    "https://cookthestory.com/easiest-butter-chicken/print/48308"
+  ]
 }

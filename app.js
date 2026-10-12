@@ -156,6 +156,8 @@ async function deleteRecipe(r) {
 
 /* ---------- look ---------- */
 const tl = t => String(t).replace(/\bbbq\b/gi, 'BBQ');
+const linksOf = r => [...(r.links || []), ...(r.source && !(r.links || []).includes(r.source) ? [r.source] : [])].filter(u => /^https?:\/\//i.test(u));
+const linkLabel = u => { try { const h = new URL(u).hostname.replace(/^www\./, ''); return /(^|\.)(youtube\.com|youtu\.be)$/.test(h) ? '▶ YouTube video' : h; } catch { return u; } };
 const isVeg = r => (r.tags || []).includes('vegetarian');
 
 const MACROS = [['kcal', 'Calories', ''], ['protein', 'Protein', 'g'], ['carbs', 'Carbs', 'g'], ['fiber', 'Fiber', 'g'], ['fat', 'Fat', 'g']];
@@ -267,7 +269,7 @@ function viewRecipe(slug) {
     <header class="rhead">
       <h1>${esc(r.title)}</h1>
       <div class="tags">${(r.tags || []).map(t => `<a href="#/" class="tag" data-tag="${esc(t)}">${esc(tl(t))}</a>`).join('')}</div>
-        ${r.source ? `<p class="source">Source: <a href="${esc(r.source)}" target="_blank" rel="noopener noreferrer">${esc((() => { try { return new URL(r.source).hostname.replace(/^www\./, ''); } catch { return r.source; } })())}</a></p>` : ''}
+        ${linksOf(r).length ? `<p class="source">${linksOf(r).map(u => `<a class="lnk" href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(linkLabel(u))}</a>`).join('')}</p>` : ''}
       <div class="actions noprint"><button class="btn" id="share">Share</button><button class="btn ghost" id="print">Print recipe</button><a class="btn ghost" href="#/edit/${encodeURIComponent(slug)}">Edit</a></div>
     </header>
     <section class="rcard" id="rcard">
@@ -375,7 +377,7 @@ function viewEdit(slug) {
       <div class="fgrid">${MACROS.map(([k, l, u]) => `<label class="f sub">${l}${u ? ` (${u})` : ''}<input name="m_${k}" type="number" min="0" step="1" value="${esc(r.macros?.[k] ?? '')}"></label>`).join('')}</div></div>
     <datalist id="cuisines">${uniq([...CUISINES, ...S.recipes.map(x => x.cuisine)]).map(c => `<option value="${esc(c)}">`).join('')}</datalist>
     <div class="f">Tags <small>comma-separated</small><div class="tagin"><input name="tags" value="${esc((r.tags || []).join(', '))}" aria-label="Tags"><button type="button" class="btn ghost" id="sugg">Suggest</button></div></div>
-    <label class="f">Source link <small>Optional. Where the recipe came from.</small><input name="source" type="url" placeholder="https://…" value="${esc(r.source || '')}"></label>
+    <label class="f">Links <small>Optional. Webpages or YouTube videos, one per line.</small><textarea name="links" rows="2" placeholder="https://…">${esc(linksOf(r).join('\n'))}</textarea></label>
     <fieldset><legend>Ingredients</legend>
       <div class="ihead"><span>Qty</span><span>Unit</span><span>Ingredient</span><span>Aisle</span><span></span></div>
       <div id="rows">${rows.map(ingRow).join('')}</div>
@@ -424,7 +426,7 @@ function viewEdit(slug) {
       prepMin: +v('prepMin') || 0, cookMin: +v('cookMin') || 0, ingredients: readRows(),
       steps: v('steps').split(/\n\s*\n/.test(v('steps')) ? /\n\s*\n/ : '\n').map(s => s.trim().replace(/\s*\n\s*/g, ' ').replace(/^\d+[.)]\s*/, '')).filter(Boolean), notes: v('notes'),
     };
-    rec.source = v('source'); delete rec.sticker;
+    rec.links = v('links').split(/\s+/).filter(u => /^https?:\/\//i.test(u)); if (!rec.links.length) delete rec.links; delete rec.source; delete rec.sticker;
     const pairs = k => v(k).split('\n').map(l => l.trim()).filter(Boolean).map(l => { const i = l.indexOf(':'); return i < 0 ? { item: l, swap: '' } : { item: l.slice(0, i).trim(), swap: l.slice(i + 1).trim() }; });
     const subs = pairs('subs'), vars = pairs('variations');
     if (subs.length) rec.subs = subs;

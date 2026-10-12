@@ -18,7 +18,6 @@
     "fiber": 2,
     "fat": 72
   },
-  "source": "https://www.seriouseats.com/the-food-lab-southern-fried-chicken-recipe",
   "ingredients": [
     {
       "qty": 1800,
@@ -126,5 +125,8 @@
   "rating": {
     "taste": 4,
     "effort": 4
-  }
+  },
+  "links": [
+    "https://www.seriouseats.com/the-food-lab-southern-fried-chicken-recipe"
+  ]
 }

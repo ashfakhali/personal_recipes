@@ -17,7 +17,6 @@
     "fiber": 3,
     "fat": 15
   },
-  "source": "https://archanaskitchen.com/kerala-style-chicken-tomato-roast-recipe",
   "ingredients": [
     {
       "qty": 500,
@@ -133,5 +132,8 @@
       "swap": "skip, or a pinch of ground fennel seed"
     }
   ],
-  "notes": ""
+  "notes": "",
+  "links": [
+    "https://archanaskitchen.com/kerala-style-chicken-tomato-roast-recipe"
+  ]
 }
