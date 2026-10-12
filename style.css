@@ -28,6 +28,9 @@ code { background: var(--wash); padding: .1em .35em; border-radius: 4px; font-si
 .top nav { display: flex; gap: 1.4rem; font: 600 .95rem var(--head); }
 .top nav a { color: var(--ink); text-decoration: none; }
 .top nav a:hover { color: var(--green); }
+.top nav .gear { display: none; font-size: 1.15em; line-height: 1; }
+.rcard-head h2 { display: none; }
+.c-title .p-veg { display: inline-block; width: auto; align-self: flex-start; justify-self: start; margin-top: .25rem; }
 main { max-width: var(--wrap); margin: 0 auto; padding: 2rem 16px 3rem; }
 
 /* buttons */
@@ -238,7 +241,9 @@ legend { font: 700 1.05rem var(--head); padding: 0 .4rem; }
 
 @media (max-width: 760px) {
   .top nav { gap: .9rem; font-size: .88rem; }
-  .top { flex-wrap: wrap; row-gap: .5rem; } .top nav { flex-wrap: wrap; gap: .4rem 1rem; }
+  .top { flex-wrap: wrap; row-gap: .4rem; } .top nav { flex-wrap: nowrap; gap: 1rem; white-space: nowrap; }
+  .brand { font-size: 1.3rem; }
+  .top nav .lbl { display: none; } .top nav .gear { display: inline; }
   .rbody { grid-template-columns: 1fr; }
   .ingpanel { border-right: 0; border-bottom: 2px solid var(--line); }
   .rcard-head, .ingpanel, .method { padding: 1.2rem 1.1rem; }

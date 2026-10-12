@@ -157,6 +157,7 @@ async function deleteRecipe(r) {
 }
 
 /* ---------- look ---------- */
+const tl = t => String(t).replace(/\bbbq\b/gi, 'BBQ');
 const isVeg = r => (r.tags || []).includes('vegetarian');
 
 const MACROS = [['kcal', 'Calories', ''], ['protein', 'Protein', 'g'], ['carbs', 'Carbs', 'g'], ['fiber', 'Fiber', 'g'], ['fat', 'Fat', 'g']];
@@ -178,7 +179,7 @@ function viewHome(mode = 'recipes') {
   const groups = { Cuisine: uniq(rs.map(r => r.cuisine)), Effort: EFFORTS.filter(e => rs.some(r => r.effort === e)), Tags: uniq(rs.flatMap(r => r.tags || [])).filter(t => t !== 'marinade') };
   const has = { Cuisine: (r, v) => r.cuisine === v, Effort: (r, v) => r.effort === v, Tags: (r, v) => (r.tags || []).includes(v) };
   const facet = (g, v) => { const k = `${g}:${v}`, n = rs.filter(r => has[g](r, v)).length;
-    return `<label class="opt"><input type="checkbox" data-f="${esc(k)}" ${S.filters.has(k) ? 'checked' : ''}><span>${esc(v)}</span><small>${n}</small></label>`; };
+    return `<label class="opt"><input type="checkbox" data-f="${esc(k)}" ${S.filters.has(k) ? 'checked' : ''}><span>${esc(tl(v))}</span><small>${n}</small></label>`; };
   const wide = matchMedia('(min-width: 761px)').matches;
   app.innerHTML = `<section class="home">
     <div class="homebar">
@@ -193,7 +194,7 @@ function viewHome(mode = 'recipes') {
         ${S.filters.size ? '<button class="link" id="clear">Clear all filters</button>' : ''}
       </details>
       <div class="results">
-        <div class="resbar"><span id="count"></span>${[...S.filters].map(k => `<button class="active" data-f="${esc(k)}" aria-label="Remove filter ${esc(k.split(':')[1])}">${esc(k.split(':')[1])} ×</button>`).join('')}</div>
+        <div class="resbar"><span id="count"></span>${[...S.filters].map(k => `<button class="active" data-f="${esc(k)}" aria-label="Remove filter ${esc(k.split(':')[1])}">${esc(tl(k.split(':')[1]))} ×</button>`).join('')}</div>
         <div class="rhead-row" aria-hidden="true"><span>Recipe</span><span>Rating</span><span>Cuisine</span><span>Time</span><span>kcal</span><span>Protein</span><span>Effort</span></div>
         <ul id="list" class="rlist"></ul>
       </div>
@@ -202,13 +203,13 @@ function viewHome(mode = 'recipes') {
     const list = rs.filter(matches).sort(SORTS[S.sort][1]);
     $('#count').textContent = `${list.length} of ${rs.length} ${rs.length === 1 ? 'recipe' : 'recipes'}`;
     $('#list').innerHTML = list.length ? list.map(r => `<li><a class="row" href="#/r/${encodeURIComponent(r.slug)}">
-      <span class="c-title"><b>${esc(r.title)}</b></span>
+      <span class="c-title"><b>${esc(r.title)}</b>${isVeg(r) ? ' <span class="pill p-veg">Veg</span>' : ''}</span>
       <span class="c-rate">${r.rating?.taste || r.rating?.effort ? `<span title="Taste">${stars(r.rating.taste, 'sm')}</span><span title="Effort" class="diff">${stars(r.rating.effort, 'sm')}</span>` : '<span class="unrated">Not rated</span>'}</span>
       <span class="c-cuisine">${esc(r.cuisine)}</span>
       <span class="c-time">${fmtMin(total(r)) || '–'}</span>
       <span class="c-kcal">${r.macros?.kcal ?? '–'}<em> kcal</em></span>
       <span class="c-prot">${r.macros?.protein != null ? `${r.macros.protein} g` : '–'}<em> protein</em></span>
-      <span class="c-eff">${r.effort ? `<span class="pill p-${esc(r.effort)}">${esc(r.effort)}</span>` : ''}${isVeg(r) ? '<span class="pill p-veg">Veg</span>' : ''}</span></a></li>`).join('')
+      <span class="c-eff">${r.effort ? `<span class="pill p-${esc(r.effort)}">${esc(r.effort)}</span>` : ''}</span></a></li>`).join('')
       : `<li class="empty">${rs.length ? 'No recipes match. Try another word or clear the filters.' : 'No recipes yet. <a href="#/new">Add your first one</a>.'}</li>`;
   };
   draw();
@@ -266,7 +267,7 @@ function viewRecipe(slug) {
     <div class="crumbs noprint"><a href="${isMarinade(r) ? '#/marinades' : '#/'}">← ${isMarinade(r) ? 'All marinades' : 'All recipes'}</a></div>
     <header class="rhead">
       <h1>${esc(r.title)}</h1>
-      <div class="tags">${(r.tags || []).map(t => `<a href="#/" class="tag" data-tag="${esc(t)}">${esc(t)}</a>`).join('')}</div>
+      <div class="tags">${(r.tags || []).map(t => `<a href="#/" class="tag" data-tag="${esc(t)}">${esc(tl(t))}</a>`).join('')}</div>
         ${r.source ? `<p class="source">Source: <a href="${esc(r.source)}" target="_blank" rel="noopener noreferrer">${esc((() => { try { return new URL(r.source).hostname.replace(/^www\./, ''); } catch { return r.source; } })())}</a></p>` : ''}
       <div class="actions noprint"><button class="btn" id="share">Share</button><button class="btn ghost" id="print">Print recipe</button><a class="btn ghost" href="#/edit/${encodeURIComponent(slug)}">Edit</a></div>
     </header>
