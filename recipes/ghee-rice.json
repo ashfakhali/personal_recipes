@@ -127,5 +127,8 @@
       "swap": "almonds or fried onions; or leave out"
     }
   ],
-  "notes": ""
+  "notes": "",
+  "rating": {
+    "taste": 2
+  }
 }
