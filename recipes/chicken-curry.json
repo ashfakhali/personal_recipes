@@ -221,6 +221,7 @@
     "fat": 20
   },
   "rating": {
-    "effort": 3
+    "effort": 3,
+    "taste": 4
   }
 }
