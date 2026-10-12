@@ -257,7 +257,9 @@ function viewRecipe(slug) {
   const idx = r.ingredients.map((g, i) => [g, i]);
   const ings = S.aisle
     ? AISLES.map(a => { const xs = idx.filter(([g]) => (AISLES.includes(g.aisle) ? g.aisle : 'Other') === a); return xs.length ? `<h4 class="aisle">${a}</h4><ul class="ings">${xs.map(li).join('')}</ul>` : ''; }).join('')
-    : `<ul class="ings">${idx.map(li).join('')}</ul>`;
+    : idx.some(([g]) => g.group)
+      ? [...new Set(idx.map(([g]) => g.group || ''))].map(G => `${G ? `<h4 class="aisle">${esc(G)}</h4>` : ''}<ul class="ings">${idx.filter(([g]) => (g.group || '') === G).map(li).join('')}</ul>`).join('')
+      : `<ul class="ings">${idx.map(li).join('')}</ul>`;
   const noteLines = (r.notes || '').split('\n').filter(s => s.trim());
   const notes = noteLines.map((s, i) => `<p class="note"><span>${esc(s)}</span><button class="ndel noprint" data-n="${i}" title="Delete note" aria-label="Delete note">×</button></p>`).join('');
   app.innerHTML = `<article class="recipe">
@@ -287,7 +289,7 @@ function viewRecipe(slug) {
       </aside>
       <section class="method">
         <h2>Method</h2>
-        <ol class="steps">${(r.steps || []).map((s, i) => `<li class="${sd.has(i) ? 'done' : ''}" data-s="${i}" role="checkbox" aria-checked="${sd.has(i)}" tabindex="0">${esc(s)}</li>`).join('')}</ol>
+        <ol class="steps">${(r.steps || []).map((s, i) => s.startsWith('## ') ? `<li class="sh">${esc(s.slice(3))}</li>` : `<li class="${sd.has(i) ? 'done' : ''}" data-s="${i}" role="checkbox" aria-checked="${sd.has(i)}" tabindex="0">${esc(s)}</li>`).join('')}</ol>
         ${(r.variations || []).length ? `<div class="subs vars"><h2>Variations</h2><ul>${r.variations.map(x => `<li><b>${esc(x.item)}</b><span>${esc(x.swap)}</span></li>`).join('')}</ul></div>` : ''}
         ${(r.subs || []).length ? `<div class="subs"><h2>Substitutions</h2><ul>${r.subs.map(x => `<li><b>${esc(x.item)}</b><span>${esc(x.swap)}</span></li>`).join('')}</ul></div>` : ''}
         <div class="notes ${notes ? '' : 'noprint'}"><h2>Notes</h2>${notes || '<p class="muted">No notes yet.</p>'}
@@ -310,7 +312,7 @@ function viewRecipe(slug) {
   $('#sv').onchange = e => setN(+e.target.value);
   $('#reset') && ($('#reset').onclick = () => setN(r.servings));
   $$('.seg button', app).forEach(b => b.onclick = () => { S.aisle = b.dataset.m === '1'; store.set('aisle', S.aisle ? '1' : '0'); viewRecipe(slug); });
-  $$('.steps li', app).forEach(el => { const t = () => { const i = +el.dataset.s; sd.has(i) ? sd.delete(i) : sd.add(i); el.classList.toggle('done'); el.setAttribute('aria-checked', sd.has(i)); };
+  $$('.steps li[data-s]', app).forEach(el => { const t = () => { const i = +el.dataset.s; sd.has(i) ? sd.delete(i) : sd.add(i); el.classList.toggle('done'); el.setAttribute('aria-checked', sd.has(i)); };
     el.onclick = t; el.onkeydown = e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); t(); } }; });
   $$('.ings li', app).forEach(el => el.onclick = () => { const i = +el.dataset.i; ck.has(i) ? ck.delete(i) : ck.add(i); el.classList.toggle('done'); });
   $$('.tag', app).forEach(a => { const m = isMarinade(r); a.href = m ? '#/marinades' : '#/'; a.onclick = () => { (S.f ||= { recipes: new Set(), marinades: new Set() })[m ? 'marinades' : 'recipes'] = a.dataset.tag === 'marinade' ? new Set() : new Set([`Tags:${a.dataset.tag}`]); S.q = ''; }; });
@@ -343,7 +345,7 @@ function viewRecipe(slug) {
   };
 }
 
-const ingRow = g => `<div class="irow" ${g.item ? 'data-manual="1"' : ''}>
+const ingRow = g => `<div class="irow" ${g.item ? 'data-manual="1"' : ''} ${g.group ? `data-group="${esc(g.group)}"` : ''}>
   <input class="iq" inputmode="decimal" value="${esc(qtyInput(g.qty, g.unit))}" placeholder="Qty" aria-label="Quantity">
   <select class="iu" aria-label="Unit">${UNITS.map(u => `<option value="${u}" ${u === (g.unit || '') ? 'selected' : ''}>${u || '—'}</option>`).join('')}</select>
   <input class="ii" value="${esc(g.item)}" placeholder="Ingredient, prep" aria-label="Ingredient">
@@ -384,7 +386,7 @@ function viewEdit(slug) {
         <div class="row"><button type="button" class="btn ghost" id="parse">Add these</button><small>oz and lb become grams; ml becomes cups/spoons. Aisles are guessed — check them.</small></div>
       </details>
     </fieldset>
-    <label class="f">Method <small>leave a blank line between steps</small><textarea name="steps" rows="9">${esc((r.steps || []).join('\n\n'))}</textarea></label>
+    <label class="f">Method <small>leave a blank line between steps; start a line with ## for a section heading</small><textarea name="steps" rows="9">${esc((r.steps || []).join('\n\n'))}</textarea></label>
     <label class="f">Variations <small>one per line: name: what changes</small><textarea name="variations" rows="3">${esc((r.variations || []).map(x => `${x.item}: ${x.swap}`).join('\n'))}</textarea></label>
     <label class="f">Substitutions <small>one per line: ingredient: swap</small><textarea name="subs" rows="4">${esc((r.subs || []).map(x => `${x.item}: ${x.swap}`).join('\n'))}</textarea></label>
     <label class="f">Notes<textarea name="notes" rows="4">${esc(r.notes || '')}</textarea></label>
@@ -393,7 +395,7 @@ function viewEdit(slug) {
   const form = $('#ed'), rowsEl = $('#rows');
   const readRows = () => $$('.irow', form).map(row => {
     const q = $('.iq', row).value.trim(), n = q ? num(q) : null;
-    return { qty: n == null || isNaN(n) ? null : +n.toFixed(4), unit: $('.iu', row).value, item: $('.ii', row).value.trim(), aisle: $('.ia', row).value };
+    return { qty: n == null || isNaN(n) ? null : +n.toFixed(4), unit: $('.iu', row).value, item: $('.ii', row).value.trim(), aisle: $('.ia', row).value, ...(row.dataset.group ? { group: row.dataset.group } : {}) };
   }).filter(g => g.item);
   rowsEl.addEventListener('click', e => { if (e.target.classList.contains('x')) e.target.closest('.irow').remove(); });
   rowsEl.addEventListener('change', e => {

@@ -26,128 +26,159 @@
       "qty": 1200,
       "unit": "g",
       "item": "boneless, skinless chicken thighs",
-      "aisle": "Meat & Seafood"
+      "aisle": "Meat & Seafood",
+      "group": "BBQ chicken"
     },
     {
       "qty": 1,
       "unit": "tsp",
-      "item": "onion powder (chicken)",
-      "aisle": "Spices"
+      "item": "onion powder",
+      "aisle": "Spices",
+      "group": "BBQ chicken"
     },
     {
       "qty": 1,
       "unit": "tsp",
-      "item": "garlic powder (chicken)",
-      "aisle": "Spices"
+      "item": "garlic powder",
+      "aisle": "Spices",
+      "group": "BBQ chicken"
     },
     {
       "qty": 1,
       "unit": "tsp",
-      "item": "smoked paprika (chicken)",
-      "aisle": "Spices"
+      "item": "smoked paprika",
+      "aisle": "Spices",
+      "group": "BBQ chicken"
     },
     {
       "qty": 1,
       "unit": "tsp",
       "item": "dried thyme",
-      "aisle": "Spices"
+      "aisle": "Spices",
+      "group": "BBQ chicken"
     },
     {
       "qty": 1,
       "unit": "tsp",
       "item": "dried oregano",
-      "aisle": "Spices"
+      "aisle": "Spices",
+      "group": "BBQ chicken"
     },
     {
       "qty": 0.5,
       "unit": "tsp",
       "item": "chili flakes",
-      "aisle": "Spices"
+      "aisle": "Spices",
+      "group": "BBQ chicken"
     },
     {
       "qty": 4,
       "unit": "tsp",
       "item": "olive oil, divided",
-      "aisle": "Oils & Vinegars"
+      "aisle": "Oils & Vinegars",
+      "group": "BBQ chicken"
     },
     {
       "qty": null,
       "unit": "",
       "item": "salt and freshly cracked black pepper",
-      "aisle": "Spices"
+      "aisle": "Spices",
+      "group": "BBQ chicken"
     },
     {
       "qty": 0.5,
       "unit": "cup",
       "item": "BBQ sauce (reduced-sugar if you like)",
-      "aisle": "Condiments & Sauces"
+      "aisle": "Condiments & Sauces",
+      "group": "BBQ chicken"
     },
     {
       "qty": 400,
       "unit": "g",
       "item": "macaroni",
-      "aisle": "Grains & Pasta"
+      "aisle": "Grains & Pasta",
+      "group": "Mac n cheese"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "salt and black pepper (pasta water and sauce)",
+      "aisle": "Spices",
+      "group": "Mac n cheese"
     },
     {
       "qty": 1.67,
       "unit": "cup",
       "item": "reduced-fat cream or milk",
-      "aisle": "Dairy & Eggs"
+      "aisle": "Dairy & Eggs",
+      "group": "Mac n cheese"
     },
     {
       "qty": 100,
       "unit": "g",
       "item": "light cream cheese",
-      "aisle": "Dairy & Eggs"
+      "aisle": "Dairy & Eggs",
+      "group": "Mac n cheese"
     },
     {
       "qty": 140,
       "unit": "g",
       "item": "cheddar, grated (or gruyère or gouda)",
-      "aisle": "Dairy & Eggs"
+      "aisle": "Dairy & Eggs",
+      "group": "Mac n cheese"
     },
     {
       "qty": 1,
       "unit": "tsp",
-      "item": "onion powder (sauce, optional)",
-      "aisle": "Spices"
+      "item": "onion powder (optional)",
+      "aisle": "Spices",
+      "group": "Mac n cheese"
     },
     {
       "qty": 1,
       "unit": "tsp",
-      "item": "garlic powder (sauce, optional)",
-      "aisle": "Spices"
+      "item": "garlic powder (optional)",
+      "aisle": "Spices",
+      "group": "Mac n cheese"
     },
     {
       "qty": 1,
       "unit": "tsp",
-      "item": "smoked paprika (sauce, optional)",
-      "aisle": "Spices"
+      "item": "smoked paprika (optional)",
+      "aisle": "Spices",
+      "group": "Mac n cheese"
     },
     {
       "qty": null,
       "unit": "",
       "item": "grated parmesan, to garnish",
-      "aisle": "Dairy & Eggs"
+      "aisle": "Dairy & Eggs",
+      "group": "Mac n cheese"
     },
     {
       "qty": null,
       "unit": "",
       "item": "flat-leaf parsley, chopped, to garnish (optional)",
-      "aisle": "Produce"
+      "aisle": "Produce",
+      "group": "Mac n cheese"
     }
   ],
   "steps": [
-    "Bring a large pot of water to a boil over high heat.",
-    "Slice the chicken lengthways into thin, even strips, then cut across into small-to-medium pieces so they all cook at the same rate. Grate the cheese on the large holes of a box grater and roughly chop the parsley.",
+    "## BBQ chicken",
+    "Start the pasta water first (see Mac n cheese) so it's boiling by the time the chicken is done.",
+    "Slice the chicken lengthways into thin, even strips, then cut across into small-to-medium pieces so they all cook at the same rate.",
     "In a large bowl, toss the chicken with the onion powder, garlic powder, smoked paprika, thyme, oregano, chili flakes, 2 tsp of the oil, a pinch of salt and plenty of black pepper until evenly coated.",
-    "Salt the boiling water, add the macaroni and stir so it doesn't clump. Cook for 1 minute less than the packet says, then drain.",
-    "Meanwhile, heat a large pan over high heat until very hot. Add the remaining 2 tsp oil and the chicken, scraping in all the spices, and spread it into one layer. Work in batches if the pan is crowded so the chicken sears instead of stewing.",
+    "Heat a large pan over high heat until very hot. Add the remaining 2 tsp oil and the chicken, scraping in all the spices, and spread it into one layer. Work in batches if the pan is crowded so the chicken sears instead of stewing.",
     "Leave it untouched for 2 minutes to form a crust, then stir only occasionally until just cooked through, about 4½ minutes in total. Stir in the BBQ sauce and cook 1 minute more to glaze. Tip the chicken into a bowl.",
-    "Put the pan back over medium-high heat without wiping it. Add the cream or milk, cream cheese, cheddar, a pinch of salt and some pepper, and stir to break up the cream cheese and melt everything. Add the optional sauce spices now if using.",
+    "## Mac n cheese",
+    "Bring a large pot of water to a boil over high heat. Salt it, add the macaroni and stir so it doesn't clump. Cook for 1 minute less than the packet says, then drain.",
+    "Grate the cheddar on the large holes of a box grater.",
+    "Put the chicken pan back over medium-high heat without wiping it. Add the cream or milk, cream cheese, cheddar, a pinch of salt and some pepper, and stir to break up the cream cheese and melt everything. Add the optional spices now if using.",
     "Once it simmers, drop the heat to medium so it doesn't over-reduce, and cook 2–3 minutes until the sauce thickens.",
-    "Add the drained pasta and stir over medium heat until every piece is coated. Fold the BBQ chicken through for about 30 seconds, until evenly mixed. (Or keep the chicken and mac separate if you prefer.)",
-    "Divide between 6 containers and garnish with parmesan, parsley and black pepper.",
+    "Add the drained pasta and stir over medium heat until every piece is coated.",
+    "## Combine and store",
+    "Fold the BBQ chicken through for about 30 seconds, until evenly mixed. (Or keep the chicken and mac separate.)",
+    "Divide between 6 containers and garnish with parmesan, chopped parsley and black pepper.",
     "To store, cool for 15–20 minutes before putting the lids on. Keeps 3–4 days in the fridge or about 3 months frozen; thaw frozen portions overnight in the fridge. Reheat in the microwave or a pan with a splash of water or stock."
   ],
   "notes": "2026-10-11 — Tasty enough to eat it, boring enough for me to not overeat it",
