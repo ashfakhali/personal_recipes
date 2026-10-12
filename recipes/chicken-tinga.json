@@ -1,0 +1,125 @@
+{
+  "slug": "chicken-tinga",
+  "title": "Chicken Tinga",
+  "cuisine": "Mexican",
+  "effort": "Moderate",
+  "tags": [
+    "chicken",
+    "high protein",
+    "meal prep",
+    "tacos"
+  ],
+  "servings": 4,
+  "prepMin": 10,
+  "cookMin": 45,
+  "macros": {
+    "kcal": 260,
+    "protein": 33,
+    "carbs": 7,
+    "fiber": 2,
+    "fat": 11
+  },
+  "ingredients": [
+    {
+      "qty": 550,
+      "unit": "g",
+      "item": "bone-in, skin-on chicken breast halves (2)",
+      "aisle": "Meat & Seafood"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "kosher salt and black pepper",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "lard or vegetable oil",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 170,
+      "unit": "g",
+      "item": "tomatillos, husked (about 2 medium)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 170,
+      "unit": "g",
+      "item": "ripe plum tomatoes (about 2 medium)",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "garlic cloves",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "small white onion, finely chopped",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 2,
+      "unit": "tsp",
+      "item": "dried oregano, preferably Mexican",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "bay leaves",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "cider vinegar",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 2,
+      "unit": "cup",
+      "item": "low-sodium chicken stock (or water)",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 2.5,
+      "unit": "",
+      "item": "chipotle chiles in adobo (2–3)",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "adobo sauce from the can",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 2,
+      "unit": "tsp",
+      "item": "fish sauce",
+      "aisle": "Condiments & Sauces"
+    }
+  ],
+  "steps": [
+    "Season the chicken well with salt and pepper. Heat the oil in a medium saucepan over high heat until shimmering. Add the chicken skin-side down and cook without moving until well browned, 6–8 minutes (lower the heat if it smokes a lot or starts to burn). Flip and cook 2 minutes more, then move to a plate.",
+    "Immediately add the tomatillos, tomatoes and garlic to the pot. Cook, turning occasionally, until blistered and browned in spots, about 5 minutes.",
+    "Add the onion and cook, stirring, until softened, about 2 minutes. Add the oregano and bay leaves and cook until aromatic, about 30 seconds. Add the vinegar and stock.",
+    "Return the chicken, bring to a boil over high heat, then reduce to a bare simmer. Cover and cook, turning the chicken occasionally, until the thickest part reaches 145°F (63°C), 20–30 minutes. Move the chicken to a bowl.",
+    "Simmer the sauce hard, stirring, until reduced by about half, about 5 minutes.",
+    "Remove the bay leaves, add the chipotles and adobo sauce, and blend until fairly smooth with a few small chunks.",
+    "When the chicken is cool enough to handle, discard the skin and bones and finely shred the meat. Return it to the sauce and stir in the fish sauce.",
+    "Simmer, stirring, until the sauce thickens and coats the chicken: very moist but not soupy. Season with salt and pepper."
+  ],
+  "variations": [
+    {
+      "item": "Serving ideas",
+      "swap": "Tacos, enchiladas, burritos, nachos, tostadas, sopes, or on its own."
+    }
+  ],
+  "notes": ""
+}
