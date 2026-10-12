@@ -1,25 +1,18 @@
 {
   "slug": "chicken-curry",
-  "title": "Chicken Curry (Master Recipe)",
-  "cuisine": "Indian",
+  "title": "Kerala Style Chicken Curry (Master Recipe)",
+  "cuisine": "Kerala",
   "effort": "Moderate",
   "tags": [
     "chicken",
     "curry",
-    "one-pot",
+    "high protein",
     "meal prep",
-    "high protein"
+    "one-pot"
   ],
   "servings": 4,
   "prepMin": 15,
   "cookMin": 50,
-  "macros": {
-    "kcal": 400,
-    "protein": 40,
-    "carbs": 13,
-    "fiber": 4,
-    "fat": 20
-  },
   "ingredients": [
     {
       "qty": 800,
@@ -172,26 +165,14 @@
     "Add the sliced onions and a pinch of salt (and the curry leaves, if adding them early). Sweat over medium-low heat until soft and golden, 10–15 minutes.",
     "Add the tomatoes, green chillies and ginger-garlic paste. Cook until the tomatoes break down.",
     "Add the chilli powder, coriander powder, garam masala, turmeric and pepper. Cook, stirring, until the oil separates from the masala, 5–8 minutes. Add a splash of water if it sticks.",
-    "Add the chicken with its marinade and stir to coat for 2–3 minutes. Add the water and bouillon, bring to a boil, then cover and simmer. Time depends on the cut: boneless breast 12–15 min; boneless thigh 20–25 min; bone-in breast 25–30 min; bone-in thigh or curry-cut pieces 30–35 min; drumsticks 35–40 min; whole legs 40–45 min. Done at 165°F (74°C) for breast, 175°F (79°C) or more for thighs and legs.",
+    "Add the chicken with its marinade and stir to coat for 2–3 minutes. Add the water and bouillon, bring to a boil, then cover and simmer: 20–25 minutes for boneless, 30–35 for bone-in.",
     "Optional: stir in the coconut milk and simmer uncovered for 5 minutes.",
     "About 5 minutes before the end, add the thinly sliced coriander stems.",
     "Turn off the heat. Soak the coriander leaves in cold water for a few minutes to perk them up, drain, and finely slice.",
     "Let the curry cool for a couple of minutes, then stir in the coriander leaves (too hot and the flavour is gone) and the curry leaves if you didn't add them earlier. Taste and adjust the salt."
   ],
-  "variations": [
-    {
-      "item": "Bare minimum",
-      "swap": "Ginger and garlic (any form), onion, an acid (tomato, lime/lemon juice or yogurt), heat (chilli powder or green chilli), coriander powder, and garam masala or any meat masala. Every other ingredient and step is optional."
-    },
-    {
-      "item": "Lazy pressure cooker",
-      "swap": "Put onion, chilli, tomato, ginger-garlic paste, the spices, chicken, a little water (about ¼ cup) and a little oil in the pressure cooker. Mix and cook, then let the pressure release naturally: boneless 1–2 whistles (about 5–6 min at high pressure); bone-in 2–3 whistles (about 8–10 min). Add coriander at the end."
-    },
-    {
-      "item": "Creamy",
-      "swap": "Add coconut milk before the coriander and simmer for a few minutes."
-    }
-  ],
+  "notes": "",
+  "source": "",
   "subs": [
     {
       "item": "Coconut oil / ghee",
@@ -215,8 +196,28 @@
     },
     {
       "item": "Chicken thighs",
-      "swap": "drumsticks, legs or breast; adjust the simmer time (see method)"
+      "swap": "drumsticks, or breast (simmer only 12–15 min)"
     }
   ],
-  "notes": ""
+  "variations": [
+    {
+      "item": "Bare minimum",
+      "swap": "Ginger and garlic (any form), onion, an acid (tomato, lime/lemon juice or yogurt), heat (chilli powder or green chilli), coriander powder, and garam masala or any meat masala. Every other ingredient and step is optional."
+    },
+    {
+      "item": "Lazy pressure cooker",
+      "swap": "Put onion, chilli, tomato, ginger-garlic paste, the spices, chicken, a little water (about ¼ cup) and a little oil in the pressure cooker. Mix and cook for 2 whistles (about 8 minutes at high pressure), then let the pressure release naturally. Add coriander at the end."
+    },
+    {
+      "item": "Creamy",
+      "swap": "Add coconut milk before the coriander and simmer for a few minutes."
+    }
+  ],
+  "macros": {
+    "kcal": 400,
+    "protein": 40,
+    "carbs": 13,
+    "fiber": 4,
+    "fat": 20
+  }
 }
