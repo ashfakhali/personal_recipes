@@ -5,7 +5,7 @@ My personal recipe catalogue: a static site hosted on GitHub Pages.
 **Live site:** https://ashfakhali.github.io/personal_recipes/
 
 ## Features
-- Search, plus filters by cuisine, effort and tags. Effort follows your effort stars (1–2 Quick, 3 Moderate, 4–5 Project); unrated recipes use total time (≤30 min Quick, ≤75 Moderate).
+- Search, filters by cuisine and tags, and sorting by name, time, calories, protein, taste or effort (your star ratings; unrated recipes sort last).
 - A servings control that rescales every quantity (grams and cups/tbsp/tsp, never oz)
 - Ingredients in recipe order or grouped by grocery aisle; tap an item to tick it off
 - A share link for each recipe (`…/#/r/<slug>`) and a print layout (Print / PDF → "Save as PDF")
@@ -28,7 +28,7 @@ Each recipe is `recipes/<slug>.json`, and `recipes/index.json` lists the slugs.
 ```json
 {
   "slug": "omurice", "title": "Omurice",
-  "cuisine": "Japanese", "effort": "Quick", "tags": ["rice", "eggs"],
+  "cuisine": "Japanese", "tags": ["rice", "eggs"],
   "servings": 2, "prepMin": 10, "cookMin": 20,
   "macros": { "kcal": 645, "protein": 34, "carbs": 67, "fat": 26 },
   "ingredients": [{ "qty": 2, "unit": "cup", "item": "cooked rice", "aisle": "Grains & Pasta" }],

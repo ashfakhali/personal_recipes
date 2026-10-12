@@ -2,7 +2,6 @@
 const CFG = { owner: 'ashfakhali', repo: 'personal_recipes', branch: 'main' };
 const AISLES = ['Produce', 'Meat & Seafood', 'Dairy & Eggs', 'Bakery', 'Grains & Pasta', 'Baking', 'Spices', 'Condiments & Sauces', 'Oils & Vinegars', 'Frozen', 'Other'];
 const UNITS = ['', 'g', 'cup', 'tbsp', 'tsp', 'pinch'];
-const EFFORTS = ['Quick', 'Moderate', 'Project'];
 const CUISINES = ['American', 'Chinese', 'French', 'Indian', 'Italian', 'Japanese', 'Korean', 'Mediterranean', 'Mexican', 'Middle Eastern', 'Thai', 'Vietnamese'];
 const AISLE_RULES = [
   ['Frozen', 'frozen'],
@@ -94,8 +93,6 @@ function parseLine(line) {
 }
 const fmtMin = m => !m ? '' : m < 60 ? `${m} min` : `${Math.floor(m / 60)} h${m % 60 ? ` ${m % 60} min` : ''}`;
 const total = r => (+r.prepMin || 0) + (+r.cookMin || 0);
-const starEffort = n => n ? (n <= 2 ? 'Quick' : n === 3 ? 'Moderate' : 'Project') : '';
-const autoEffort = r => { const t = total(r); return t <= 30 ? 'Quick' : t <= 75 ? 'Moderate' : 'Project'; };
 function suggestTags(ings) {
   const txt = ings.map(g => g.item.toLowerCase()).join(' ');
   const t = [['chicken', /chicken/], ['beef', /beef|steak|ribeye|sirloin/], ['pork', /pork|bacon/], ['lamb', /lamb|mutton/],
@@ -166,7 +163,9 @@ const hasMacros = r => r.macros && MACROS.some(([k]) => r.macros[k] != null && r
 
 /* ---------- views ---------- */
 const SORTS = { name: ['Name', (a, b) => a.title.localeCompare(b.title)], time: ['Time', (a, b) => total(a) - total(b)],
-  kcal: ['Calories', (a, b) => (a.macros?.kcal ?? 1e9) - (b.macros?.kcal ?? 1e9)], rating: ['My rating', (a, b) => ((b.rating?.taste || 0) - (a.rating?.taste || 0)) || ((a.rating?.effort || 0) - (b.rating?.effort || 0))], protein: ['Protein', (a, b) => (b.macros?.protein ?? -1) - (a.macros?.protein ?? -1)] };
+  kcal: ['Calories', (a, b) => (a.macros?.kcal ?? 1e9) - (b.macros?.kcal ?? 1e9)], rating: ['Taste', (a, b) => ((b.rating?.taste || 0) - (a.rating?.taste || 0)) || ((a.rating?.effort || 9) - (b.rating?.effort || 9))],
+  effort: ['Least effort', (a, b) => ((a.rating?.effort || 9) - (b.rating?.effort || 9)) || ((b.rating?.taste || 0) - (a.rating?.taste || 0))],
+  effortHi: ['Most effort', (a, b) => ((b.rating?.effort || 0) - (a.rating?.effort || 0)) || ((b.rating?.taste || 0) - (a.rating?.taste || 0))], protein: ['Protein', (a, b) => (b.macros?.protein ?? -1) - (a.macros?.protein ?? -1)] };
 const RATINGS = [['taste', 'Taste'], ['effort', 'Effort']];
 const stars = (v, cls = '') => `<span class="stars ${cls}" aria-label="${v || 0} of 5">${[1, 2, 3, 4, 5].map(i => `<i class="${i <= (v || 0) ? 'on' : ''}">★</i>`).join('')}</span>`;
 const isMarinade = r => (r.tags || []).includes('marinade');
@@ -177,8 +176,8 @@ function viewHome(mode = 'recipes') {
   S.filters = S.f[mode];
   const rs = S.recipes.filter(r => isMarinade(r) === M);
   S.sort ||= store.get('sort') || 'name';
-  const groups = { Cuisine: uniq(rs.map(r => r.cuisine)), Effort: EFFORTS.filter(e => rs.some(r => r.effort === e)), Tags: uniq(rs.flatMap(r => r.tags || [])).filter(t => t !== 'marinade') };
-  const has = { Cuisine: (r, v) => r.cuisine === v, Effort: (r, v) => r.effort === v, Tags: (r, v) => (r.tags || []).includes(v) };
+  const groups = { Cuisine: uniq(rs.map(r => r.cuisine)), Tags: uniq(rs.flatMap(r => r.tags || [])).filter(t => t !== 'marinade') };
+  const has = { Cuisine: (r, v) => r.cuisine === v, Tags: (r, v) => (r.tags || []).includes(v) };
   const facet = (g, v) => { const k = `${g}:${v}`, n = rs.filter(r => has[g](r, v)).length;
     return `<label class="opt"><input type="checkbox" data-f="${esc(k)}" ${S.filters.has(k) ? 'checked' : ''}><span>${esc(tl(v))}</span><small>${n}</small></label>`; };
   const wide = matchMedia('(min-width: 761px)').matches;
@@ -196,7 +195,7 @@ function viewHome(mode = 'recipes') {
       </details>
       <div class="results">
         <div class="resbar"><span id="count"></span>${[...S.filters].map(k => `<button class="active" data-f="${esc(k)}" aria-label="Remove filter ${esc(k.split(':')[1])}">${esc(tl(k.split(':')[1]))} ×</button>`).join('')}</div>
-        <div class="rhead-row" aria-hidden="true"><span>Recipe</span><span>Rating</span><span>Cuisine</span><span>Time</span><span>kcal</span><span>Protein</span><span>Effort</span></div>
+        <div class="rhead-row" aria-hidden="true"><span>Recipe</span><span>Rating</span><span>Cuisine</span><span>Time</span><span>kcal</span><span>Protein</span></div>
         <ul id="list" class="rlist"></ul>
       </div>
     </div></section>`;
@@ -210,7 +209,7 @@ function viewHome(mode = 'recipes') {
       <span class="c-time">${fmtMin(total(r)) || '–'}</span>
       <span class="c-kcal">${r.macros?.kcal ?? '–'}<em> kcal</em></span>
       <span class="c-prot">${r.macros?.protein != null ? `${r.macros.protein} g` : '–'}<em> protein</em></span>
-      <span class="c-eff">${r.effort ? `<span class="pill p-${esc(r.effort)}">${esc(r.effort)}</span>` : ''}</span></a></li>`).join('')
+      </a></li>`).join('')
       : `<li class="empty">${rs.length ? 'No recipes match. Try another word or clear the filters.' : 'No recipes yet. <a href="#/new">Add your first one</a>.'}</li>`;
   };
   draw();
@@ -240,7 +239,6 @@ function matches(r) {
   const by = {};
   for (const k of S.filters) { const i = k.indexOf(':'); (by[k.slice(0, i)] ||= []).push(k.slice(i + 1)); }
   if (by.Cuisine && !by.Cuisine.includes(r.cuisine)) return false;
-  if (by.Effort && !by.Effort.includes(r.effort)) return false;
   if (by.Tags && !by.Tags.every(t => (r.tags || []).includes(t))) return false;
   const q = S.q.trim().toLowerCase();
   if (!q) return true;
@@ -274,7 +272,7 @@ function viewRecipe(slug) {
     </header>
     <section class="rcard" id="rcard">
       <div class="rcard-head"><h2>${esc(r.title)}</h2>
-        <dl class="stats">${[['Prep', fmtMin(r.prepMin)], ['Cook', fmtMin(r.cookMin)], ['Total', fmtMin(total(r))], ['Servings', n], ['Effort', r.effort], ['Cuisine', r.cuisine]]
+        <dl class="stats">${[['Prep', fmtMin(r.prepMin)], ['Cook', fmtMin(r.cookMin)], ['Total', fmtMin(total(r))], ['Servings', n], ['Cuisine', r.cuisine]]
           .filter(([, v]) => v).map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
         <div class="myrating">${RATINGS.map(([k, l]) => `<div class="rate" data-k="${k}"><span class="rlabel">${l}${k === 'effort' ? ' <small>(5 = a lot of effort)</small>' : ''}</span><span class="stars big">${[1, 2, 3, 4, 5].map(v => `<button class="${v <= (r.rating?.[k] || 0) ? 'on' : ''}" data-v="${v}" aria-label="${l} ${v} of 5">★</button>`).join('')}</span></div>`).join('')}</div>
         ${hasMacros(r) ? `<div class="macros"><span class="mlabel">Per serving <small>(approx.)</small></span>${MACROS.filter(([k]) => r.macros[k] != null && r.macros[k] !== '')
@@ -306,7 +304,7 @@ function viewRecipe(slug) {
     const rating = { ...(r.rating || {}), [k]: nv };
     if (!nv) delete rating[k];
     el.querySelectorAll('button').forEach(x => x.classList.toggle('on', +x.dataset.v <= nv));
-    try { await saveRecipe({ ...r, ...(rating.effort ? { effort: starEffort(rating.effort) } : {}), ...(Object.keys(rating).length ? { rating } : { rating: undefined }) }, false, `Rate: ${r.title}`); toast(nv ? `${k === 'taste' ? 'Taste' : 'Effort'}: ${nv}/5` : 'Rating cleared'); viewRecipe(slug); }
+    try { await saveRecipe({ ...r, effort: undefined, ...(Object.keys(rating).length ? { rating } : { rating: undefined }) }, false, `Rate: ${r.title}`); toast(nv ? `${k === 'taste' ? 'Taste' : 'Effort'}: ${nv}/5` : 'Rating cleared'); viewRecipe(slug); }
     catch (err) { toast(err.message); viewRecipe(slug); }
   }));
   $('#sminus').onclick = () => setN(n - 1);
@@ -356,7 +354,7 @@ const ingRow = g => `<div class="irow" ${g.item ? 'data-manual="1"' : ''} ${g.gr
 
 function viewEdit(slug) {
   const isNew = !slug;
-  const r = isNew ? { title: '', description: '', cuisine: '', effort: '', tags: [], servings: 2, prepMin: '', cookMin: '', ingredients: [], steps: [], notes: '' }
+  const r = isNew ? { title: '', description: '', cuisine: '', tags: [], servings: 2, prepMin: '', cookMin: '', ingredients: [], steps: [], notes: '' }
     : S.recipes.find(x => x.slug === slug);
   if (!r) return notFound();
   document.title = isNew ? 'New recipe' : `Edit · ${r.title}`;
@@ -369,7 +367,6 @@ function viewEdit(slug) {
     <label class="f">Title<input name="title" required value="${esc(r.title)}"></label>
     <div class="fgrid">
       <label class="f">Cuisine<input name="cuisine" list="cuisines" value="${esc(r.cuisine)}"></label>
-      <label class="f">Effort<select name="effort"><option value="">Auto (from your effort stars, else time)</option>${EFFORTS.map(e => `<option ${e === r.effort ? 'selected' : ''}>${e}</option>`).join('')}</select></label>
       <label class="f">Prep (min)<input name="prepMin" type="number" min="0" value="${esc(r.prepMin)}"></label>
       <label class="f">Cook (min)<input name="cookMin" type="number" min="0" value="${esc(r.cookMin)}"></label>
       <label class="f">Servings<input name="servings" type="number" min="1" value="${esc(r.servings || 2)}"></label>
@@ -423,12 +420,10 @@ function viewEdit(slug) {
     if (!token()) return toast('Add your GitHub token in Settings to save');
     const v = k => String(form.elements[k].value || '').trim();
     const rec = {
-      slug: isNew ? uniqueSlug(v('title')) : r.slug, title: v('title'), cuisine: v('cuisine'), effort: '',
-      tags: uniq(v('tags').split(',').map(t => t.trim().toLowerCase())), servings: Math.max(1, +v('servings') || 1),
+      slug: isNew ? uniqueSlug(v('title')) : r.slug, title: v('title'), cuisine: v('cuisine'),       tags: uniq(v('tags').split(',').map(t => t.trim().toLowerCase())), servings: Math.max(1, +v('servings') || 1),
       prepMin: +v('prepMin') || 0, cookMin: +v('cookMin') || 0, ingredients: readRows(),
       steps: v('steps').split(/\n\s*\n/.test(v('steps')) ? /\n\s*\n/ : '\n').map(s => s.trim().replace(/\s*\n\s*/g, ' ').replace(/^\d+[.)]\s*/, '')).filter(Boolean), notes: v('notes'),
     };
-    rec.effort = (r.rating?.effort && starEffort(r.rating.effort)) || v('effort') || autoEffort(rec);
     rec.source = v('source'); delete rec.sticker;
     const pairs = k => v(k).split('\n').map(l => l.trim()).filter(Boolean).map(l => { const i = l.indexOf(':'); return i < 0 ? { item: l, swap: '' } : { item: l.slice(0, i).trim(), swap: l.slice(i + 1).trim() }; });
     const subs = pairs('subs'), vars = pairs('variations');
@@ -498,7 +493,6 @@ async function load() {
   try {
     const idx = (await readJSON('recipes/index.json')) || [];
     S.recipes = (await Promise.all(idx.map(s => readJSON(`recipes/${s}.json`).catch(() => null)))).filter(Boolean);
-    S.recipes.forEach(r => { if (r.rating?.effort) r.effort = starEffort(r.rating.effort); });
   } catch (e) { app.innerHTML = `<p class="empty">Couldn't load recipes: ${esc(e.message)}</p>`; return; }
   route();
 }
