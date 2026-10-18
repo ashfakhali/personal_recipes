@@ -1,0 +1,96 @@
+{
+  "slug": "turmeric-cumin-rice",
+  "title": "Turmeric Cumin Rice",
+  "cuisine": "Indian",
+  "tags": [
+    "rice",
+    "side",
+    "meal prep",
+    "vegetarian"
+  ],
+  "servings": 5,
+  "prepMin": 5,
+  "cookMin": 25,
+  "macros": {
+    "kcal": 235,
+    "protein": 5,
+    "carbs": 47,
+    "fiber": 1,
+    "fat": 3
+  },
+  "links": [
+    "https://youtu.be/1_mG38FJ0_U"
+  ],
+  "ingredients": [
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "ghee or clarified butter",
+      "aisle": "Dairy & Eggs"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "cumin seeds",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 3,
+      "unit": "",
+      "item": "green cardamom pods",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "bay leaf",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "turmeric",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1.5,
+      "unit": "cup",
+      "item": "basmati rice (300 g), washed",
+      "aisle": "Grains & Pasta"
+    },
+    {
+      "qty": 2.5,
+      "unit": "cup",
+      "item": "water (600 ml; double the rice)",
+      "aisle": "Other"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "salt, optional",
+      "aisle": "Spices"
+    }
+  ],
+  "steps": [
+    "Melt the ghee in a pan. Just before it fully melts, add the cumin seeds, cardamom and bay leaf. Toast about 1 minute, until they bloom and crackle slightly.",
+    "Add the turmeric and cook 20 seconds. Add the washed rice and toast about 30 seconds.",
+    "Add the water and salt, if using, and stir once. Bring to a boil.",
+    "Cover, reduce the heat to low and cook 12 minutes. Turn the heat off and leave the lid on for 10 minutes more to finish steaming. (It can sit like this while you finish the curry.)",
+    "Remove the bay leaf and the cardamom pods, then fluff with a fork."
+  ],
+  "subs": [
+    {
+      "item": "Basmati rice",
+      "swap": "any long-grain rice; check the packet for the water ratio"
+    },
+    {
+      "item": "Ghee",
+      "swap": "butter or a neutral oil"
+    },
+    {
+      "item": "Whole spices",
+      "swap": "skip the cardamom and bay leaf; keep the cumin"
+    }
+  ],
+  "notes": ""
+}
