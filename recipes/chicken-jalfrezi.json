@@ -1,0 +1,154 @@
+{
+  "slug": "chicken-jalfrezi",
+  "title": "Chicken Jalfrezi",
+  "cuisine": "Indian",
+  "tags": [
+    "chicken",
+    "curry",
+    "high protein",
+    "high fiber",
+    "meal prep"
+  ],
+  "servings": 4,
+  "prepMin": 15,
+  "cookMin": 25,
+  "macros": {
+    "kcal": 334,
+    "protein": 41,
+    "carbs": 8,
+    "fiber": 7,
+    "fat": 15
+  },
+  "links": [
+    "https://www.nhs.uk/healthier-families/recipes/chicken-jalfrezi/"
+  ],
+  "ingredients": [
+    {
+      "qty": 700,
+      "unit": "g",
+      "item": "boneless chicken (breast or thigh), cut into cubes",
+      "aisle": "Meat & Seafood"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "rapeseed or neutral oil",
+      "aisle": "Oils & Vinegars"
+    },
+    {
+      "qty": 3,
+      "unit": "",
+      "item": "medium onions, chopped",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "bell peppers, any colour, chopped",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "green chillies, sliced",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 4,
+      "unit": "",
+      "item": "garlic cloves, finely chopped",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 20,
+      "unit": "g",
+      "item": "fresh ginger, peeled and thinly sliced",
+      "aisle": "Produce"
+    },
+    {
+      "qty": 400,
+      "unit": "g",
+      "item": "chopped tomatoes (1 can)",
+      "aisle": "Condiments & Sauces"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "turmeric",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "cumin seeds (heaped)",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "red chilli powder",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1.5,
+      "unit": "tsp",
+      "item": "coriander powder",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "garam masala",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "salt, optional",
+      "aisle": "Spices"
+    },
+    {
+      "qty": 1,
+      "unit": "cup",
+      "item": "water",
+      "aisle": "Other"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "fresh coriander, chopped, to serve",
+      "aisle": "Produce"
+    }
+  ],
+  "steps": [
+    "Heat the oil in a non-stick pan over high heat. Add the chicken and cook 2 minutes. Add the cumin seeds, turmeric, chilli powder and ½ tsp salt and fry over medium heat for 3–4 minutes, stirring often, until the chicken is lightly cooked and turning white.",
+    "Remove the chicken and set aside, leaving the oil and juices in the pan. Fry the onions over medium heat for about 7 minutes until soft and starting to turn golden. Meanwhile, blend or mash the tomatoes.",
+    "Add the ginger, garlic and peppers and cook 2 minutes. Add the tomatoes and cook 2 minutes more. Stir in the coriander powder, garam masala and the remaining ½ tsp salt and cook 1 minute.",
+    "Return the chicken and stir to coat for a couple of minutes. Add the green chillies and fry 2 minutes over medium heat.",
+    "Pour in the water, stir, cover and simmer on low for 10–15 minutes, until the chicken is tender and the sauce has thickened. (Breast needs the shorter time. Thigh can take the longer.)",
+    "Turn off the heat and sprinkle with chopped coriander."
+  ],
+  "subs": [
+    {
+      "item": "Chicken",
+      "swap": "breast for the leanest result, thighs for more flavour (simmer a few minutes longer)"
+    },
+    {
+      "item": "Green chillies",
+      "swap": "fewer, or leave out for a milder curry"
+    },
+    {
+      "item": "Chopped tomatoes",
+      "swap": "fresh tomatoes, or 2 tbsp tomato purée plus a splash of water"
+    },
+    {
+      "item": "Cumin seeds",
+      "swap": "ground cumin, 1 tsp"
+    },
+    {
+      "item": "Rapeseed oil",
+      "swap": "ghee or coconut oil"
+    }
+  ],
+  "notes": ""
+}
