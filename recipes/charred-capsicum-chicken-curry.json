@@ -12,10 +12,10 @@
   "prepMin": 30,
   "cookMin": 50,
   "macros": {
-    "kcal": 380,
+    "kcal": 395,
     "protein": 40,
-    "carbs": 16,
-    "fiber": 5,
+    "carbs": 20,
+    "fiber": 6,
     "fat": 17
   },
   "links": [
@@ -72,16 +72,16 @@
       "group": "Chicken"
     },
     {
-      "qty": 1,
+      "qty": 2,
       "unit": "",
-      "item": "brown or yellow onion, diced",
+      "item": "brown or yellow onions, diced",
       "aisle": "Produce",
       "group": "Charred vegetables (blended)"
     },
     {
-      "qty": 450,
-      "unit": "g",
-      "item": "bell peppers (capsicum), any colour, diced",
+      "qty": 3,
+      "unit": "",
+      "item": "large bell peppers (capsicum), any colour, diced",
       "aisle": "Produce",
       "group": "Charred vegetables (blended)"
     },
