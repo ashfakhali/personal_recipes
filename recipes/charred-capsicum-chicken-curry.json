@@ -1,0 +1,258 @@
+{
+  "slug": "charred-capsicum-chicken-curry",
+  "title": "Charred Capsicum Chicken Curry",
+  "cuisine": "Indian",
+  "tags": [
+    "chicken",
+    "curry",
+    "high protein",
+    "meal prep"
+  ],
+  "servings": 5,
+  "prepMin": 30,
+  "cookMin": 50,
+  "macros": {
+    "kcal": 380,
+    "protein": 40,
+    "carbs": 16,
+    "fiber": 5,
+    "fat": 17
+  },
+  "links": [
+    "https://youtu.be/1_mG38FJ0_U"
+  ],
+  "ingredients": [
+    {
+      "qty": 1000,
+      "unit": "g",
+      "item": "boneless skinless chicken thighs, roughly diced",
+      "aisle": "Meat & Seafood",
+      "group": "Chicken"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "Kashmiri chilli powder",
+      "aisle": "Spices",
+      "group": "Chicken"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "garam masala",
+      "aisle": "Spices",
+      "group": "Chicken"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "turmeric",
+      "aisle": "Spices",
+      "group": "Chicken"
+    },
+    {
+      "qty": 1.5,
+      "unit": "tbsp",
+      "item": "lemon juice (about half a lemon)",
+      "aisle": "Produce",
+      "group": "Chicken"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "salt, generously",
+      "aisle": "Spices",
+      "group": "Chicken"
+    },
+    {
+      "qty": 1,
+      "unit": "tbsp",
+      "item": "neutral oil, for searing",
+      "aisle": "Oils & Vinegars",
+      "group": "Chicken"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "brown or yellow onion, diced",
+      "aisle": "Produce",
+      "group": "Charred vegetables (blended)"
+    },
+    {
+      "qty": 450,
+      "unit": "g",
+      "item": "bell peppers (capsicum), any colour, diced",
+      "aisle": "Produce",
+      "group": "Charred vegetables (blended)"
+    },
+    {
+      "qty": 0.25,
+      "unit": "cup",
+      "item": "water or chicken stock, to deglaze",
+      "aisle": "Other",
+      "group": "Charred vegetables (blended)"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "neutral oil",
+      "aisle": "Oils & Vinegars",
+      "group": "Sauce"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "cumin seeds",
+      "aisle": "Spices",
+      "group": "Sauce"
+    },
+    {
+      "qty": 1,
+      "unit": "",
+      "item": "brown or yellow onion, thinly sliced",
+      "aisle": "Produce",
+      "group": "Sauce"
+    },
+    {
+      "qty": 3,
+      "unit": "",
+      "item": "garlic cloves, finely grated",
+      "aisle": "Produce",
+      "group": "Sauce"
+    },
+    {
+      "qty": 10,
+      "unit": "g",
+      "item": "fresh ginger, finely grated",
+      "aisle": "Produce",
+      "group": "Sauce"
+    },
+    {
+      "qty": 2,
+      "unit": "",
+      "item": "long green chillies, split lengthways (optional)",
+      "aisle": "Produce",
+      "group": "Sauce"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "ground cumin",
+      "aisle": "Spices",
+      "group": "Sauce"
+    },
+    {
+      "qty": 2,
+      "unit": "tsp",
+      "item": "ground coriander",
+      "aisle": "Spices",
+      "group": "Sauce"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "Kashmiri chilli powder",
+      "aisle": "Spices",
+      "group": "Sauce"
+    },
+    {
+      "qty": 0.5,
+      "unit": "tsp",
+      "item": "turmeric",
+      "aisle": "Spices",
+      "group": "Sauce"
+    },
+    {
+      "qty": 2,
+      "unit": "tbsp",
+      "item": "tomato paste",
+      "aisle": "Condiments & Sauces",
+      "group": "Sauce"
+    },
+    {
+      "qty": 800,
+      "unit": "g",
+      "item": "canned crushed or diced tomatoes (2 cans)",
+      "aisle": "Condiments & Sauces",
+      "group": "Sauce"
+    },
+    {
+      "qty": 0.5,
+      "unit": "cup",
+      "item": "water",
+      "aisle": "Other",
+      "group": "Sauce"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "salt, to taste",
+      "aisle": "Spices",
+      "group": "Sauce"
+    },
+    {
+      "qty": 1,
+      "unit": "tsp",
+      "item": "garam masala",
+      "aisle": "Spices",
+      "group": "To finish"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "kasoori methi (dried fenugreek leaves), crushed",
+      "aisle": "Spices",
+      "group": "To finish"
+    },
+    {
+      "qty": null,
+      "unit": "",
+      "item": "fresh coriander leaves, chopped",
+      "aisle": "Produce",
+      "group": "To finish"
+    }
+  ],
+  "steps": [
+    "## Marinate",
+    "Mix the chicken with the Kashmiri chilli powder, garam masala, turmeric, lemon juice and plenty of salt. Set aside about 20 minutes.",
+    "## Prep",
+    "Dice one onion small to medium and thinly slice the other. Slice the peppers into thin strips, then dice. Split the green chillies lengthways. Grate the garlic and ginger into a paste.",
+    "## Sear the chicken",
+    "Heat a pan or pot over high heat until smoking hot and add 1 tbsp oil. Sear the chicken in batches, 2–3 minutes per side, about 6 minutes total, until browned but not cooked through. Move to a bowl and keep the fat in the pan.",
+    "## Char and blend the vegetables",
+    "Return the pan to medium-high heat. Add the diced onion, peppers and a pinch of salt, spread them out and leave 2–3 minutes until the edges char, then stir. Cook about 5 minutes total, turning the heat down if anything starts to burn.",
+    "Add the ¼ cup water or stock and scrape up the browned bits. Tip everything into a blender (or use an immersion blender) and pulse to a thick, wet, slightly grainy texture. Don't blend it to a paste; add a splash of water only if it won't turn over.",
+    "## Sauce",
+    "Wipe or reuse the pan over medium heat. Add 2 tbsp oil, the cumin seeds, the sliced onion and a pinch of salt. Cook about 8 minutes, stirring regularly, until soft and jammy with little colour.",
+    "Add the garlic-ginger paste and green chillies and cook 1 minute. Add the ground cumin, coriander, Kashmiri chilli powder and turmeric and cook about 20 seconds. Add the tomato paste and cook 1 minute.",
+    "Add the tomatoes and swirl ½ cup water around the cans. Stir in the blended charred vegetables, taste for salt and bring to a simmer. Cook on low for a while until thick and the oil starts to separate at the edges.",
+    "## Finish",
+    "Add the chicken and its resting juices and mix to coat. Simmer 8–10 minutes until the chicken is cooked through (175°F / 79°C or more for thighs) and the sauce is thick.",
+    "Stir in the garam masala. Garnish with the crushed kasoori methi and chopped coriander. Taste for salt.",
+    "## Store",
+    "Portion into 5 containers (about 750 ml each) with rice. Cool slightly before putting the lids on. Keeps 4 days in the fridge or 3 months in the freezer. Thaw overnight in the fridge and reheat in the microwave with a splash of stock or water."
+  ],
+  "subs": [
+    {
+      "item": "Chicken thighs",
+      "swap": "breast, for leaner; simmer less so it doesn't dry out"
+    },
+    {
+      "item": "Green chillies",
+      "swap": "leave out for a milder curry"
+    },
+    {
+      "item": "Kasoori methi",
+      "swap": "skip; it only adds a slight bitterness"
+    },
+    {
+      "item": "Water",
+      "swap": "chicken stock"
+    },
+    {
+      "item": "Bell peppers",
+      "swap": "any veg that chars and blends well"
+    }
+  ],
+  "notes": "2026-10-19 — Charred the veg and blended it coarse (thick, still a little grainy), simmered it with the tomatoes, then added the chicken. Really good. Might try charring the veg better."
+}
